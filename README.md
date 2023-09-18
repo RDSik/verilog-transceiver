@@ -6,10 +6,8 @@
 
 ## Clone repository:
 ```bash
-git clone --recurse-submodules https://github.com/RDSik/FPGA_transceiver.git
+git clone https://github.com/RDSik/FPGA_transceiver.git
 cd FPGA_trasceiver
-# git clone --recurse-submodules https://github.com/RDSik/FPGA_transceiver.git
-# git submodule update --init
 ```
 
 ## Requirements installation:
@@ -23,14 +21,7 @@ winget install GnuWin32.make # add to PATH system variable the Make bin folder: 
 ```bash
 cd syn
 hdlmake
-make
-```
-
-## Only create Vivado project
-```bash
-cd syn
-hdlmake
-make project
+make # make project create only Vivado project
 ```
 
 ## FPGA_trasceiver test
