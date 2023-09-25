@@ -33,9 +33,7 @@ wire       parity;
 
 integer i;
 
-receiver #(
-    .DATA_WIDTH (9)
-) dut (
+receiver dut (
     .clk  (clk),
     .arst (arst),
     .in   (in),

@@ -20,18 +20,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module receiver #(
-    parameter DATA_WIDTH = 9
-) (
-    input                   clk,
-    input                   arst, // asynchronous reset
-    input                   in,
-    output                  done,
-    output [DATA_WIDTH-1:0] out
+module receiver (
+    input  wire       clk,
+    input  wire       arst, // asynchronous reset
+    input  wire       in,
+    output wire       done,
+    output wire [8:0] out
 );
     
-    parameter [3:0] 
-                    START = 4'd0, 
+    parameter [3:0] START = 4'd0, 
                     D0 = 4'd1, 
                     D1 = 4'd2, 
                     D2 = 4'd3, 
@@ -44,9 +41,9 @@ module receiver #(
                     STOP = 4'd10,
                     DONE = 4'd11;                    
     
-    reg [3:0]            state; 
-    reg [3:0]            next_state;
-    reg [DATA_WIDTH-1:0] data;
+    reg [3:0] state; 
+    reg [3:0] next_state;
+    reg [8:0] data;
     
     always @(*)
         begin

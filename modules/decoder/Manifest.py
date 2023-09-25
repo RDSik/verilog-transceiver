@@ -1,0 +1,3 @@
+files = [
+    "decoder.v",
+]
