@@ -1,37 +1,16 @@
 `timescale 1ns / 1ns
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 18.09.2023 20:41:16
-// Design Name: 
-// Module Name: receiver
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module receiver #(
-    parameter DATA_WIDTH = 9
+    parameter DATA_WIDTH = 8
 ) (
-    input                   clk,
-    input                   arst, // asynchronous reset
-    input                   in,
-    output                  done,
-    output [DATA_WIDTH-1:0] out
+    input  wire                clk,
+    input  wire                arst, // asynchronous reset
+    input  wire                in,
+    output wire                done,
+    output wire [DATA_WIDTH:0] out
 );
     
-    parameter [3:0] 
-                    START = 4'd0, 
+    parameter [3:0] START = 4'd0, 
                     D0 = 4'd1, 
                     D1 = 4'd2, 
                     D2 = 4'd3, 
@@ -44,8 +23,8 @@ module receiver #(
                     STOP = 4'd10,
                     DONE = 4'd11;                    
     
-    reg [3:0]            state; 
     reg [3:0]            next_state;
+    reg [3:0]            state; 
     reg [DATA_WIDTH-1:0] data;
     
     always @(*)

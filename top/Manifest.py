@@ -1,3 +1,3 @@
 files = [
-    "receiver_top.v",
+    "transceiver_top.v",
 ]

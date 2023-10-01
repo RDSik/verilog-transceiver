@@ -1,10 +1,10 @@
 action = "simulation"
 sim_tool = "modelsim"
-sim_top = "receiver_tb"
+sim_top = "transceiver_tb"
 
 modules = {
     "local" : [
-        "../tb", 
+        "../tb/transceiver", 
         "../",
     ],
 }

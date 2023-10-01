@@ -1,0 +1,13 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../../modules/modulator/bpsk_modulator.v" \
+"../../../../../modules/modulator/mux.v" \
+"../../../../../modules/modulator/neg_sin_gen.v" \
+"../../../../../modules/modulator/sin_gen.v" \
+"../../../../../tb/modulator/bpsk_modulator_tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
