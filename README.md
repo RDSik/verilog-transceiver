@@ -30,5 +30,5 @@ make # make project create only Vivado project
 cd sim
 hdlmake
 make
-vsim work.receiver_tb
+vsim work.transceiver_tb
 ```
