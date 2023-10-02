@@ -42,7 +42,7 @@ decoder #(
 ) decoder_inst (
     .clk      (clk),
     .arst     (arst),
-    .data     (data),
+    .in       (data),
     .err      (err),
     .out_byte (out_byte)
 );
