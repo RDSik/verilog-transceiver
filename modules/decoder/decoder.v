@@ -18,7 +18,7 @@ module decoder #(
                 begin
                     out_byte <= 8'd0;
                 end
-            else if (!parity) 
+            else if (parity) 
                 begin
                     err <= 1;
                 end
