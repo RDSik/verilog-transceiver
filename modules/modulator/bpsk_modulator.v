@@ -1,4 +1,4 @@
-`timescale 1ns / 1ns
+`timescale 1ps / 1ps
 
 module bpsk_modulator #(
     parameter DATA_WIDTH = 12,
@@ -7,39 +7,39 @@ module bpsk_modulator #(
     input  wire                  clk,
     input  wire                  arst, // asynchronous reset
     input  wire                  en,
-    input  wire                  s,
-    output wire [ADDR_WIDTH-1:0] signal_out 
+    input  wire [ADDR_WIDTH:0]   in,
+    output reg  [DATA_WIDTH-1:0] signal_out 
 );
 
-wire [DATA_WIDTH-1:0] sin;
-wire [DATA_WIDTH-1:0] neg_sin;
+reg [DATA_WIDTH-1:0] sine_rom [2**ADDR_WIDTH-1:0];
+reg [DATA_WIDTH-1:0] neg_sine_rom [2**ADDR_WIDTH-1:0];
+reg [ADDR_WIDTH-1:0]         sine_cnt; // output sine signal counter
+reg [$clog2(ADDR_WIDTH)-1:0] sel_cnt;  // select counter
+reg [ADDR_WIDTH:0]           sel;      // register for input select signal
 
-neg_sin_gen #(
-    .DATA_WIDTH (DATA_WIDTH),
-    .ADDR_WIDTH (ADDR_WIDTH)
-) neg_sin_gen_inst (
-    .clk(clk),
-    .arst(arst),
-    .neg_sin_out(neg_sin)
-);
+initial 
+    begin
+        $readmemb("sine_value.dat", sine_rom);
+        $readmemb("neg_sine_value.dat", neg_sine_rom);
+    end
 
-sin_gen  #(
-    .DATA_WIDTH (DATA_WIDTH),
-    .ADDR_WIDTH (ADDR_WIDTH)
-) sin_gen_inst (
-    .clk(clk),
-    .arst(arst),
-    .sin_out(sin)
-);
-
-mux #(
-    .DATA_WIDTH (DATA_WIDTH)
-) mux_inst (
-    .en(en),
-    .s(s),
-    .sin_in(sin),
-    .neg_sin_in(neg_sin),
-    .signal_out(signal_out)
-);
+always @(posedge clk or posedge arst)
+    begin
+        if (arst)
+            begin 
+                sine_cnt <= 0;
+                sel_cnt <= 0;
+            end 
+        else if (en)
+            begin
+                signal_out <= sel[sel_cnt] ? sine_rom[sine_cnt] : neg_sine_rom[sine_cnt];     
+                sine_cnt <= sine_cnt + 1;
+                if (sine_cnt == 8'd255) // one period of sine
+                    begin
+                        sel <= in;
+                        sel_cnt <= sel_cnt + 1;
+                    end                
+            end
+    end
 
 endmodule
