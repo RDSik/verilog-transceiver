@@ -1,20 +1,23 @@
 `timescale 1ps / 1ps
 
-module transceiver_top (
-    input  wire        clk,
-    input  wire        arst, // asynchronous reset
-    input  wire        in,
-    output wire        err,
-    output wire        en,
-    output wire [11:0] signal_out
+module transceiver_top #(
+    parameter DATA_WIDTH = 12,
+              ADDR_WIDTH = 8
+) (
+    input  wire                  clk,
+    input  wire                  arst, // asynchronous reset
+    input  wire                  in,
+    input  wire                  en,
+    output wire                  err,
+    output wire                  done,
+    output wire [DATA_WIDTH-1:0] signal_out
 );                    
     
-    wire [8:0] data;
-    wire [7:0] out_byte; 
-    wire done;
+    wire [ADDR_WIDTH:0] data;
+    wire [ADDR_WIDTH-1:0] out_byte; 
     
 receiver #(
-    .DATA_WIDTH (8)
+    .DATA_WIDTH (ADDR_WIDTH)
 ) receiver_inst (
     .clk  (clk),
     .arst (arst),
@@ -24,8 +27,8 @@ receiver #(
 );
 
 bpsk_modulator #(
-    .DATA_WIDTH (12),
-    .ADDR_WIDTH (8)
+    .DATA_WIDTH (DATA_WIDTH),
+    .ADDR_WIDTH (ADDR_WIDTH)
 ) dut (
     .clk        (clk),
     .arst       (arst),
@@ -35,7 +38,7 @@ bpsk_modulator #(
 );
 
 decoder #(
-    .DATA_WIDTH (8)
+    .DATA_WIDTH (ADDR_WIDTH)
 ) decoder_inst (
     .clk      (clk),
     .arst     (arst),
