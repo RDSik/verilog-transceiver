@@ -33,11 +33,13 @@ initial
     begin        
         clk = 0; 
         #1; arst = 1; en = 0;
-        #1; arst = 0; en = 1;
-        for (i = 0; i <= 5000; i = i + 1)
+        #1; arst = 0; en = 1; in = $urandom_range(0,511);
+        forever
+               #1000; in = $urandom_range(0,511);
+        /*for (i = 0; i <= 5000; i = i + 1)
             begin
                 #1; in = $urandom_range(0,511); 
-            end 
+            end*/
     end
 
 always #1 clk = !clk;
