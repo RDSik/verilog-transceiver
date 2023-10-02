@@ -10,22 +10,22 @@ module receiver #(
     output wire [DATA_WIDTH:0] out
 );
     
-    parameter [3:0] START = 4'd0, 
-                    D0 = 4'd1, 
-                    D1 = 4'd2, 
-                    D2 = 4'd3, 
-                    D3 = 4'd4, 
-                    D4 = 4'd5, 
-                    D5 = 4'd6, 
-                    D6 = 4'd7, 
-                    D7 = 4'd8,
-                    D8 = 4'd9, 
-                    STOP = 4'd10,
-                    DONE = 4'd11;                    
+    localparam [3:0] START = 4'd0, 
+                     D0 = 4'd1, 
+                     D1 = 4'd2, 
+                     D2 = 4'd3, 
+                     D3 = 4'd4, 
+                     D4 = 4'd5, 
+                     D5 = 4'd6, 
+                     D6 = 4'd7, 
+                     D7 = 4'd8,
+                     D8 = 4'd9, 
+                     STOP = 4'd10,
+                     DONE = 4'd11;                    
     
     reg [3:0]            next_state;
     reg [3:0]            state; 
-    reg [DATA_WIDTH-1:0] data;
+    reg [DATA_WIDTH:0] data;
     
     always @(*)
         begin
