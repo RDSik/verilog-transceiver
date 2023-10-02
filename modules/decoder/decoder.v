@@ -1,4 +1,4 @@
-`timescale 1ns / 1ns
+`timescale 1ps / 1ps
 
 module decoder #(
     parameter DATA_WIDTH = 8
