@@ -43,7 +43,7 @@ initial
 always #1 clk = !clk;
 
 initial 
-    $monitor("time=%g, clk=%b, in=%b, signal_out", $time, clk, in, signal_out);
+    $monitor("time=%g, clk=%b, in=%b, signal_out=%b", $time, clk, in, signal_out);
 	
 initial 
 	#5000 $stop;
