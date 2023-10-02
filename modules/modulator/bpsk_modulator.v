@@ -18,28 +18,28 @@ neg_sin_gen #(
     .DATA_WIDTH (DATA_WIDTH),
     .ADDR_WIDTH (ADDR_WIDTH)
 ) neg_sin_gen_inst (
-    .clk(clk),
-    .arst(arst),
-    .neg_sin_out(neg_sin)
+    .clk         (clk),
+    .arst        (arst),
+    .neg_sin_out (neg_sin)
 );
 
 sin_gen  #(
     .DATA_WIDTH (DATA_WIDTH),
     .ADDR_WIDTH (ADDR_WIDTH)
 ) sin_gen_inst (
-    .clk(clk),
-    .arst(arst),
-    .sin_out(sin)
+    .clk     (clk),
+    .arst    (arst),
+    .sin_out (sin)
 );
 
 mux #(
     .DATA_WIDTH (DATA_WIDTH)
 ) mux_inst (
-    .en(en),
-    .s(s),
-    .sin_in(sin),
-    .neg_sin_in(neg_sin),
-    .signal_out(signal_out)
+    .en         (en),
+    .s          (s),
+    .sin_in     (sin),
+    .neg_sin_in (neg_sin),
+    .signal_out (signal_out)
 );
 
 endmodule
