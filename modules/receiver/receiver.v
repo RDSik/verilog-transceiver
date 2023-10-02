@@ -23,8 +23,8 @@ module receiver #(
                      STOP = 4'd10,
                      DONE = 4'd11;                    
     
-    reg [3:0]            next_state;
-    reg [3:0]            state; 
+    reg [3:0]          next_state;
+    reg [3:0]          state; 
     reg [DATA_WIDTH:0] data;
     
     always @(*)
