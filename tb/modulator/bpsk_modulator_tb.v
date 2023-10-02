@@ -8,9 +8,9 @@ reg         en;
 reg [8:0]   in;
 
 wire [11:0] signal_out;
-wire [7:0] sine_cnt;
-wire [2:0] sel_cnt;
-wire       sel;
+wire [7:0]  sine_cnt;
+wire [2:0]  sel_cnt;
+wire        sel;
 
 integer i;
 
