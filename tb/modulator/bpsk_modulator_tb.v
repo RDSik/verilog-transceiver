@@ -31,11 +31,11 @@ assign sel = dut.sel;
 
 initial 
     begin        
-        clk = 0; 
+        clk = 0; in = $urandom_range(0,511);
         #1; arst = 1; en = 0;
-        #1; arst = 0; en = 1; in = $urandom_range(0,511);
+        #1; arst = 0; en = 1;
         forever
-               #1000; in = $urandom_range(0,511);
+               #600 in = $urandom_range(0,511);
         /*for (i = 0; i <= 5000; i = i + 1)
             begin
                 #1; in = $urandom_range(0,511); 
