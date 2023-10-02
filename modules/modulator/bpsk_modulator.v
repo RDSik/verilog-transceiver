@@ -8,7 +8,7 @@ module bpsk_modulator #(
     input  wire                  arst, // asynchronous reset
     input  wire                  en,
     input  wire                  s,
-    output wire [ADDR_WIDTH-1:0] signal_out 
+    output wire [DATA_WIDTH-1:0] signal_out 
 );
 
 wire [DATA_WIDTH-1:0] sin;
