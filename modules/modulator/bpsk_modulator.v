@@ -34,7 +34,7 @@ always @(posedge clk or posedge arst)
             begin
                 signal_out <= sel ? sine_rom[sine_cnt] : neg_sine_rom[sine_cnt];     
                 sine_cnt <= sine_cnt + 1;
-                if (sine_cnt == 8'd127)
+                if (sine_cnt == 8'd255) // one period of sine
                     begin
                         sel <= in[sel_cnt];
                         sel_cnt <= sel_cnt + 1;

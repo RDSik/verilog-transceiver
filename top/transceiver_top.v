@@ -29,7 +29,7 @@ receiver #(
 bpsk_modulator #(
     .DATA_WIDTH (DATA_WIDTH),
     .ADDR_WIDTH (ADDR_WIDTH)
-) dut (
+) bpsk_modulator_inst (
     .clk        (clk),
     .arst       (arst),
     .en         (en),
