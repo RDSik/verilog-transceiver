@@ -14,15 +14,18 @@ module decoder #(
 
     always @(posedge clk or posedge arst)
         begin
-            if (arst) begin
-                out_byte <= 8'd0;
-            end
-            else if (in[8] != parity) begin
-                err <= 1;
-            end
-            else begin
-                err <= 0;
-            end
+            if (arst) 
+                begin
+                    out_byte <= 8'd0;
+                end
+            else if (in[8] != parity) 
+                begin
+                    err <= 1;
+                end
+            else 
+                begin
+                    err <= 0;
+                end
         out_byte <= in[7:0];
         end
 
