@@ -2,14 +2,14 @@
 
 module transceiver_tb();
 
-reg         clk,
-reg         arst,
-reg         in,
-reg         en,
+reg         clk;
+reg         arst;
+reg         in;
+reg         en;
 
-wire        err,
-wire        done,
-wire [11:0] signal_out
+wire        err;
+wire        done;
+wire [11:0] signal_out;
 
 integer i;
 

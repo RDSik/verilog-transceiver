@@ -9,10 +9,8 @@ reg [8:0]   in;
 
 wire [11:0] signal_out;
 wire [7:0] sine_cnt;
-wire [2:0] sel_cnt;
+wire [3:0] sel_cnt;
 wire [8:0] sel;
-
-integer i;
 
 bpsk_modulator #(
     .DATA_WIDTH (12),
@@ -34,10 +32,6 @@ initial
         clk = 0; in = $urandom_range(0,511);
         #1; arst = 1; en = 0;
         #1; arst = 0; en = 1;
-        for (i = 0; i <= 5; i = i + 1)
-            begin
-                #1000; in = $urandom_range(0,511); 
-            end 
     end
 
 always #1 clk = ~clk;

@@ -14,7 +14,7 @@ module bpsk_modulator #(
 reg [DATA_WIDTH-1:0] sine_rom [2**ADDR_WIDTH-1:0];
 reg [DATA_WIDTH-1:0] neg_sine_rom [2**ADDR_WIDTH-1:0];
 reg [ADDR_WIDTH-1:0]         sine_cnt; // output sine signal counter
-reg [$clog2(ADDR_WIDTH)-1:0] sel_cnt;  // select counter
+reg [$clog2(ADDR_WIDTH):0]   sel_cnt;  // select counter
 reg [ADDR_WIDTH:0]           sel;      // register for input select signal
 
 initial 
@@ -38,7 +38,11 @@ always @(posedge clk or posedge arst)
                     begin
                         sel <= in;
                         sel_cnt <= sel_cnt + 1;
-                    end                
+                    end
+                else if (sel_cnt == 4'd8) // in[8:0]
+                    begin
+                        sel_cnt <= 0;
+                    end                  
             end
     end
 

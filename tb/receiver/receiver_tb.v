@@ -10,6 +10,7 @@ wire       done;
 wire [8:0] out;
 wire [3:0] state;
 wire       parity;
+wire [8:0] data;
 
 integer i;
 
@@ -24,6 +25,7 @@ receiver #(
 );
 
 assign state = dut.state;
+assign data = dut.data;
 assign parity = dut.data[8];
 
 initial 
