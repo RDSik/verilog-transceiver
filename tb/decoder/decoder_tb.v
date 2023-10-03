@@ -32,7 +32,7 @@ initial
             end 
     end
 
-always #1 clk = !clk;
+always #1 clk = ~clk;
 
 initial 
     $monitor("time=%g, clk=%b, data=%b, err=%b, out_byte=%b", $time, clk, data, err, out_byte);

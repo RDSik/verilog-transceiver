@@ -10,7 +10,7 @@ reg [8:0]   in;
 wire [11:0] signal_out;
 wire [7:0] sine_cnt;
 wire [2:0] sel_cnt;
-wire       sel;
+wire [8:0] sel;
 
 integer i;
 
@@ -31,19 +31,19 @@ assign sel = dut.sel;
 
 initial 
     begin        
-        clk = 0; 
+        clk = 0; in = $urandom_range(0,511);
         #1; arst = 1; en = 0;
         #1; arst = 0; en = 1;
-        for (i = 0; i <= 5000; i = i + 1)
+        for (i = 0; i <= 5; i = i + 1)
             begin
-                #1; in = $urandom_range(0,511); 
+                #1000; in = $urandom_range(0,511); 
             end 
     end
 
-always #1 clk = !clk;
+always #1 clk = ~clk;
 
 initial 
-    $monitor("time=%g, clk=%b, in=%b, signal_out", $time, clk, in, signal_out);
+    $monitor("time=%g, clk=%b, in=%b, signal_out=%b", $time, clk, in, signal_out);
 	
 initial 
 	#5000 $stop;
