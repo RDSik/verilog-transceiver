@@ -10,11 +10,11 @@ module transceiver_top #(
     input  wire                  en,
     output wire                  err,
     output wire                  done,
+    output wire [ADDR_WIDTH-1:0] out_byte,
     output wire [DATA_WIDTH-1:0] signal_out
 );                    
     
-    wire [ADDR_WIDTH:0]   data;
-    wire [ADDR_WIDTH-1:0] out_byte; 
+    wire [ADDR_WIDTH:0]   data; 
     
 receiver #(
     .DATA_WIDTH (ADDR_WIDTH)

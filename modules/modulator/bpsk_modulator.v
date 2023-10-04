@@ -13,6 +13,7 @@ module bpsk_modulator #(
 
 reg [DATA_WIDTH-1:0] sine_rom [2**ADDR_WIDTH-1:0];
 reg [DATA_WIDTH-1:0] neg_sine_rom [2**ADDR_WIDTH-1:0];
+
 reg [ADDR_WIDTH-1:0]         sine_cnt; // output sine signal counter
 reg [$clog2(ADDR_WIDTH):0]   sel_cnt;  // select counter
 reg [ADDR_WIDTH:0]           sel;      // register for input select signal

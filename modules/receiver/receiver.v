@@ -66,10 +66,10 @@ module receiver #(
                 D7: begin
                     next_state = STOP;
                     data[7] = in;
-                    data[8] = data[0]^data[1]^data[2]^data[3]^data[4]^data[5]^data[6]^data[7]; // parity bit
+                    data[8] = data[0]^data[1]^data[2]^data[3]^data[4]^data[5]^data[6]^data[7]; // parity bit (0 - parity, 1 - not parity)
                 end
                 STOP: begin
-                    if (in & data[8]) // 1 - stop bit and 1 - parity bit
+                    if (in & data[8]) // 1 - stop bit
                         next_state = DONE;                        
                     else 
                         next_state = START;
