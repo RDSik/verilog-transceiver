@@ -38,11 +38,11 @@ always @(posedge clk or posedge arst)
                     begin
                         sel <= in;
                         sel_cnt <= sel_cnt + 1;
+                        if (sel_cnt == 4'd8) // in[8:0]
+                            begin
+                                sel_cnt <= 0;
+                            end                  
                     end
-                else if (sel_cnt == 4'd8) // in[8:0]
-                    begin
-                        sel_cnt <= 0;
-                    end                  
             end
     end
 
