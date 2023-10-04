@@ -14,7 +14,7 @@ module transceiver_top #(
     output wire [DATA_WIDTH-1:0] signal_out
 );                    
     
-    wire [ADDR_WIDTH:0]   data; 
+    wire [ADDR_WIDTH:0] data; 
     
 receiver #(
     .DATA_WIDTH (ADDR_WIDTH)
