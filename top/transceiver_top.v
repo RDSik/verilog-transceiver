@@ -15,36 +15,36 @@ module transceiver_top #(
 );                    
     
     wire [ADDR_WIDTH:0] data; 
-    
-receiver #(
-    .DATA_WIDTH (ADDR_WIDTH)
-) receiver_inst (
-    .clk  (clk),
-    .arst (arst),
-    .in   (in),
-    .done (done),
-    .out  (data)
-);
+        
+    receiver #(
+        .DATA_WIDTH (ADDR_WIDTH)
+    ) receiver_inst (
+        .clk  (clk),
+        .arst (arst),
+        .in   (in),
+        .done (done),
+        .out  (data)
+    );
 
-bpsk_modulator #(
-    .DATA_WIDTH (DATA_WIDTH),
-    .ADDR_WIDTH (ADDR_WIDTH)
-) bpsk_modulator_inst (
-    .clk        (clk),
-    .arst       (arst),
-    .en         (en),
-    .in         (data),
-    .signal_out (signal_out)
-);
+    bpsk_modulator #(
+        .DATA_WIDTH (DATA_WIDTH),
+        .ADDR_WIDTH (ADDR_WIDTH)
+    ) bpsk_modulator_inst (
+        .clk        (clk),
+        .arst       (arst),
+        .en         (en),
+        .in         (data),
+        .signal_out (signal_out)
+    );
 
-decoder #(
-    .DATA_WIDTH (ADDR_WIDTH)
-) decoder_inst (
-    .clk      (clk),
-    .arst     (arst),
-    .in       (data),
-    .err      (err),
-    .out_byte (out_byte)
-);
+    decoder #(
+        .DATA_WIDTH (ADDR_WIDTH)
+    ) decoder_inst (
+        .clk      (clk),
+        .arst     (arst),
+        .in       (data),
+        .err      (err),
+        .out_byte (out_byte)
+    );
 
 endmodule
