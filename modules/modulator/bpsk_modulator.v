@@ -2,7 +2,7 @@
 
 module bpsk_modulator #(
     parameter DATA_WIDTH = 12,
-              ADDR_WIDTH = 8
+    parameter ADDR_WIDTH = 8
 ) (
     input  wire                  clk,
     input  wire                  arst, // asynchronous reset
