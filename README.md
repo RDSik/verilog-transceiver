@@ -2,7 +2,7 @@
 
 ## Dependencies 
 
-`hdlmake`, `make`, `vivado`, `python`
+`hdlmake`, `make`, `vivado`, `modelsim`, `python`
 
 ## Clone repository:
 ```bash

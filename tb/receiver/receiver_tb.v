@@ -1,4 +1,4 @@
-`timescale 1ns / 1ns
+`timescale 1ps / 1ps
 
 module receiver_tb();
 
@@ -10,6 +10,7 @@ wire       done;
 wire [8:0] out;
 wire [3:0] state;
 wire       parity;
+wire [8:0] data;
 
 integer i;
 
@@ -24,6 +25,7 @@ receiver #(
 );
 
 assign state = dut.state;
+assign data = dut.data;
 assign parity = dut.data[8];
 
 initial 
@@ -37,7 +39,7 @@ initial
             end 
     end
 
-always #1 clk = !clk;
+always #1 clk = ~clk;
 
 initial 
     $monitor("time=%g, clk=%b, in=%b, done=%b, out=%b", $time, clk, in, done, out);

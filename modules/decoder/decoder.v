@@ -14,18 +14,19 @@ module decoder #(
 
     always @(posedge clk or posedge arst)
         begin
-            if (arst) begin
-                out_byte <= 8'd0;
-            end
-            else if (in[8] == parity) 
+            if (arst) 
                 begin
-                    err <= 0;
+                    out_byte <= 8'd0;
                 end
-            else 
+            else if (in[8] != parity) 
                 begin
                     err <= 1;
                 end
-            out_byte <= in[7:0];
+            else 
+                begin
+                    err <= 0;
+                end
+        out_byte <= in[7:0];
         end
 
     assign parity = in[0]^in[1]^in[2]^in[3]^in[4]^in[5]^in[6]^in[7];

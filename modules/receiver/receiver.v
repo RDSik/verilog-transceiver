@@ -18,10 +18,9 @@ module receiver #(
                      D4 = 4'd5, 
                      D5 = 4'd6, 
                      D6 = 4'd7, 
-                     D7 = 4'd8,
-                     D8 = 4'd9, 
-                     STOP = 4'd10,
-                     DONE = 4'd11;                    
+                     D7 = 4'd8, 
+                     STOP = 4'd9,
+                     DONE = 4'd10;                    
     
     reg [3:0]          next_state;
     reg [3:0]          state; 
@@ -65,12 +64,9 @@ module receiver #(
                     data[6] = in;
                 end
                 D7: begin
-                    next_state = D8;
+                    next_state = STOP;
                     data[7] = in;
-                end
-                D8: begin
-                    next_state = STOP;                    
-                    data[8] = (data[0]^data[1]^data[2]^data[3]^data[4]^data[5]^data[6]^data[7])^in; // parity bit
+                    data[8] = data[0]^data[1]^data[2]^data[3]^data[4]^data[5]^data[6]^data[7]; // parity bit (0 - parity, 1 - not parity)
                 end
                 STOP: begin
                     if (in & data[8]) // 1 - stop bit
