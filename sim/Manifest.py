@@ -4,7 +4,7 @@ sim_top = "transceiver_tb"
 
 modules = {
     "local" : [
-        "../tb/transceiver", 
+        "../tb/transceiver/transceiver_tb.v", 
         "../",
     ],
 }
