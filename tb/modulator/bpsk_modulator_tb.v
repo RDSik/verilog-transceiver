@@ -13,8 +13,8 @@ wire [3:0] sel_cnt;
 wire [8:0] sel;
 
 bpsk_modulator #(
-    .DATA_WIDTH (12),
-    .ADDR_WIDTH (8)
+    .SINE_WIDTH (12),
+    .DATA_WIDTH (8)
 ) dut (
     .clk        (clk),
     .arst       (arst),

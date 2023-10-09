@@ -15,8 +15,8 @@ wire [11:0] signal_out;
 integer i;
 
 transceiver_top #(
-    .DATA_WIDTH (12),
-    .ADDR_WIDTH (8)
+    .SINE_WIDTH (12),
+    .DATA_WIDTH (8)
 ) transceiver_inst (
     .clk        (clk),
     .arst       (arst),
