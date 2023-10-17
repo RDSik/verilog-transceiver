@@ -10,7 +10,7 @@ syn_project = "transceiver"
 syn_tool = "vivado"
 
 files = [
-    'transceiver.xdc'
+    "transceiver.xdc",
 ]
 
 modules = {
