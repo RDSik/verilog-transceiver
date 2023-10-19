@@ -27,7 +27,7 @@ make # make project create only Vivado project
 ## FPGA_trasceiver test
 
 ```bash
-cd sim
+cd top/sim
 hdlmake
 make
 vsim work.transceiver_tb
