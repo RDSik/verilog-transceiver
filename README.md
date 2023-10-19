@@ -4,28 +4,43 @@
 
 `hdlmake`, `make`, `vivado`, `modelsim`, `python`
 
-## Clone repository:
-```bash
-git clone https://github.com/RDSik/FPGA_transceiver.git
-cd FPGA_trasceiver
-```
+## Installation
 
-## Requirements installation:
-```bash
-pip install six
-pip install hdlmake
-winget install GnuWin32.make # add to PATH system variable the Make bin folder: C:\Program Files (x86)\GnuWin32\bin
-```
+Installation from git:
 
-## Build FPGA_trasceiver:
+    git clone https://github.com/RDSik/FPGA_transceiver.git
+
+Installation pip:
+
+  https://pip.pypa.io/en/latest/installation/
+
+Installation six:
+
+    pip install six
+    
+Installation hdlmake:
+
+    pip install hdlmake
+
+Installation make (add to PATH system variable the Make bin folder: C:\Program Files (x86)\GnuWin32\bin):
+
+    winget install GnuWin32.make
+
+## Build trasceiver:
 ```bash
 cd syn
 hdlmake
 make # make project create only Vivado project
 ```
 
-## FPGA_trasceiver test
+## Build only vivado project:
+```bash
+cd syn
+hdlmake
+make project
+```
 
+## Trasceiver test
 ```bash
 cd top/sim
 hdlmake
