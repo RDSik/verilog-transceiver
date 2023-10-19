@@ -30,7 +30,7 @@ Installation make (add to PATH system variable the Make bin folder: C:\Program F
 ```bash
 cd syn
 hdlmake
-make # make project create only Vivado project
+make
 ```
 
 ## Build only vivado project:
