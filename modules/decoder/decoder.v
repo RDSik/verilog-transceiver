@@ -10,11 +10,12 @@ module decoder #(
     output reg                   err
 );
     
-    wire parity; 
+    reg parity; 
 
     always @(posedge clk or posedge arst)
         begin
             out_byte <= in_byte;
+            parity = in_byte[0]^in_byte[1]^in_byte[2]^in_byte[3]^in_byte[4]^in_byte[5]^in_byte[6]^in_byte[7];
             if (arst) 
                 begin
                     out_byte <= 0;
@@ -28,7 +29,5 @@ module decoder #(
                     err <= 0;
                 end
         end
-
-    assign parity = in_byte[0]^in_byte[1]^in_byte[2]^in_byte[3]^in_byte[4]^in_byte[5]^in_byte[6]^in_byte[7];
 
 endmodule
