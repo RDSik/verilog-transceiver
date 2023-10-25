@@ -5,12 +5,12 @@ module bpsk_modulator_tb();
 reg         clk;
 reg         arst;
 reg         en;
-reg [8:0]   in;
+reg [7:0]   in_byte;
 
 wire [11:0] signal_out;
-wire [7:0] sine_cnt;
-wire [3:0] sel_cnt;
-wire [8:0] sel;
+wire [7:0]  sine_cnt;
+wire [2:0]  sel_cnt;
+wire [7:0]  sel;
 
 bpsk_modulator #(
     .SINE_WIDTH (12),
@@ -19,7 +19,7 @@ bpsk_modulator #(
     .clk        (clk),
     .arst       (arst),
     .en         (en),
-    .in         (in),
+    .in_byte    (in_byte),
     .signal_out (signal_out)
 );
 
@@ -29,7 +29,7 @@ assign sel = dut.sel;
 
 initial 
     begin        
-        clk = 0; in = $urandom_range(0,511);
+        clk = 0; in_byte = $urandom_range(0,255);
         #1; arst = 1; en = 0;
         #1; arst = 0; en = 1;
         #1000; en = 0;
@@ -39,7 +39,7 @@ initial
 always #1 clk = ~clk;
 
 initial 
-    $monitor("time=%g, clk=%b, in=%b, signal_out=%b", $time, clk, in, signal_out);
+    $monitor("time=%g, clk=%b, in_byte=%b, signal_out=%b", $time, clk, in_byte, signal_out);
 	
 initial 
 	#5000 $stop;

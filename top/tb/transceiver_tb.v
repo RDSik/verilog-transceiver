@@ -4,7 +4,7 @@ module transceiver_tb();
 
 reg         clk;
 reg         arst;
-reg         in;
+reg         in_bit;
 reg         en;
 
 wire        err;
@@ -21,7 +21,7 @@ transceiver_top #(
     .clk        (clk),
     .arst       (arst),
     .en         (en),
-    .in         (in),
+    .in_bit     (in_bit),
     .err        (err),
     .done       (done),
     .out_byte   (out_byte),
@@ -35,14 +35,14 @@ initial
         #1; arst = 0; en = 1;
         for (i = 0; i <= 10000; i = i + 1)
             begin
-                #1; in = $urandom_range(0,1); 
+                #1; in_bit = $urandom_range(0,1); 
             end 
     end
 
 always #1 clk = ~clk;
 
 initial 
-    $monitor("time=%g, clk=%b, in=%b, done=%b, err=%b, signal_out=%b, out_byte=%b", $time, clk, in, done, err, signal_out, out_byte);
+    $monitor("time=%g, clk=%b, in_bit=%b, done=%b, err=%b, signal_out=%b, out_byte=%b", $time, clk, in_bit, done, err, signal_out, out_byte);
 	
 initial 
 	#10000 $stop;

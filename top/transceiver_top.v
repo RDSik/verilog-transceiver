@@ -6,7 +6,7 @@ module transceiver_top #(
 ) (
     input  wire                  clk,
     input  wire                  arst, // asynchronous reset
-    input  wire                  in,
+    input  wire                  in_bit,
     input  wire                  en,
     output wire                  err,
     output wire                  done,
@@ -14,37 +14,48 @@ module transceiver_top #(
     output wire [SINE_WIDTH-1:0] signal_out
 );                    
     
-    wire [DATA_WIDTH:0] data; 
+    wire [DATA_WIDTH-1:0] data;
+    // wire                  clk100;
+    // wire                  clk10; 
         
     receiver #(
         .DATA_WIDTH (DATA_WIDTH)
     ) receiver_inst (
-        .clk  (clk),
-        .arst (arst),
-        .in   (in),
-        .done (done),
-        .out  (data)
+        // .clk       (clk10),
+        .clk       (clk),
+        .arst      (arst),
+        .in_bit    (in_bit),
+        .done      (done),
+        .out_byte  (data)
     );
 
     bpsk_modulator #(
         .SINE_WIDTH (SINE_WIDTH),
         .DATA_WIDTH (DATA_WIDTH)
     ) bpsk_modulator_inst (
-        .clk        (clk),
+        // .clk        (clk100),
+        .clk       (clk),
         .arst       (arst),
         .en         (en),
-        .in         (data),
+        .in_byte    (data),
         .signal_out (signal_out)
     );
 
     decoder #(
         .DATA_WIDTH (DATA_WIDTH)
     ) decoder_inst (
-        .clk      (clk),
+        // .clk      (clk10),
+        .clk       (clk),
         .arst     (arst),
-        .in       (data),
+        .in_byte  (data),
         .err      (err),
         .out_byte (out_byte)
     );
+
+    // clk_wiz clk_wiz_inst (
+        // .clk(clk),
+        // .clk100(clk100),
+        // .clk10(clk10)
+    // );
 
 endmodule

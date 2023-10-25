@@ -5,7 +5,7 @@ module decoder #(
 ) (
     input  wire                  clk,
     input  wire                  arst, // asynchronous reset
-    input  wire [DATA_WIDTH:0]   in,
+    input  wire [DATA_WIDTH-1:0] in_byte,
     output reg  [DATA_WIDTH-1:0] out_byte,
     output reg                   err
 );
@@ -14,11 +14,12 @@ module decoder #(
 
     always @(posedge clk or posedge arst)
         begin
+            out_byte <= in_byte;
             if (arst) 
                 begin
-                    out_byte <= 8'd0;
+                    out_byte <= 0;
                 end
-            else if (in[8] != parity) 
+            else if (parity != 1) 
                 begin
                     err <= 1;
                 end
@@ -26,9 +27,8 @@ module decoder #(
                 begin
                     err <= 0;
                 end
-        out_byte <= in[7:0];
         end
 
-    assign parity = in[0]^in[1]^in[2]^in[3]^in[4]^in[5]^in[6]^in[7];
+    assign parity = in_byte[0]^in_byte[1]^in_byte[2]^in_byte[3]^in_byte[4]^in_byte[5]^in_byte[6]^in_byte[7];
 
 endmodule
