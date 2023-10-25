@@ -85,7 +85,7 @@ module receiver #(
                     end
                 STOP: 
                     begin
-                        if (in_bit & parity)
+                        if (in_bit & parity) // 1 - stop bit
                             next_state = DONE;                        
                         else 
                             next_state = START;
