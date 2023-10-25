@@ -34,7 +34,7 @@ module transceiver_top #(
         .DATA_WIDTH (DATA_WIDTH)
     ) bpsk_modulator_inst (
         // .clk        (clk100),
-        .clk       (clk),
+        .clk        (clk),
         .arst       (arst),
         .en         (en),
         .in_byte    (data),
@@ -45,7 +45,7 @@ module transceiver_top #(
         .DATA_WIDTH (DATA_WIDTH)
     ) decoder_inst (
         // .clk      (clk10),
-        .clk       (clk),
+        .clk      (clk),
         .arst     (arst),
         .in_byte  (data),
         .err      (err),
