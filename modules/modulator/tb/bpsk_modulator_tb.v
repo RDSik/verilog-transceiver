@@ -32,6 +32,8 @@ initial
         clk = 0; in = $urandom_range(0,511);
         #1; arst = 1; en = 0;
         #1; arst = 0; en = 1;
+        #1000; en = 0;
+        #1000; en = 1;
     end
 
 always #1 clk = ~clk;

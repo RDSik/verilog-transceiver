@@ -45,6 +45,12 @@ module bpsk_modulator #(
                                 end                  
                         end
                 end
+            else 
+                begin
+                    signal_out <= 12'bz;
+                    sine_cnt <= 0;
+                    sel_cnt <= 0;
+                end
         end
 
 endmodule
