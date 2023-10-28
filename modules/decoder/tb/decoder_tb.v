@@ -4,7 +4,7 @@ module decoder_tb();
 
 reg        clk;
 reg        arst;
-reg [8:0]  in;
+reg [7:0]  in_byte;
 
 wire       err;
 wire [7:0] out_byte;
@@ -17,7 +17,7 @@ decoder #(
 ) dut (
     .clk      (clk),
     .arst     (arst),
-    .in       (in),
+    .in_byte  (in_byte),
     .err      (err),
     .out_byte (out_byte)
 );
@@ -31,14 +31,14 @@ initial
         #2; arst = 0;
         for (i = 0; i <= 255; i = i + 1)
             begin
-                #2; in = $urandom_range(0,511); 
+                #2; in_byte = $urandom_range(0,511); 
             end 
     end
 
 always #1 clk = ~clk;
 
 initial 
-    $monitor("time=%g, clk=%b, in=%b, err=%b, out_byte=%b", $time, clk, in, err, out_byte);
+    $monitor("time=%g, clk=%b, in_byte=%b, err=%b, out_byte=%b", $time, clk, in_byte, err, out_byte);
 	
 initial 
 	#300 $stop;

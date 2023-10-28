@@ -9,6 +9,8 @@ syn_top = "transceiver_top"
 syn_project = "transceiver"
 syn_tool = "vivado"
 
+syn_post_project_cmd = "vivado -mode tcl -source add_ip.tcl"
+
 files = [
     "transceiver.xdc",
 ]
