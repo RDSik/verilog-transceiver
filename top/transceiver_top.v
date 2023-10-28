@@ -1,50 +1,55 @@
 `timescale 1ps / 1ps
 
-module transceiver_top #(
-    parameter SINE_WIDTH = 12,
-    parameter DATA_WIDTH = 8
-) (
-    input  wire                  clk,
-    input  wire                  arst, // asynchronous reset
-    input  wire                  in,
-    input  wire                  en,
-    output wire                  err,
-    output wire                  done,
-    output wire [DATA_WIDTH-1:0] out_byte,
-    output wire [SINE_WIDTH-1:0] signal_out
+module transceiver_top (
+    input  wire        clk,
+    input  wire        arst, // asynchronous reset
+    input  wire        data,
+    input  wire        en,
+    output wire        done,
+    output wire [7:0]  q,
+    output wire [11:0] signal_out
 );                    
     
-    wire [DATA_WIDTH:0] data; 
+    wire [7:0]  uart_out;
+    wire [11:0] encoder_out; 
+    wire [7:0]  decoder_out;
         
-    receiver #(
-        .DATA_WIDTH (DATA_WIDTH)
-    ) receiver_inst (
+    uart_rx #(
+        .CLOCK_RATE (1_000_000), // 1 MHz
+        .BAUD_RATE  (115_200),
+        .DATA_WIDTH (8)
+    ) uart_rx_inst (
         .clk  (clk),
         .arst (arst),
-        .in   (in),
+        .data (data),
         .done (done),
-        .out  (data)
+        .q    (uart_out)
+    );
+
+    hamming_encoder encoder_inst (
+        .clk  (clk),
+        .arst (arst),
+        .data (uart_out),
+        .q    (encoder_out)
     );
 
     bpsk_modulator #(
-        .SINE_WIDTH (SINE_WIDTH),
-        .DATA_WIDTH (DATA_WIDTH)
+        .SAMPLE_WIDTH (256),
+        .SAMPLE_WIDTH (12),
+        .DATA_WIDTH   (12)
     ) bpsk_modulator_inst (
         .clk        (clk),
         .arst       (arst),
         .en         (en),
-        .in         (data),
+        .data       (encoder_out),
         .signal_out (signal_out)
     );
 
-    decoder #(
-        .DATA_WIDTH (DATA_WIDTH)
-    ) decoder_inst (
-        .clk      (clk),
-        .arst     (arst),
-        .in       (data),
-        .err      (err),
-        .out_byte (out_byte)
+    hamming_decoder decoder_inst (
+        .clk  (clk),
+        .arst (arst),
+        .data (encoder_out),
+        .q    (q)
     );
 
 endmodule
