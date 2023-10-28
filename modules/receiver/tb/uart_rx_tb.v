@@ -21,11 +21,11 @@ uart_rx #(
     .BAUD_RATE  (115_200),
     .DATA_WIDTH (8)
 ) dut (
-    .clk    (clk),
-    .arst   (arst),
-    .in_bit (in_bit),
-    .done   (done),
-    .out    (out_byte)
+    .clk  (clk),
+    .arst (arst),
+    .done (done),
+    .data (data),
+    .q    (q)
 );
 
 assign state = dut.state;
