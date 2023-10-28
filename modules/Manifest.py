@@ -1,7 +1,7 @@
 modules = {
     "local" : [
-        "receiver",
-        "decoder",
+        "uart",
+        "hamming",
         "modulator",
     ],
 }
