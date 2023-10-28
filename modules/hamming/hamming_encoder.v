@@ -4,7 +4,7 @@ module hamming_encoder (
     input  wire        clk, 
     input  wire        arst, // asynchronous reset
     input  wire [7:0]  data, 
-    output reg [11:0]  q
+    output reg  [11:0] q
 );
    
     wire p0, p1, p2, p3;
