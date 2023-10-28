@@ -1,5 +1,5 @@
 files = [
-    "receiver_tb.v",
+    "uart_rx_tb.v",
 ]
 
 modules = {

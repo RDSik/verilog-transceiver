@@ -4,4 +4,4 @@ modules = {
 
 action = "simulation"
 sim_tool = "modelsim"
-sim_top = "receiver_tb"
+sim_top = "urat_rx_tb"
