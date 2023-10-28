@@ -16,7 +16,7 @@ module hamming_decoder (
    
     always @ (posedge clk or posedge arst)
         begin
-            if(arst)
+            if (arst)
                 begin
                     q <= 0;
                 end
