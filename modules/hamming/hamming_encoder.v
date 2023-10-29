@@ -22,7 +22,7 @@ module hamming_encoder (
                 end
             else
                 begin	 
-                    q <= {data[7:4], p3, data[3:1],p2, data[0], p1, p0};
+                    q <= {data[7:4], p3, data[3:1], p2, data[0], p1, p0};
                 end
    end
 
