@@ -115,7 +115,7 @@ module uart_rx #(
                     CLEANUP:
                         begin
                             rx_done <= 0;
-                            state   <= IDLE;
+                            state <= IDLE;
                         end
                     default: state <= IDLE;
                 endcase
