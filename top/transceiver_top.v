@@ -62,7 +62,7 @@ module transceiver_top (
         .arst   (arst),
         .dv     (dv),
         .data   (decoder_out),
-        .active (active),
+        .active (),
         .done   (done),
         .q      (q)
     );
