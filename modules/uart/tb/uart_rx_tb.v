@@ -3,6 +3,7 @@
 module uart_rx_tb();
 
 reg        clk;
+reg        arst;
 reg        data;
 
 wire [3:0] clk_cnt;
@@ -23,6 +24,7 @@ uart_rx #(
     .DATA_WIDTH (8)
 ) dut (
     .clk  (clk),
+    .arst (arst),
     .dv   (dv),
     .data (data),
     .q    (q)
@@ -39,6 +41,8 @@ assign bit_cnt = dut.bit_cnt;
 initial 
     begin        
         clk = 0; 
+        #1; arst = 1;
+        #1; arst = 0; 
         for (i = 0; i <= 1024; i = i + 1)
             begin
                 #1; data = $urandom_range(0,1); 
