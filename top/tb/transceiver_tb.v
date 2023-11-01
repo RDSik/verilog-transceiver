@@ -8,7 +8,7 @@ reg         data;
 reg         en;
 
 wire        done;
-wire [7:0]  q;
+wire        q;
 wire [11:0] signal_out;
 
 integer i;
