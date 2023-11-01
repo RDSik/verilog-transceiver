@@ -34,9 +34,9 @@ module transceiver_top (
     );
 
     bpsk_modulator #(
-        .SAMPLE_WIDTH (256),
-        .SAMPLE_WIDTH (12),
-        .DATA_WIDTH   (12)
+        .SAMPLE_NUMBER (256),
+        .SAMPLE_WIDTH  (12),
+        .DATA_WIDTH    (12)
     ) bpsk_modulator_inst (
         .clk        (clk),
         .arst       (arst),
