@@ -21,8 +21,8 @@ module uart_tx #(
                      STOP    = 3'b011, 
                      CLEANUP = 3'b100;
 
-    reg [DATA_WIDTH-1:0]          tx_data;
     reg [2:0]                     state;
+    reg [DATA_WIDTH-1:0]          tx_data;
     reg [$clog2(DATA_WIDTH)-1:0]  bit_cnt; // bit counter in rx_byte register
     reg [$clog2(CLK_PER_BIT)-1:0] clk_cnt; // clock counter
 
