@@ -23,20 +23,20 @@ module hamming_decoder (
             else
                 begin
                     case ({g3_error, g2_error, g1_error, g0_error})
-                        4'b0000 :   q <= {data[11:8], data[6:4], data[2]};
-                        4'b0001 :   q <= {data[11:8], data[6:4], data[2]};
-                        4'b0010 :   q <= {data[11:8], data[6:4], data[2]};
-                        4'b0011 :   q <= {data[11:8], data[6:4], ~data[2]};
-                        4'b0100 :   q <= {data[11:8], data[6:4], data[2]};
-                        4'b0101 :   q <= {data[11:8], data[6:5], ~data[4], data[2]};
-                        4'b0110 :   q <= {data[11:8], data[6], ~data[5], data[4], data[2]};
-                        4'b0111 :   q <= {data[11:8], ~data[6], data[5], data[4], data[2]};
-                        4'b1000 :   q <= {data[11:8], data[6], data[5], data[4], data[2]};
-                        4'b1001 :   q <= {data[11:9], ~data[8], data[6:4], data[2]};
-                        4'b1010 :   q <= {data[11:10], ~data[9], data[8], data[6:4], data[2]};
-                        4'b1011 :   q <= {data[11], ~data[10], data[9], data[8], data[6:4], data[2]};
-                        4'b1100 :   q <= {~data[11], data[10], data[9], data[8], data[6:4], data[2]};
-                        default :   q <= 0;
+                        4'b0000 : q <= {data[11:8], data[6:4], data[2]};
+                        4'b0001 : q <= {data[11:8], data[6:4], data[2]};
+                        4'b0010 : q <= {data[11:8], data[6:4], data[2]};
+                        4'b0011 : q <= {data[11:8], data[6:4], ~data[2]};
+                        4'b0100 : q <= {data[11:8], data[6:4], data[2]};
+                        4'b0101 : q <= {data[11:8], data[6:5], ~data[4], data[2]};
+                        4'b0110 : q <= {data[11:8], data[6], ~data[5], data[4], data[2]};
+                        4'b0111 : q <= {data[11:8], ~data[6], data[5], data[4], data[2]};
+                        4'b1000 : q <= {data[11:8], data[6], data[5], data[4], data[2]};
+                        4'b1001 : q <= {data[11:9], ~data[8], data[6:4], data[2]};
+                        4'b1010 : q <= {data[11:10], ~data[9], data[8], data[6:4], data[2]};
+                        4'b1011 : q <= {data[11], ~data[10], data[9], data[8], data[6:4], data[2]};
+                        4'b1100 : q <= {~data[11], data[10], data[9], data[8], data[6:4], data[2]};
+                        default : q <= 0;
                 endcase
             end
         end
