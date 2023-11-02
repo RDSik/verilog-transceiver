@@ -10,7 +10,7 @@ module transceiver_top (
     output wire [11:0] signal_out
 );                    
     
-    wire        dv;
+    wire        data_valid;
     wire [7:0]  uart_rx_out;
     wire [11:0] encoder_out; 
     wire [7:0]  decoder_out;
@@ -23,7 +23,7 @@ module transceiver_top (
         .clk  (clk),
         .arst (arst),
         .data (data),
-        .dv   (dv),
+        .dv   (data_valid),
         .q    (uart_rx_out)
     );
 
@@ -34,19 +34,7 @@ module transceiver_top (
         .q    (encoder_out)
     );
 
-    bpsk_modulator #(
-        .SAMPLE_NUMBER (256),
-        .SAMPLE_WIDTH  (12),
-        .DATA_WIDTH    (12)
-    ) bpsk_modulator_inst (
-        .clk        (clk),
-        .arst       (arst),
-        .en         (en),
-        .data       (encoder_out),
-        .signal_out (signal_out)
-    );
-
-    hamming_decoder decoder_inst (
+        hamming_decoder decoder_inst (
         .clk  (clk),
         .arst (arst),
         .data (encoder_out),
@@ -60,11 +48,23 @@ module transceiver_top (
     ) uart_tx_inst (
         .clk    (clk),
         .arst   (arst),
-        .dv     (dv),
+        .dv     (data_valid),
         .data   (decoder_out),
         .active (),
         .done   (done),
         .q      (q)
+    );
+    
+    bpsk_modulator #(
+        .SAMPLE_NUMBER (256),
+        .SAMPLE_WIDTH  (12),
+        .DATA_WIDTH    (12)
+    ) bpsk_modulator_inst (
+        .clk        (clk),
+        .arst       (arst),
+        .en         (en),
+        .data       (encoder_out),
+        .signal_out (signal_out)
     );
 
 endmodule

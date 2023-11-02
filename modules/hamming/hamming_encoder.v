@@ -7,7 +7,10 @@ module hamming_encoder (
     output reg  [11:0] q
 );
    
-    wire p0, p1, p2, p3;
+    wire p0; 
+    wire p1; 
+    wire p2; 
+    wire p3;
    
     assign p0 = data[6] ^ data[4] ^ data[3] ^ data[1] ^ data[0];
     assign p1 = data[6] ^ data[5] ^ data[3] ^ data[2] ^ data[0];

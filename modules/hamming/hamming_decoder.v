@@ -7,7 +7,10 @@ module hamming_decoder (
     output reg  [7:0]  q
 );
    
-    wire g0_error, g1_error, g2_error, g3_error;
+    wire g0_error;
+    wire g1_error;
+    wire g2_error;
+    wire g3_error;
    
     assign g0_error = data[10] ^ data[8] ^ data[6] ^ data[4] ^ data[2] ^ data[0];
     assign g1_error = data[10] ^ data[9] ^ data[6] ^ data[5] ^ data[2] ^ data[1];

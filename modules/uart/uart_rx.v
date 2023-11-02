@@ -36,7 +36,7 @@ module uart_rx #(
                             begin
                                 bit_cnt <= 0;
                                 clk_cnt <= 0;
-                                rx_dv   <= 0;
+                                dv      <= 0;
                                 if (data == 0)
                                     begin
                                         state <= START;
