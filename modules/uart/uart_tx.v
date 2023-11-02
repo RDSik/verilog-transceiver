@@ -73,7 +73,7 @@ module uart_tx #(
                                 q <= tx_data[bit_cnt];
                                 if (clk_cnt < CLK_PER_BIT - 1)
                                     begin
-                                        bit_cnt <= bit_cnt + 1;
+                                        clk_cnt <= clk_cnt + 1;
                                         state <= TX_DATA;
                                     end
                                 else 
@@ -81,7 +81,7 @@ module uart_tx #(
                                         clk_cnt <= 0;
                                         if (bit_cnt < 7)
                                             begin
-                                                clk_cnt <= clk_cnt + 1;
+                                                bit_cnt <= bit_cnt + 1;
                                                 state <= TX_DATA;
                                             end
                                         else
