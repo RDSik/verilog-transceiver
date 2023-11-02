@@ -1,15 +1,15 @@
 `timescale 1ps / 1ps
 
 module uart_rx #(
-    parameter CLOCK_RATE = 1_000_000, // 1 MHz
+    parameter CLOCK_RATE = 100_000_000, // 100 MHz
     parameter BAUD_RATE  = 115_200, 
     parameter DATA_WIDTH = 8
 ) (
     input  wire                  clk,
     input  wire                  arst, // asynchronous reset
     input  wire                  data,
-    output wire                  dv, // data valid signal
-    output wire [DATA_WIDTH-1:0] q
+    output reg                   dv, // data valid signal
+    output reg [DATA_WIDTH-1:0]  q
 );
     
     localparam CLK_PER_BIT = CLOCK_RATE/BAUD_RATE;
@@ -19,21 +19,9 @@ module uart_rx #(
                      STOP    = 3'b011, 
                      CLEANUP = 3'b100;
 
-    reg                           rx_data_r = 1;
-    reg                           rx_data   = 1;
-    reg                           rx_dv;
-    reg [DATA_WIDTH-1:0]          rx_byte;
     reg [2:0]                     state;
     reg [$clog2(DATA_WIDTH)-1:0]  bit_cnt; // bit counter in rx_byte register
     reg [$clog2(CLK_PER_BIT)-1:0] clk_cnt; // clock counter
-
-    // Purpose: Double-register the incoming data.
-    // This allows it to be used in the UART RX Clock Domain (it removes problems caused by metastability)
-    always @(posedge clk)
-        begin
-            rx_data_r <= data;
-            rx_data <= rx_data_r;
-        end
 
     always @(posedge clk or posedge arst)
         begin
@@ -48,7 +36,7 @@ module uart_rx #(
                             begin
                                 bit_cnt <= 0;
                                 clk_cnt <= 0;
-                                rx_dv <= 0;
+                                rx_dv   <= 0;
                                 if (data == 0)
                                     begin
                                         state <= START;
@@ -65,7 +53,7 @@ module uart_rx #(
                                         if (data == 0)
                                             begin
                                                 clk_cnt <= 0;
-                                                state <= RX_DATA;
+                                                state   <= RX_DATA;
                                             end
                                         else
                                             begin
@@ -75,7 +63,7 @@ module uart_rx #(
                                 else
                                     begin
                                         clk_cnt <= clk_cnt + 1;
-                                        state <= START;
+                                        state   <= START;
                                     end
                             end
                         RX_DATA:
@@ -83,21 +71,21 @@ module uart_rx #(
                                 if (clk_cnt < CLK_PER_BIT-1)
                                     begin
                                         clk_cnt <= clk_cnt + 1;
-                                        state <= RX_DATA;
+                                        state   <= RX_DATA;
                                     end
                                 else
                                     begin 
-                                        clk_cnt <= 0;
-                                        rx_byte[bit_cnt] <= data;
+                                        q[bit_cnt] <= data;
+                                        clk_cnt    <= 0;
                                         if (bit_cnt < 7)
                                             begin
                                                 bit_cnt <= bit_cnt + 1;
-                                                state <= RX_DATA;
+                                                state   <= RX_DATA;
                                             end
                                         else
                                             begin 
                                                 bit_cnt <= 0;
-                                                state <= STOP;
+                                                state   <= STOP;
                                             end
                                     end
                             end
@@ -106,26 +94,23 @@ module uart_rx #(
                                 if (clk_cnt < CLK_PER_BIT-1)
                                     begin
                                         clk_cnt <= clk_cnt + 1;
-                                        state <= STOP;
+                                        state   <= STOP;
                                     end
                                 else
                                     begin 
-                                        rx_dv <= 1;
+                                        dv      <= 1;
                                         clk_cnt <= 0;
-                                        state <= CLEANUP;
+                                        state   <= CLEANUP;                                        
                                     end
                             end
                         CLEANUP:
                             begin
-                                rx_dv <= 0;
+                                dv    <= 0;
                                 state <= IDLE;
                             end
                         default: state <= IDLE;
                     endcase
                 end
         end
-
-    assign dv = rx_dv;
-    assign q = rx_byte;
 
 endmodule

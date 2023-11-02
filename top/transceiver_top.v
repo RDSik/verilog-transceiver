@@ -16,7 +16,7 @@ module transceiver_top (
     wire [7:0]  decoder_out;
         
     uart_rx #(
-        .CLOCK_RATE (1_000_000), // 1 MHz
+        .CLOCK_RATE (100_000_000), // 100 MHz
         .BAUD_RATE  (115_200),
         .DATA_WIDTH (8)
     ) uart_rx_inst (
@@ -54,7 +54,7 @@ module transceiver_top (
     );
     
     uart_tx #(
-        .CLOCK_RATE (1_000_000), // 1 MHz
+        .CLOCK_RATE (100_000_000), // 100 MHz
         .BAUD_RATE  (115_200),
         .DATA_WIDTH (8)
     ) uart_tx_inst (

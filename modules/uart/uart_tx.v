@@ -1,7 +1,7 @@
 `timescale 1ps / 1ps
 
 module uart_tx #(
-    parameter CLOCK_RATE = 1_000_000, // 100 MHz
+    parameter CLOCK_RATE = 100_000_000, // 100 MHz
     parameter BAUD_RATE  = 115_200,
     parameter DATA_WIDTH = 8
 ) (     
@@ -9,8 +9,8 @@ module uart_tx #(
     input  wire                  arst, // asynchronous reset
     input  wire                  dv,   // data valid signal   
     input  wire [DATA_WIDTH-1:0] data,
-    output wire                  active,
-    output wire                  done,
+    output reg                   active,
+    output reg                   done,
     output reg                   q
 );
 
@@ -21,8 +21,6 @@ module uart_tx #(
                      STOP    = 3'b011, 
                      CLEANUP = 3'b100;
 
-    reg                           tx_active;
-    reg                           tx_done;
     reg [DATA_WIDTH-1:0]          tx_data;
     reg [2:0]                     state;
     reg [$clog2(DATA_WIDTH)-1:0]  bit_cnt; // bit counter in rx_byte register
@@ -39,15 +37,15 @@ module uart_tx #(
                     case (state)
                         IDLE:
                             begin
-                                q <= 1;
-                                tx_done <= 0;
                                 clk_cnt <= 0;
-                                bit_cnt <= 0;
+                                bit_cnt <= 0;                                
+                                done    <= 0;
+                                q       <= 1;
                                 if (dv == 1)
                                     begin
-                                        tx_active <= 1;
                                         tx_data <= data;
-                                        state <= START;
+                                        active  <= 1;                                        
+                                        state   <= START;
                                     end
                                 else
                                     begin
@@ -57,15 +55,15 @@ module uart_tx #(
                         START:
                             begin
                                 q <= 0;
-                                if (clk_cnt <= CLK_PER_BIT - 1)
+                                if (clk_cnt < CLK_PER_BIT - 1)
                                     begin
                                         clk_cnt <= clk_cnt + 1;
-                                        state <= START;
+                                        state   <= START;
                                     end
                                 else 
                                     begin
                                         clk_cnt <= 0;
-                                        state <= TX_DATA;
+                                        state   <= TX_DATA;
                                     end
                             end 
                         TX_DATA:
@@ -74,7 +72,7 @@ module uart_tx #(
                                 if (clk_cnt < CLK_PER_BIT - 1)
                                     begin
                                         clk_cnt <= clk_cnt + 1;
-                                        state <= TX_DATA;
+                                        state   <= TX_DATA;
                                     end
                                 else 
                                     begin
@@ -82,12 +80,12 @@ module uart_tx #(
                                         if (bit_cnt < 7)
                                             begin
                                                 bit_cnt <= bit_cnt + 1;
-                                                state <= TX_DATA;
+                                                state   <= TX_DATA;
                                             end
                                         else
                                             begin
                                                 bit_cnt <= 0;
-                                                state <= STOP;
+                                                state   <= STOP;
                                             end
                                     end
                             end
@@ -97,27 +95,24 @@ module uart_tx #(
                                 if (clk_cnt < CLK_PER_BIT-1)
                                     begin
                                         clk_cnt <= clk_cnt + 1;
-                                        state <= STOP;
+                                        state   <= STOP;
                                     end 
                                 else
                                     begin
-                                        tx_done <= 1;
                                         clk_cnt <= 0;
-                                        state <= CLEANUP;
-                                        tx_active <= 0;
+                                        active  <= 0;
+                                        done    <= 1;
+                                        state   <= CLEANUP;                                        
                                     end
                             end 
                         CLEANUP:
                             begin
-                                tx_done <= 1;
+                                done  <= 0;
                                 state <= IDLE;
                             end 
                         default : state <= IDLE; 
                     endcase
                 end
         end
-
-    assign active = tx_active;
-    assign done = tx_done;
     
 endmodule

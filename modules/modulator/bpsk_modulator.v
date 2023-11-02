@@ -15,8 +15,8 @@ module bpsk_modulator #(
     reg [SAMPLE_WIDTH-1:0] sine_rom [SAMPLE_NUMBER-1:0];
     reg [SAMPLE_WIDTH-1:0] neg_sine_rom [SAMPLE_NUMBER-1:0];
 
-    reg [$clog2(SAMPLE_NUMBER)-1:0] signal_cnt; // output sine signal counter
-    reg [$clog2(DATA_WIDTH)-1:0]    sel_cnt;    // select signal counter
+    reg [$clog2(SAMPLE_NUMBER)-1:0] signal_cnt; // sine sample counter in output signal
+    reg [$clog2(DATA_WIDTH)-1:0]    sel_cnt;    // bit counter in select signal
     reg [DATA_WIDTH-1:0]            sel;        // register for input select signal
 
     initial 
@@ -30,7 +30,7 @@ module bpsk_modulator #(
             if (arst)
                 begin 
                     signal_cnt <= 0;
-                    sel_cnt <= 0;
+                    sel_cnt    <= 0;
                 end 
             else if (en)
                 begin
@@ -38,8 +38,8 @@ module bpsk_modulator #(
                     signal_cnt <= signal_cnt + 1;
                     if (signal_cnt == SAMPLE_NUMBER-1) // one period of sine
                         begin
-                            sel <= data;
                             sel_cnt <= sel_cnt + 1;
+                            sel     <= data;
                             if (sel_cnt == DATA_WIDTH-1) // in[11:0]
                                 begin
                                     sel_cnt <= 0;

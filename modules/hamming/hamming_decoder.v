@@ -37,8 +37,8 @@ module hamming_decoder (
                         4'b1011 : q <= {data[11], ~data[10], data[9], data[8], data[6:4], data[2]};
                         4'b1100 : q <= {~data[11], data[10], data[9], data[8], data[6:4], data[2]};
                         default : q <= 0;
-                endcase
-            end
+                    endcase
+                end
         end
 
 endmodule
