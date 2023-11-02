@@ -10,8 +10,8 @@ module transceiver_top (
     output wire [11:0] signal_out
 );                    
     
-    wire [7:0]  uart_rx_out;
     wire        dv;
+    wire [7:0]  uart_rx_out;
     wire [11:0] encoder_out; 
     wire [7:0]  decoder_out;
         
