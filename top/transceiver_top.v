@@ -34,7 +34,7 @@ module transceiver_top (
         .q    (encoder_out)
     );
 
-        hamming_decoder decoder_inst (
+    hamming_decoder decoder_inst (
         .clk  (clk),
         .arst (arst),
         .data (encoder_out),
