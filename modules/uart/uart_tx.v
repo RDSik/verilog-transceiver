@@ -2,16 +2,15 @@
 
 module uart_tx #(
     parameter CLOCK_RATE = 100_000_000, // 100 MHz
-    parameter BAUD_RATE  = 115_200,
-    parameter DATA_WIDTH = 8
+    parameter BAUD_RATE  = 115_200
 ) (     
-    input  wire                  clk,
-    input  wire                  arst, // asynchronous reset
-    input  wire                  dv,   // data valid signal   
-    input  wire [DATA_WIDTH-1:0] data,
-    output reg                   active,
-    output reg                   done,
-    output reg                   q
+    input  wire       clk,
+    input  wire       arst, // asynchronous reset
+    input  wire       dv,   // data valid signal   
+    input  wire [7:0] data,
+    output reg        active,
+    output reg        done,
+    output reg        q
 );
 
     localparam CLK_PER_BIT = CLOCK_RATE/BAUD_RATE;
@@ -21,9 +20,9 @@ module uart_tx #(
                      STOP    = 3'b011, 
                      CLEANUP = 3'b100;
 
+    reg [7:0]                     tx_data;
     reg [2:0]                     state;
-    reg [DATA_WIDTH-1:0]          tx_data;
-    reg [$clog2(DATA_WIDTH)-1:0]  bit_cnt; // bit counter in rx_byte register
+    reg [2:0]                     bit_cnt; // bit counter in rx_byte register
     reg [$clog2(CLK_PER_BIT)-1:0] clk_cnt; // clock counter
 
     always @(posedge clk or posedge arst)

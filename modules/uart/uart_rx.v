@@ -2,14 +2,13 @@
 
 module uart_rx #(
     parameter CLOCK_RATE = 100_000_000, // 100 MHz
-    parameter BAUD_RATE  = 115_200, 
-    parameter DATA_WIDTH = 8
+    parameter BAUD_RATE  = 115_200
 ) (
-    input  wire                  clk,
-    input  wire                  arst, // asynchronous reset
-    input  wire                  data,
-    output reg                   dv, // data valid signal
-    output reg [DATA_WIDTH-1:0]  q
+    input  wire      clk,
+    input  wire      arst, // asynchronous reset
+    input  wire      data,
+    output reg       dv, // data valid signal
+    output reg [7:0] q
 );
     
     localparam CLK_PER_BIT = CLOCK_RATE/BAUD_RATE;
@@ -20,7 +19,7 @@ module uart_rx #(
                      CLEANUP = 3'b100;
 
     reg [2:0]                     state;
-    reg [$clog2(DATA_WIDTH)-1:0]  bit_cnt; // bit counter in rx_byte register
+    reg [2:0]                     bit_cnt; // bit counter in rx_byte register
     reg [$clog2(CLK_PER_BIT)-1:0] clk_cnt; // clock counter
 
     always @(posedge clk or posedge arst)

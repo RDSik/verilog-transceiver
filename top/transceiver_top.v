@@ -17,8 +17,7 @@ module transceiver_top (
         
     uart_rx #(
         .CLOCK_RATE (100_000_000), // 100 MHz
-        .BAUD_RATE  (115_200),
-        .DATA_WIDTH (8)
+        .BAUD_RATE  (115_200)
     ) uart_rx_inst (
         .clk  (clk),
         .arst (arst),
@@ -43,8 +42,7 @@ module transceiver_top (
     
     uart_tx #(
         .CLOCK_RATE (100_000_000), // 100 MHz
-        .BAUD_RATE  (115_200),
-        .DATA_WIDTH (8)
+        .BAUD_RATE  (115_200)
     ) uart_tx_inst (
         .clk    (clk),
         .arst   (arst),
