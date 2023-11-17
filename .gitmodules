@@ -1,0 +1,3 @@
+[submodule "modules/uart/UART"]
+	path = modules/uart/UART
+	url = https://github.com/nandland/UART
