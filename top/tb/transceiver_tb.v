@@ -10,9 +10,11 @@ reg         en;
 wire        active;
 wire        done;
 wire        q;
+wire        data_valid;
 wire [11:0] modulator_out;
 wire [11:0] encoder_out;
 wire [7:0]  decoder_out;
+wire [7:0]  uart_rx_out;
 
 integer i;
 
@@ -27,8 +29,10 @@ transceiver_top dut (
     .modulator_out (modulator_out)
 );
 
+assign uart_rx_out = dut.uart_rx_out;
 assign encoder_out = dut.encoder_out;
 assign decoder_out = dut.decoder_out;
+assign data_valid = dut.data_valid;
 
 initial 
     begin        
