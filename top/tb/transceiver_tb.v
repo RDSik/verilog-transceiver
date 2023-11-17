@@ -3,31 +3,36 @@
 module transceiver_tb();
 
 reg         clk;
-reg         arst;
+reg         rst;
 reg         data;
 reg         en;
 
 wire        done;
 wire        q;
-wire [11:0] signal_out;
+wire [11:0] modulator_out;
+wire [11:0] encoder_out;
+wire [7:0]  decoder_out;
 
 integer i;
 
-transceiver_top transceiver_inst (
+transceiver_top dut (
     .clk        (clk),
-    .arst       (arst),
+    .rst        (rst),
     .en         (en),
     .data       (data),
     .done       (done),
     .q          (q),
-    .signal_out (signal_out)
+    .modulator_out (modulator_out)
 );
+
+assign encoder_out = dut.encoder_out;
+assign decoder_out = dut.decoder_out;
 
 initial 
     begin        
         clk = 0;
-        #1; arst = 1; en = 0;
-        #1; arst = 0; en = 1;
+        #1; rst = 0; en = 0;
+        #1; rst = 1; en = 1;
         for (i = 0; i <= 10000; i = i + 1)
             begin
                 #1; data = $urandom_range(0,1); 
@@ -37,9 +42,9 @@ initial
 always #1 clk = ~clk;
 
 initial 
-    $monitor("time=%g, clk=%b, data=%b, done=%b, signal_out=%b, q=%b", $time, clk, data, done, signal_out, q);
+    $monitor("time=%g, clk=%b, data=%b, done=%b, modulator_out=%b, q=%b", $time, clk, data, done, modulator_out, q);
 	
 initial 
-	#10000 $stop;
+	#5000 $stop;
 
 endmodule

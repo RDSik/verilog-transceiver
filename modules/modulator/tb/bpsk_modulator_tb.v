@@ -3,7 +3,7 @@
 module bpsk_modulator_tb();
 
 reg         clk;
-reg         arst;
+reg         rst;
 reg         en;
 reg [11:0]  data;
 
@@ -18,7 +18,7 @@ bpsk_modulator #(
     .DATA_WIDTH    (12)
 ) dut (
     .clk        (clk),
-    .arst       (arst),
+    .arst       (rst),
     .en         (en),
     .data       (data),
     .signal_out (signal_out)
@@ -31,8 +31,8 @@ assign sel = dut.sel;
 initial 
     begin        
         clk = 0; data = $urandom_range(0,511);
-        #1; arst = 1; en = 0;
-        #1; arst = 0; en = 1;
+        #1; rst = 0; en = 0;
+        #1; rst = 1; en = 1;
         #1000; en = 0;
         #1000; en = 1;
     end

@@ -2,7 +2,7 @@
 
 module hamming_decoder (
     input  wire        clk, 
-    input  wire        arst, // asynchronous reset
+    input  wire        rst,
     input  wire [11:0] data,
     output reg  [7:0]  q
 );
@@ -17,9 +17,9 @@ module hamming_decoder (
     assign g2_error = data[11] ^ data[6] ^ data[5] ^ data[4] ^ data[3];
     assign g3_error = data[11] ^ data[10] ^ data[9] ^ data[8] ^ data[7];
    
-    always @ (posedge clk or posedge arst)
+    always @ (posedge clk or negedge rst)
         begin
-            if (arst)
+            if (~rst)
                 begin
                     q <= 0;
                 end

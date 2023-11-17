@@ -6,7 +6,7 @@ module bpsk_modulator #(
     parameter DATA_WIDTH    = 12
 ) (
     input  wire                    clk,
-    input  wire                    arst, // asynchronous reset
+    input  wire                    rst,
     input  wire                    en,
     input  wire [DATA_WIDTH-1:0]   data,
     output reg  [SAMPLE_WIDTH-1:0] signal_out 
@@ -25,9 +25,9 @@ module bpsk_modulator #(
             $readmemb("neg_sine_value.dat", neg_sine_rom);
         end
 
-    always @(posedge clk or posedge arst)
+    always @(posedge clk or negedge rst)
         begin
-            if (arst)
+            if (~rst)
                 begin 
                     signal_cnt <= 0;
                     sel_cnt    <= 0;

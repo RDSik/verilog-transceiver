@@ -2,12 +2,12 @@
 
 module transceiver_top (
     input  wire        clk,
-    input  wire        arst, // asynchronous reset
+    input  wire        rst,
     input  wire        data,
     input  wire        en,
     output wire        done,
     output wire        q,
-    output wire [11:0] signal_out
+    output wire [11:0] modulator_out 
 );                    
     
     wire        data_valid;
@@ -15,42 +15,40 @@ module transceiver_top (
     wire [11:0] encoder_out; 
     wire [7:0]  decoder_out;
         
-    uart_rx #(
-        .CLOCK_RATE (100_000_000), // 100 MHz
-        .BAUD_RATE  (115_200)
+    UART_RX #(
+        .CLKS_PER_BIT (1000000/115200)
     ) uart_rx_inst (
-        .clk  (clk),
-        .arst (arst),
-        .data (data),
-        .dv   (data_valid),
-        .q    (uart_rx_out)
+        .i_Clock     (clk),
+        .i_Rst_L     (rst),
+        .i_RX_Serial (data),
+        .o_RX_DV     (data_valid),
+        .o_RX_Byte   (uart_rx_out)
     );
 
     hamming_encoder encoder_inst (
         .clk  (clk),
-        .arst (arst),
+        .rst  (rst),
         .data (uart_rx_out),
         .q    (encoder_out)
     );
 
     hamming_decoder decoder_inst (
         .clk  (clk),
-        .arst (arst),
+        .rst  (rst),
         .data (encoder_out),
         .q    (decoder_out)
     );
     
-    uart_tx #(
-        .CLOCK_RATE (100_000_000), // 100 MHz
-        .BAUD_RATE  (115_200)
+    UART_TX #(
+        .CLKS_PER_BIT (1000000/115200)
     ) uart_tx_inst (
-        .clk    (clk),
-        .arst   (arst),
-        .dv     (data_valid),
-        .data   (decoder_out),
-        .active (),
-        .done   (done),
-        .q      (q)
+        .i_Clock     (clk),
+        .i_Rst_L     (rst),
+        .i_TX_DV     (data_valid),
+        .i_TX_Byte   (decoder_out),
+        .o_TX_Active (),
+        .o_TX_Done   (done),
+        .o_TX_Serial (q)
     );
     
     bpsk_modulator #(
@@ -59,10 +57,10 @@ module transceiver_top (
         .DATA_WIDTH    (12)
     ) bpsk_modulator_inst (
         .clk        (clk),
-        .arst       (arst),
+        .rst        (rst),
         .en         (en),
         .data       (encoder_out),
-        .signal_out (signal_out)
+        .signal_out (modulator_out)
     );
 
 endmodule

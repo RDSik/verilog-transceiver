@@ -2,7 +2,7 @@
 
 module hamming_encoder (
     input  wire        clk, 
-    input  wire        arst, // asynchronous reset
+    input  wire        rst,
     input  wire [7:0]  data, 
     output reg  [11:0] q
 );
@@ -17,9 +17,9 @@ module hamming_encoder (
     assign p2 = data[7] ^ data[3] ^ data[2] ^ data[1];
     assign p3 = data[7] ^ data[6] ^ data[5] ^ data[4];
    
-    always @ (posedge clk or posedge arst)
+    always @ (posedge clk or negedge rst)
         begin
-            if (arst)
+            if (~rst)
                 begin
                     q <= 0;
                 end
