@@ -17,7 +17,7 @@ module transceiver_top (
     wire [7:0]  decoder_out;
         
     UART_RX #(
-        .CLKS_PER_BIT (1000000/115200)
+        .CLKS_PER_BIT (100_000_000/115_200)
     ) uart_rx_inst (
         .i_Clock     (clk),
         .i_Rst_L     (rst),
@@ -41,7 +41,7 @@ module transceiver_top (
     );
     
     UART_TX #(
-        .CLKS_PER_BIT (1000000/115200)
+        .CLKS_PER_BIT (100_000_000/115_200)
     ) uart_tx_inst (
         .i_Clock     (clk),
         .i_Rst_L     (rst),
