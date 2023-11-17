@@ -7,6 +7,7 @@ reg         rst;
 reg         data;
 reg         en;
 
+wire        active;
 wire        done;
 wire        q;
 wire [11:0] modulator_out;
@@ -16,12 +17,13 @@ wire [7:0]  decoder_out;
 integer i;
 
 transceiver_top dut (
-    .clk        (clk),
-    .rst        (rst),
-    .en         (en),
-    .data       (data),
-    .done       (done),
-    .q          (q),
+    .clk           (clk),
+    .rst           (rst),
+    .en            (en),
+    .data          (data),
+    .done          (done),
+    .active        (active),
+    .q             (q),
     .modulator_out (modulator_out)
 );
 
@@ -42,7 +44,7 @@ initial
 always #1 clk = ~clk;
 
 initial 
-    $monitor("time=%g, clk=%b, data=%b, done=%b, modulator_out=%b, q=%b", $time, clk, data, done, modulator_out, q);
+    $monitor("time=%g, clk=%b, data=%b, active=%b, done=%b, modulator_out=%b, q=%b", $time, clk, data, active, done, modulator_out, q);
 	
 initial 
 	#5000 $stop;

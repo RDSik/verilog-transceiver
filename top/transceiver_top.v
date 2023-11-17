@@ -6,6 +6,7 @@ module transceiver_top (
     input  wire        data,
     input  wire        en,
     output wire        done,
+    output wire        active,
     output wire        q,
     output wire [11:0] modulator_out 
 );                    
@@ -46,7 +47,7 @@ module transceiver_top (
         .i_Rst_L     (rst),
         .i_TX_DV     (data_valid),
         .i_TX_Byte   (decoder_out),
-        .o_TX_Active (),
+        .o_TX_Active (active),
         .o_TX_Done   (done),
         .o_TX_Serial (q)
     );
