@@ -8,7 +8,7 @@
 
 Installation from git:
 
-    git clone https://github.com/RDSik/FPGA_transceiver.git
+    git clone --recurse-submodules https://github.com/RDSik/FPGA_transceiver.git
 
 Installation pip:
 
