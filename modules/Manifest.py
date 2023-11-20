@@ -2,6 +2,7 @@ modules = {
     "local" : [
         "uart",
         "hamming",
-        "modulator",
+        "bpsk",
+        "fsk",
     ],
 }

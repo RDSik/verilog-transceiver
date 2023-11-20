@@ -1,39 +1,33 @@
 `timescale 1ps / 1ps
 
-module hamming_decoder_tb();
+module hamming_top_tb();
 
-reg         clk;
-reg         rst;
-reg [11:0]  data;
+reg        clk;
+reg        rst;
+reg [7:0]  data;
 
 wire [7:0]  q;
-wire        g0_error;
-wire        g1_error;
-wire        g2_error;
-wire        g3_error;
+wire [11:0] encoder_out;
 
 integer i;
 
-hamming_decoder dut (
+hamming_top dut (
     .clk        (clk),
     .rst        (rst),
     .data       (data),
     .q          (q)
 );
 
-assign g0_error = dut.g0_error;
-assign g1_error = dut.g1_error;
-assign g2_error = dut.g2_error;
-assign g3_error = dut.g3_error;
+assign encoder_out = dut.encoder_out;
 
 initial 
     begin        
         clk = 1;
         #1; rst = 0;
         #1; rst = 1;
-        for (i = 0; i <= 50; i = i + 1)
+        for (i = 0; i <= 20; i = i + 1)
             begin
-                #2; data = $urandom_range(0,4095); 
+                #4; data = $urandom_range(0,255); 
             end 
     end
 
