@@ -11,13 +11,15 @@ module transceiver_top (
     output wire [11:0] modulator_out 
 );                    
     
+    // wire        clk100_out;
+    // wire        clk10_out;
     wire        data_valid;
     wire [7:0]  uart_rx_out;
     wire [11:0] encoder_out; 
     wire [7:0]  decoder_out;
         
     UART_RX #(
-        .CLKS_PER_BIT (100_000_000/115_200)
+        .CLKS_PER_BIT (1_000_000/115_200)
     ) uart_rx_inst (
         .i_Clock     (clk),
         .i_Rst_L     (rst),
@@ -41,7 +43,7 @@ module transceiver_top (
     );
     
     UART_TX #(
-        .CLKS_PER_BIT (100_000_000/115_200)
+        .CLKS_PER_BIT (1_000_000/115_200)
     ) uart_tx_inst (
         .i_Clock     (clk),
         .i_Rst_L     (rst),
@@ -63,5 +65,11 @@ module transceiver_top (
         .data       (encoder_out),
         .signal_out (modulator_out)
     );
+
+    // clk_wiz clk_wiz_inst (
+        // .clk_in     (clk),
+        // .clk100_out (clk100_out),
+        // .clk10_out  (clk10_out)
+    // );
 
 endmodule

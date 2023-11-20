@@ -18,7 +18,7 @@ bpsk_modulator #(
     .DATA_WIDTH    (12)
 ) dut (
     .clk        (clk),
-    .arst       (rst),
+    .rst        (rst),
     .en         (en),
     .data       (data),
     .signal_out (signal_out)
@@ -30,7 +30,7 @@ assign sel = dut.sel;
 
 initial 
     begin        
-        clk = 0; data = $urandom_range(0,511);
+        clk = 0; data = $urandom_range(0,4095);
         #1; rst = 0; en = 0;
         #1; rst = 1; en = 1;
         #1000; en = 0;
@@ -43,6 +43,6 @@ initial
     $monitor("time=%g, clk=%b, data=%b, signal_out=%b", $time, clk, data, signal_out);
 	
 initial 
-	#9000 $stop;
+	#8000 $stop;
 
 endmodule
