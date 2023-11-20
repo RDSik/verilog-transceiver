@@ -13,8 +13,6 @@ wire q1;
 wire q2;
 wire modulator_out;
 
-integer i;
-
 fsk_top dut (
     .clk   (clk),
     .data1 (data1),
@@ -28,12 +26,31 @@ fsk_top dut (
 assign modulator_out = dut.modulator_out;
 
 initial 
-    begin  
-        clk = 0;      
-        for (i = 0; i <= 100; i = i + 1)
-            begin
-                #1; s = $urandom_range(0,1); data1 = $urandom_range(0,1); data2 = $urandom_range(0,1);  f1 = $urandom_range(0,1); f2 = $urandom_range(0,1);  
-            end 
+    begin
+        clk = 0;  
+        data1 = 0; 
+        data2 = 0; 
+        s = 0; 
+        f1 = 0; 
+        f2 = 0;  
+        forever #2 f1 = ~f1;  
+    end 
+
+initial
+    begin
+        forever #4 f2 = ~f2; 
+    end
+
+initial 
+    begin 
+        data1 = 1; 
+        #30; 
+        data1 = 0; 
+        #30; 
+        s = 1; 
+        data2 = 1; 
+        #30; 
+        data2 = 0; 
     end
 
 always #1 clk = ~clk;
