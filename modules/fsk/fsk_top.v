@@ -8,9 +8,10 @@ module fsk_top (
     input  wire f1,
     input  wire f2,
     output wire q1,
-    output wire q2,
-    output wire modulator_out 
+    output wire q2
 ); 
+
+    wire modulator_out;
 
     fsk_modulator fsk_modulator_inst (
         .clk   (clk),
