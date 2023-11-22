@@ -3,6 +3,5 @@ modules = {
         "uart",
         "hamming",
         "bpsk",
-        "fsk",
     ],
 }
