@@ -1,26 +1,26 @@
 `timescale 1ps / 1ps
 
-module hamming_top (
-    input  wire       clk, 
-    input  wire       rst,
-    input  wire [7:0] data, 
-    output wire [7:0] q
+module humming_coder12_8 (
+    input  wire        clk, 
+    input  wire        rst_n,
+    input  wire [7:0]  data,
+    input  wire [11:0] hc_in,
+    output wire [7:0]  q,
+    output wire [11:0] hc_out
 );
-   
-   wire [11:0] encoder_out;
 
-    hamming_encoder hamming_encoder_inst (
-        .clk  (clk),
-        .rst  (rst),
-        .data (data),
-        .q    (encoder_out)
+    hamming_encoder HE(
+        .clk    (clk),
+        .rst_n  (rst_n),
+        .data   (data),
+        .hc_out (hc_out)
     );
 
-    hamming_decoder hamming_decoder_inst (
-        .clk  (clk),
-        .rst  (rst),
-        .data (encoder_out),
-        .q    (q)
+    hamming_decoder HD(
+        .clk   (clk),
+        .rst_n (rst_n),
+        .hc_in (hc_in),
+        .q     (q)
     );
 
 endmodule

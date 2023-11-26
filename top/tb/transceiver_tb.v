@@ -39,7 +39,7 @@ initial
         clk = 0;
         #1; rst = 0; en = 0;
         #1; rst = 1; en = 1;
-        for (i = 0; i <= 5000; i = i + 1)
+        for (i = 0; i <= 500000; i = i + 1)
             begin
                 #1; data = $urandom_range(0,1); 
             end 
@@ -51,6 +51,6 @@ initial
     $monitor("time=%g, clk=%b, data=%b, active=%b, done=%b, modulator_out=%b, q=%b", $time, clk, data, active, done, modulator_out, q);
 	
 initial 
-	#5000 $stop;
+	#500000 $stop;
 
 endmodule

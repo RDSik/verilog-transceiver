@@ -11,8 +11,8 @@ module transceiver_top (
     output wire [11:0] modulator_out 
 );                    
     
-    // wire        clk100_out;
-    // wire        clk10_out;
+    wire        clk100_out;
+    wire        clk10_out;
     wire        data_valid;
     wire [7:0]  uart_rx_out;
     wire [11:0] encoder_out; 
@@ -21,6 +21,7 @@ module transceiver_top (
     UART_RX #(
         .CLKS_PER_BIT (1_000_000/115_200)
     ) uart_rx_inst (
+        // .i_Clock     (clk10_out),
         .i_Clock     (clk),
         .i_Rst_L     (rst),
         .i_RX_Serial (data),
@@ -29,22 +30,25 @@ module transceiver_top (
     );
 
     hamming_encoder encoder_inst (
-        .clk  (clk),
-        .rst  (rst),
-        .data (uart_rx_out),
-        .q    (encoder_out)
+        // .clk    (clk10_out),
+        .clk    (clk),
+        .rst_n  (rst),
+        .data   (uart_rx_out),
+        .hc_out (encoder_out)
     );
 
     hamming_decoder decoder_inst (
-        .clk  (clk),
-        .rst  (rst),
-        .data (encoder_out),
-        .q    (decoder_out)
+        // .clk   (clk10_out), 
+        .clk   (clk),
+        .rst_n (rst),
+        .hc_in (encoder_out),
+        .q     (decoder_out)
     );
     
     UART_TX #(
         .CLKS_PER_BIT (1_000_000/115_200)
     ) uart_tx_inst (
+        // .i_Clock     (clk10_out),
         .i_Clock     (clk),
         .i_Rst_L     (rst),
         .i_TX_DV     (data_valid),
@@ -59,6 +63,7 @@ module transceiver_top (
         .SAMPLE_WIDTH  (12),
         .DATA_WIDTH    (12)
     ) bpsk_modulator_inst (
+        // .clk        (clk100_out),
         .clk        (clk),
         .rst        (rst),
         .en         (en),
