@@ -44,4 +44,4 @@ module hamming_decoder (
                 end
         end
 
-    endmodule
+endmodule
