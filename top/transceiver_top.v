@@ -1,25 +1,34 @@
 `timescale 1ps / 1ps
 
-module transceiver_top (
-    input  wire        clk,
-    input  wire        rst,
-    input  wire        data,
-    input  wire        en,
-    output wire        done,
-    output wire        active,
-    output wire        q,
-    output wire [11:0] modulator_out 
+module transceiver_top #(
+    parameter CLKS_PER_BIT  = 1_000_000/115_200,
+    parameter SAMPLE_NUMBER = 256,
+    parameter SAMPLE_WIDTH  = 12
+) (
+    input  wire clk,
+    input  wire rst,
+    input  wire data,
+    input  wire en,
+    output wire done,
+    output wire active,
+    output wire q,
+    output wire [11:0] demodulator_out,
+    output wire [11:0] modulator_out
 );                    
     
-    wire        clk100_out;
-    wire        clk10_out;
+    // wire        clk100_out;
+    // wire        clk10_out;
     wire        data_valid;
     wire [7:0]  uart_rx_out;
     wire [11:0] encoder_out; 
     wire [7:0]  decoder_out;
+    wire [7:0]  signal_cnt_out;
         
+    wire [SAMPLE_WIDTH-1:0] neg_sine_out;
+    wire [SAMPLE_WIDTH-1:0] sine_out;
+
     UART_RX #(
-        .CLKS_PER_BIT (1_000_000/115_200)
+        .CLKS_PER_BIT (CLKS_PER_BIT)
     ) uart_rx_inst (
         // .i_Clock     (clk10_out),
         .i_Clock     (clk),
@@ -37,6 +46,51 @@ module transceiver_top (
         .hc_out (encoder_out)
     );
 
+    sine_generator #(
+        .SAMPLE_NUMBER (SAMPLE_NUMBER),
+        .SAMPLE_WIDTH  (SAMPLE_WIDTH)
+    ) sine_generator_inst (
+        // .clk        (clk100_out),
+        .clk          (clk),
+        .rst          (rst),
+        .en           (en),
+        .sine_out     (sine_out),
+        .neg_sine_out (neg_sine_out),
+        .signal_cnt   (signal_cnt_out)
+    );
+
+    bpsk_modulator #(
+        .SAMPLE_NUMBER (SAMPLE_NUMBER),
+        .SAMPLE_WIDTH  (SAMPLE_WIDTH),
+        .DATA_WIDTH    (12)
+    ) bpsk_modulator_inst (
+        // .clk        (clk100_out),
+        .clk         (clk),
+        .rst         (rst),
+        .en          (en),
+        .data        (encoder_out),
+        .sine_in     (sine_out),
+        .neg_sine_in (neg_sine_out),
+        .cnt_in      (signal_cnt_out),
+        .signal_out  (modulator_out)
+    );
+
+    bpsk_demodulator #(
+        .SAMPLE_NUMBER (SAMPLE_NUMBER),
+        .SAMPLE_WIDTH  (SAMPLE_WIDTH),
+        .DATA_WIDTH    (12)
+    ) bpsk_demodulator_inst (
+        // .clk        (clk100_out),
+        .clk         (clk),
+        .rst         (rst),
+        .en          (en),
+        .signal_in   (modulator_out),
+        .sine_in     (sine_out),
+        .neg_sine_in (neg_sine_out),
+        .cnt_in      (signal_cnt_out),
+        .q           (demodulator_out)
+    );
+
     hamming_decoder decoder_inst (
         // .clk   (clk10_out), 
         .clk   (clk),
@@ -46,7 +100,7 @@ module transceiver_top (
     );
     
     UART_TX #(
-        .CLKS_PER_BIT (1_000_000/115_200)
+        .CLKS_PER_BIT (CLKS_PER_BIT)
     ) uart_tx_inst (
         // .i_Clock     (clk10_out),
         .i_Clock     (clk),
@@ -56,19 +110,6 @@ module transceiver_top (
         .o_TX_Active (active),
         .o_TX_Done   (done),
         .o_TX_Serial (q)
-    );
-    
-    bpsk_modulator #(
-        .SAMPLE_NUMBER (256),
-        .SAMPLE_WIDTH  (12),
-        .DATA_WIDTH    (12)
-    ) bpsk_modulator_inst (
-        // .clk        (clk100_out),
-        .clk        (clk),
-        .rst        (rst),
-        .en         (en),
-        .data       (encoder_out),
-        .signal_out (modulator_out)
     );
 
     // clk_wiz clk_wiz_inst (
