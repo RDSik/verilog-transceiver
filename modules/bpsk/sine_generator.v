@@ -29,8 +29,8 @@ module sine_generator #(
                 end 
             else if (en)
                 begin
-                    sine_out     <= sine_rom[signal_cnt];           
                     neg_sine_out <= neg_sine_rom[signal_cnt];
+                    sine_out     <= sine_rom[signal_cnt];                               
                     if (signal_cnt == SAMPLE_NUMBER-1)
                         begin
                             signal_cnt <= 0;
@@ -40,6 +40,11 @@ module sine_generator #(
                             signal_cnt <= signal_cnt + 1;
                         end
                 end            
+            else 
+                begin
+                    neg_sine_out <= 'bz;
+                    sine_out     <= 'bz;    
+                end
         end
 
 endmodule

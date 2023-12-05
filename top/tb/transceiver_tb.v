@@ -49,7 +49,7 @@ initial
         clk = 0;
         #1; rst = 0; en = 0;
         #1; rst = 1; en = 1;
-        for (i = 0; i <= 5000; i = i + 1)
+        for (i = 0; i <= 50000; i = i + 1)
             begin
                 #1; data = $urandom_range(0,1); 
             end 
@@ -65,6 +65,6 @@ initial
     end
 
 initial 
-	#5000 $stop;
+	#50000 $stop;
 
 endmodule

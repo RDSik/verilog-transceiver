@@ -2,18 +2,29 @@
 
 module bpsk_demodulator_tb();
 
-reg         clk;
-reg         rst;
-reg         en;
-reg [11:0]  signal_in;
+reg        clk;
+reg        rst;
+reg        en;
+reg [11:0] signal_in;
+reg [11:0] sine_in;
+reg [11:0] neg_sine_in;
+reg [7:0]  cnt_in;
 
 wire [11:0] q;
-wire [7:0]  signal_cnt;
 wire [3:0]  sel_cnt;
 wire [11:0] sel;
 wire        flag;
 
+reg [11:0] sine_rom [255:0];
+reg [11:0] neg_sine_rom [255:0];
+
 integer i;
+
+initial 
+    begin
+        $readmemb("sine_value.dat", sine_rom);
+        $readmemb("neg_sine_value.dat", neg_sine_rom);
+    end
 
 bpsk_demodulator #(
     .SAMPLE_NUMBER (256),
@@ -28,21 +39,20 @@ bpsk_demodulator #(
 );
 
 assign sel_cnt = dut.sel_cnt;
-assign signal_cnt = dut.signal_cnt;
 assign flag = dut.flag;
 assign sel = dut.sel;
 
 initial 
-    begin        
-        clk = 0;
+    begin
+        clk = 1;
         #1; rst = 0; en = 0;
-        #1; rst = 1; en = 1;
-        for (i = 0; i <= 80000; i = i + 1)
+        #1; rst = 1; en = 1; signal_in = 12'b011111001110;
+        for (i = 0; i <= 5000; i = i + 1)
             begin
-                #515; signal_in = $urandom_range(0,4095); 
+                #2; cnt_in = i; 
+                sine_in = sine_rom[cnt_in]; 
+                neg_sine_in = neg_sine_rom[cnt_in]; 
             end
-        // #1000; en = 0;
-        // #1000; en = 1;
     end
 
 always #1 clk = ~clk;
@@ -54,7 +64,7 @@ initial
     begin
         $dumpfile("out.vcd");
 	    $dumpvars(0, bpsk_demodulator_tb);
-	    #80000 $stop;
+	    #10000 $stop;
     end
 
 endmodule

@@ -8,13 +8,12 @@ reg        en;
 reg [11:0] data;
 reg [11:0] sine_in;
 reg [11:0] neg_sine_in;
+reg [7:0]  cnt_in;
 
 wire [11:0] signal_out;
-wire [7:0]  cnt_in;
 wire [3:0]  sel_cnt;
 wire [11:0] sel;
 
-reg [7:0] cnt;
 reg [11:0] sine_rom [255:0];
 reg [11:0] neg_sine_rom [255:0];
 
@@ -43,7 +42,6 @@ bpsk_modulator #(
 
 assign sel_cnt = dut.sel_cnt;
 assign sel = dut.sel;
-assign cnt_in = cnt;
 
 initial 
     begin        
@@ -52,7 +50,9 @@ initial
         #1; rst = 1; en = 1;
         for (i = 0; i <= 2500; i = i + 1)
             begin
-                #2; cnt = i; sine_in = sine_rom[cnt_in]; neg_sine_in = neg_sine_rom[cnt_in]; 
+                #2; cnt_in = i; 
+                sine_in = sine_rom[cnt_in]; 
+                neg_sine_in = neg_sine_rom[cnt_in]; 
             end 
     end
 

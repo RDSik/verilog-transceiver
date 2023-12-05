@@ -16,7 +16,7 @@ module bpsk_demodulator #(
 );
 
     reg [$clog2(DATA_WIDTH)-1:0] sel_cnt; // bit counter in select signal
-    reg [DATA_WIDTH-1:0]         sel;
+    reg [DATA_WIDTH-1:0]         sel;     // register for input select signal
     reg                          flag;
 
     always @(posedge clk or negedge rst)
@@ -28,14 +28,14 @@ module bpsk_demodulator #(
                 end 
             else if (en)
                 begin
-                    q <= sel;
-                    if (cnt_in == SAMPLE_NUMBER-1)
+                    sel[sel_cnt] <= flag ? 1 : 0;                    
+                    if (cnt_in == SAMPLE_NUMBER-1) // one period of sine
                         begin
-                            sel_cnt <= sel_cnt + 1;
-                            sel[sel_cnt] <= flag ? 1 : 0;
+                            sel_cnt <= sel_cnt + 1;                            
                             if (sel_cnt == DATA_WIDTH-1)
                                 begin
                                     sel_cnt <= 0;
+                                    q       <= sel;
                                 end                
                         end
                     else if (signal_in == sine_in)
@@ -49,7 +49,7 @@ module bpsk_demodulator #(
                 end
             else
                 begin
-                    q <= 12'bz;
+                    q <= 'bz;
                 end
         end
 

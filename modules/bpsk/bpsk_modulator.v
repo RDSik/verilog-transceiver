@@ -39,7 +39,7 @@ module bpsk_modulator #(
                 end
             else 
                 begin 
-                    signal_out <= 12'bz;
+                    signal_out <= 'bz;
                 end
         end
 
