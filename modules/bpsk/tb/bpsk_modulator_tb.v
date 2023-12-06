@@ -43,29 +43,25 @@ bpsk_modulator #(
 assign sel_cnt = dut.sel_cnt;
 assign sel = dut.sel;
 
-initial 
-    begin        
-        clk = 1; data = $urandom_range(0,4095);
-        #1; rst = 0; en = 0;
-        #1; rst = 1; en = 1;
-        for (i = 0; i <= 2500; i = i + 1)
-            begin
-                #2; cnt_in = i; 
-                sine_in = sine_rom[cnt_in]; 
-                neg_sine_in = neg_sine_rom[cnt_in]; 
-            end 
-    end
+initial begin        
+    clk = 1; data = $urandom_range(0,4095);
+    #1; rst = 0; en = 0;
+    #1; rst = 1; en = 1;
+    for (i = 0; i <= 2500; i = i + 1) begin
+        #2; cnt_in = i; 
+        sine_in = sine_rom[cnt_in]; 
+        neg_sine_in = neg_sine_rom[cnt_in]; 
+    end 
+end
 
 always #1 clk = ~clk;
-
-initial 
-    $monitor("time=%g, clk=%b, signal_out=%b", $time, clk, signal_out);
 	
-initial 
-    begin
-        $dumpfile("out.vcd");
-	    $dumpvars(0, bpsk_modulator_tb);
-	    #5000 $stop;
-    end
+initial  begin
+    $dumpfile("out.vcd");
+    $dumpvars(0, bpsk_modulator_tb);
+    $monitor("time=%g, clk=%b, signal_out=%b", $time, clk, signal_out);
+end
+
+initial #5000 $stop;
 
 endmodule

@@ -20,11 +20,10 @@ reg [11:0] neg_sine_rom [255:0];
 
 integer i;
 
-initial 
-    begin
-        $readmemb("sine_value.dat", sine_rom);
-        $readmemb("neg_sine_value.dat", neg_sine_rom);
-    end
+initial begin
+    $readmemb("sine_value.dat", sine_rom);
+    $readmemb("neg_sine_value.dat", neg_sine_rom);
+end
 
 bpsk_demodulator #(
     .SAMPLE_NUMBER (256),
@@ -42,29 +41,25 @@ assign sel_cnt = dut.sel_cnt;
 assign flag = dut.flag;
 assign sel = dut.sel;
 
-initial 
-    begin
-        clk = 1;
-        #1; rst = 0; en = 0;
-        #1; rst = 1; en = 1; signal_in = 12'b011111001110;
-        for (i = 0; i <= 5000; i = i + 1)
-            begin
-                #2; cnt_in = i; 
-                sine_in = sine_rom[cnt_in]; 
-                neg_sine_in = neg_sine_rom[cnt_in]; 
-            end
+initial begin
+    clk = 1;
+    #1; rst = 0; en = 0;
+    #1; rst = 1; en = 1; signal_in = 12'b011111001110;
+    for (i = 0; i <= 5000; i = i + 1) begin
+        #2; cnt_in = i; 
+        sine_in = sine_rom[cnt_in]; 
+        neg_sine_in = neg_sine_rom[cnt_in]; 
     end
+end
 
 always #1 clk = ~clk;
-
-initial 
-    $monitor("time=%g, clk=%b, signal_in=%b, q=%b", $time, clk, signal_in, q);
 	
-initial 
-    begin
-        $dumpfile("out.vcd");
-	    $dumpvars(0, bpsk_demodulator_tb);
-	    #10000 $stop;
-    end
+initial  begin
+    $dumpfile("out.vcd");
+    $dumpvars(0, bpsk_demodulator_tb);    
+    $monitor("time=%g, clk=%b, signal_in=%b, q=%b", $time, clk, signal_in, q);
+end
+
+initial #10000 $stop;
 
 endmodule

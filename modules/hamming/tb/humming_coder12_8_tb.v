@@ -24,59 +24,60 @@ humming_coder12_8 DUT(
 
 integer pn, i;
 
-initial 
-    begin
-        pn = 0;
-        hc_in = 0;
+initial begin
+    pn = 0;
+    hc_in = 0;
     
-        forever 
-            begin
-                @ (posedge clk)
-                pn = {$random} %12;
-                #1
-                for (i = 0; i < 12; i = i + 1) 
-                    begin
-                        if (i != pn)
-                            hc_in[i] = hc_out[i];
-                        else
-                            hc_in[i] = ~hc_out[i];
-                    end
-            end
+    forever begin
+        @ (posedge clk)
+        pn = {$random} %12;
+        #1
+        for (i=0; i<12; i=i+1) begin
+            if (i!= pn)
+                hc_in[i] = hc_out[i];
+            else
+                hc_in[i] = ~hc_out[i];
+        end
     end
+end
 
-always @ (posedge clk)
-    begin
+always @ (posedge clk) begin
         temp1 <= data;
         temp2 <= temp1;
-    end
+end
 
-always @ (*)
-    begin
+always @ (*) begin
+    if (wren) begin
         #1
         if (temp2 == q)
             $display("OK:time=%0t data=%0d q=%0d", $time, temp2, q);
         else
             $error("ERROR:time=%0t data=%0d q=%0d", $time, temp2, q);
     end
+end
     
-initial 
-    begin
-        clk = 1;
-        rst_n = 0;
-        data = 0;
+initial begin
+    clk = 1;
+    rst_n = 0;
+    data = 0;
+    rden = 0;
+    wren = 0;
     
-        #200
+    #200
+    @ (posedge clk)
+    rst_n = 1;
+    
+    #200
+    forever begin
         @ (posedge clk)
-        rst_n = 1;
-        
-        #200
-        forever begin
-            @ (posedge clk)
-            data = {$random} % 9'b10000_0000;
-            @ (posedge clk)
-            data = {$random} % 9'b10000_0000;
-        end
+        wren = 1;
+        data = {$random} % 9'b10000_0000;
+        @ (posedge clk)
+        wren = 1;
+        data = {$random} % 9'b10000_0000;
+        rden = 1;
     end
+end
 
 always #10 clk = ~clk;
 

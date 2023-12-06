@@ -15,36 +15,29 @@ module sine_generator #(
     reg [SAMPLE_WIDTH-1:0] sine_rom [SAMPLE_NUMBER-1:0];
     reg [SAMPLE_WIDTH-1:0] neg_sine_rom [SAMPLE_NUMBER-1:0];
 
-    initial 
-        begin
-            $readmemb("sine_value.dat", sine_rom);
-            $readmemb("neg_sine_value.dat", neg_sine_rom);
-        end
+    initial begin
+        $readmemb("sine_value.dat", sine_rom);
+        $readmemb("neg_sine_value.dat", neg_sine_rom);
+    end
 
-    always @(posedge clk or negedge rst)
-        begin
-            if (~rst)
-                begin                     
-                    signal_cnt <= 0;
-                end 
-            else if (en)
-                begin
-                    neg_sine_out <= neg_sine_rom[signal_cnt];
-                    sine_out     <= sine_rom[signal_cnt];                               
-                    if (signal_cnt == SAMPLE_NUMBER-1)
-                        begin
-                            signal_cnt <= 0;
-                        end                            
-                    else 
-                        begin
-                            signal_cnt <= signal_cnt + 1;
-                        end
-                end            
-            else 
-                begin
-                    neg_sine_out <= 'bz;
-                    sine_out     <= 'bz;    
-                end
+    always @(posedge clk or negedge rst) begin
+        if (~rst) begin                     
+            signal_cnt <= 0;
+        end 
+        else if (en) begin
+            neg_sine_out <= neg_sine_rom[signal_cnt];
+            sine_out     <= sine_rom[signal_cnt];                               
+            if (signal_cnt == SAMPLE_NUMBER-1) begin
+                signal_cnt <= 0;
+            end                            
+            else begin
+                signal_cnt <= signal_cnt + 1;
+            end
+        end            
+        else begin
+            neg_sine_out <= 'bz;
+            sine_out     <= 'bz;    
         end
+    end
 
 endmodule
