@@ -23,13 +23,13 @@ wire [11:0] sine_out;
 integer i;
 
 transceiver_top dut (
-    .clk             (clk),
-    .rst             (rst),
-    .en              (en),
-    .data            (data),
-    .done            (done),
-    .active          (active),
-    .q               (q)
+    .clk    (clk),
+    .rst    (rst),
+    .en     (en),
+    .data   (data),
+    .done   (done),
+    .active (active),
+    .q      (q)
 );
 
 assign uart_rx_out = dut.uart_rx_out;

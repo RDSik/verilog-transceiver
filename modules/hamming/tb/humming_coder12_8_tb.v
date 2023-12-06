@@ -32,8 +32,8 @@ initial begin
         @ (posedge clk)
         pn = {$random} %12;
         #1
-        for (i=0; i<12; i=i+1) begin
-            if (i!= pn)
+        for (i = 0; i < 12; i = i + 1) begin
+            if (i != pn)
                 hc_in[i] = hc_out[i];
             else
                 hc_in[i] = ~hc_out[i];
@@ -42,8 +42,8 @@ initial begin
 end
 
 always @ (posedge clk) begin
-        temp1 <= data;
-        temp2 <= temp1;
+    temp1 <= data;
+    temp2 <= temp1;
 end
 
 always @ (*) begin
