@@ -11,12 +11,12 @@ module transceiver_top #(
     input  wire rst,
     input  wire data,
     input  wire en,
-    output wire done,
-    output wire active,
     output wire q  
 );                    
     
     // wire                             clk10_out;
+    wire                             done;
+    wire                             active;
     wire                             data_valid;
     wire [7:0]                       uart_rx_out;    
     wire [7:0]                       decoder_out;

@@ -6,6 +6,8 @@ reg        clk;
 reg        rst_n;
 reg [7:0]  data;
 reg [11:0] hc_in;
+reg        rden;
+reg        wren;
 
 wire [11:0] hc_out;
 wire [7:0]  q;

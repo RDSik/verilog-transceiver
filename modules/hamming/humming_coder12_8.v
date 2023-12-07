@@ -15,7 +15,7 @@ module humming_coder12_8 (
     hamming_encoder HE(
         .clk    (clk),
         .rst_n  (rst_n),
-        .wren   (wren)
+        .wren   (wren),
         .data   (data),
         .hc_out (hc_out)
     );

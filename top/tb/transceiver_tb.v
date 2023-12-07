@@ -27,8 +27,6 @@ transceiver_top dut (
     .rst    (rst),
     .en     (en),
     .data   (data),
-    .done   (done),
-    .active (active),
     .q      (q)
 );
 
@@ -41,6 +39,8 @@ assign demodulator_out = dut.demodulator_out;
 assign signal_cnt_out = dut.signal_cnt_out;
 assign neg_sine_out = dut.neg_sine_out;
 assign sine_out = dut.sine_out;
+assign done = dut.done;
+assign active = dut.active;
 
 initial  begin        
     clk = 0;
