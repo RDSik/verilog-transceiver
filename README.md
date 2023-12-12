@@ -24,7 +24,7 @@ pip install six
 pip install hdlmake
 ```
 
-## Download make (add to PATH system variable the Make bin folder: C:\Program Files (x86)\GnuWin32\bin):
+### Download make (add to PATH system variable the Make bin folder: C:\Program Files (x86)\GnuWin32\bin):
 ```bash
 winget install GnuWin32.make
 ```
