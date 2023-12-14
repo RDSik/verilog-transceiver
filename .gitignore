@@ -1,6 +1,6 @@
 syn/*
 !syn/Manifest.py
-!syn/add_ip.tcl
+!syn/add_files.tcl
 !syn/transceiver.xdc
 top/sim/*
 !top/sim/Manifest.py
