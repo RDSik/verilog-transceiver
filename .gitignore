@@ -4,3 +4,6 @@ syn/*
 !syn/transceiver.xdc
 top/sim/*
 !top/sim/Manifest.py
+!top/sim/sine_value.dat
+!top/sim/neg_sine_value.dat
+!top/sim/sine_value.m
