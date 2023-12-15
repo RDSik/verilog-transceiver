@@ -3,7 +3,7 @@ syn/*
 !add_files.tcl
 !transceiver.xdc
 top/sim/*
-!/Manifest.py
+!Manifest.py
 !sine_value.dat
 !neg_sine_value.dat
 !sine_value.m
