@@ -2,7 +2,7 @@
 `timescale 1ps / 1ps
 
 module transceiver_top #(
-    parameter CLKS_PER_BIT  = 1_000_000/115_200,
+    parameter CLKS_PER_BIT  = 1_000_000/115_200, // 1 MHz and 115_200 Baud
     parameter SAMPLE_NUMBER = 256,
     parameter SAMPLE_WIDTH  = 12,
     parameter DATA_WIDTH    = 12
@@ -112,7 +112,7 @@ module transceiver_top #(
     );
 
     // clk_wiz clk_wiz_inst (
-        // .clk_in     (clk),
+        // .clk100_in (clk),
         // .clk10_out (clk10_out)
     // );
 
