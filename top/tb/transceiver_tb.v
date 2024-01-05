@@ -16,9 +16,9 @@ wire [11:0] demodulator_out;
 wire [11:0] encoder_out;
 wire [7:0]  decoder_out;
 wire [7:0]  uart_rx_out;
-wire [7:0]  signal_cnt_out;
-wire [11:0] neg_sine_out;
-wire [11:0] sine_out;
+wire [7:0]  cnt_out;
+wire [11:0] neg_sin_out;
+wire [11:0] sin_out;
 
 integer i;
 
@@ -36,9 +36,9 @@ assign decoder_out = dut.decoder_out;
 assign data_valid = dut.data_valid;
 assign modulator_out = dut.modulator_out;
 assign demodulator_out = dut.demodulator_out;
-assign signal_cnt_out = dut.signal_cnt_out;
-assign neg_sine_out = dut.neg_sine_out;
-assign sine_out = dut.sine_out;
+assign cnt_out = dut.cnt_out;
+assign neg_sin_out = dut.neg_sin_out;
+assign sin_out = dut.sin_out;
 assign done = dut.done;
 assign active = dut.active;
 

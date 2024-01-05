@@ -4,8 +4,8 @@ syn/*
 !transceiver.xdc
 top/sim/*
 !Manifest.py
-!sine_value.dat
-!neg_sine_value.dat
-!sine_value.m
+!sin_value.dat
+!neg_sin_value.dat
+!sin_value.m
 platform/xilinx/clk_wiz/*
 !clk_wiz.xci

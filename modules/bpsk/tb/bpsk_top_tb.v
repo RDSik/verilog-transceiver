@@ -8,9 +8,9 @@ reg        en;
 reg [11:0] data;
 
 wire [11:0] q;
-wire [11:0] sine_out;
-wire [11:0] neg_sine_out;
-wire [7:0]  signal_cnt_out;
+wire [11:0] sin_out;
+wire [11:0] neg_sin_out;
+wire [7:0]  cnt_out;
 wire [11:0] modulator_out;
 
 bpsk_top #(
@@ -25,9 +25,9 @@ bpsk_top #(
     .q    (q)
 );
 
-assign sine_out = dut.sine_out;
-assign neg_sine_out = dut.neg_sine_out;
-assign signal_cnt_out = dut.signal_cnt_out;
+assign sin_out = dut.sin_out;
+assign neg_sin_out = dut.neg_sin_out;
+assign cnt_out = dut.cnt_out;
 assign modulator_out = dut.modulator_out;
 
 initial begin

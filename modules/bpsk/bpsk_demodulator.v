@@ -9,8 +9,8 @@ module bpsk_demodulator #(
     input  wire                             rst,
     input  wire                             en,
     input  wire [SAMPLE_WIDTH-1:0]          signal_in,
-    input  wire [SAMPLE_WIDTH-1:0]          sine_in,
-    input  wire [SAMPLE_WIDTH-1:0]          neg_sine_in,
+    input  wire [SAMPLE_WIDTH-1:0]          sin_in,
+    input  wire [SAMPLE_WIDTH-1:0]          neg_sin_in,
     input  wire [$clog2(SAMPLE_NUMBER)-1:0] cnt_in, 
     output reg  [DATA_WIDTH-1:0]            q 
 );
@@ -26,17 +26,17 @@ module bpsk_demodulator #(
         end 
         else if (en) begin                
             sel[sel_cnt] <= flag ? 1 : 0;                    
-            if (cnt_in == SAMPLE_NUMBER-1) begin // one period of sine
+            if (cnt_in == SAMPLE_NUMBER-1) begin // one period of sin
                 sel_cnt <= sel_cnt + 1;                            
                 if (sel_cnt == DATA_WIDTH-1) begin // out[11:0] bit
                     sel_cnt <= 0;
                     q       <= sel;
                 end                
             end
-            else if (signal_in == sine_in) begin                   
+            else if (signal_in == sin_in) begin                   
                 flag <= 1;   
             end
-            else if (signal_in == neg_sine_in) begin                          
+            else if (signal_in == neg_sin_in) begin                          
                 flag <= 0;
             end
         end

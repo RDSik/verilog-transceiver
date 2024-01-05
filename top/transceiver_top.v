@@ -21,11 +21,11 @@ module transceiver_top #(
     wire [7:0]                       uart_rx_out;    
     wire [7:0]                       decoder_out;
     wire [DATA_WIDTH-1:0]            encoder_out; 
-    wire [$clog2(SAMPLE_NUMBER)-1:0] signal_cnt_out;
+    wire [$clog2(SAMPLE_NUMBER)-1:0] cnt_out;
     wire [DATA_WIDTH-1:0]            demodulator_out;
     wire [SAMPLE_WIDTH-1:0]          modulator_out;
-    wire [SAMPLE_WIDTH-1:0]          neg_sine_out;
-    wire [SAMPLE_WIDTH-1:0]          sine_out;
+    wire [SAMPLE_WIDTH-1:0]          neg_sin_out;
+    wire [SAMPLE_WIDTH-1:0]          sin_out;
 
     UART_RX #(
         .CLKS_PER_BIT (CLKS_PER_BIT)
@@ -47,16 +47,16 @@ module transceiver_top #(
         .hc_out (encoder_out)
     );
 
-    sine_generator #(
+    sin_generator #(
         .SAMPLE_NUMBER (SAMPLE_NUMBER),
         .SAMPLE_WIDTH  (SAMPLE_WIDTH)
-    ) sine_generator_inst (
-        .clk          (clk),
-        .rst          (rst),
-        .en           (en),
-        .sine_out     (sine_out),
-        .neg_sine_out (neg_sine_out),
-        .signal_cnt   (signal_cnt_out)
+    ) sin_generator_inst (
+        .clk         (clk),
+        .rst         (rst),
+        .en          (en),
+        .sin_out     (sin_out),
+        .neg_sin_out (neg_sin_out),
+        .cnt_out     (cnt_out)
     );
 
     bpsk_modulator #(
@@ -64,14 +64,14 @@ module transceiver_top #(
         .SAMPLE_WIDTH  (SAMPLE_WIDTH),
         .DATA_WIDTH    (DATA_WIDTH)
     ) bpsk_modulator_inst (
-        .clk         (clk),
-        .rst         (rst),
-        .en          (en),
-        .data        (encoder_out),
-        .sine_in     (sine_out),
-        .neg_sine_in (neg_sine_out),
-        .cnt_in      (signal_cnt_out),
-        .signal_out  (modulator_out)
+        .clk        (clk),
+        .rst        (rst),
+        .en         (en),
+        .data       (encoder_out),
+        .sin_in     (sin_out),
+        .neg_sin_in (neg_sin_out),
+        .cnt_in     (cnt_out),
+        .signal_out (modulator_out)
     );
 
     bpsk_demodulator #(
@@ -79,14 +79,14 @@ module transceiver_top #(
         .SAMPLE_WIDTH  (SAMPLE_WIDTH),
         .DATA_WIDTH    (DATA_WIDTH)
     ) bpsk_demodulator_inst (
-        .clk         (clk),
-        .rst         (rst),
-        .en          (en),
-        .signal_in   (modulator_out),
-        .sine_in     (sine_out),
-        .neg_sine_in (neg_sine_out),
-        .cnt_in      (signal_cnt_out),
-        .q           (demodulator_out)
+        .clk        (clk),
+        .rst        (rst),
+        .en         (en),
+        .signal_in  (modulator_out),
+        .sin_in     (sin_out),
+        .neg_sin_in (neg_sin_out),
+        .cnt_in     (cnt_out),
+        .q          (demodulator_out)
     );
 
     hamming_decoder decoder_inst (

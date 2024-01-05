@@ -6,8 +6,8 @@ y = sin(x) + 1;
 y2 = y./max(y);
 y3 = ceil(y2.*(2^12-1));
 
-%%fid = fopen('neg_sine_value.dat', 'wb');
-fid = fopen('sine_value.dat', 'wb');
+%%fid = fopen('neg_sin_value.dat', 'wb');
+fid = fopen('sin_value.dat', 'wb');
 if fid == -1
     error('File is not opened');
 end
