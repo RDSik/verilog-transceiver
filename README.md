@@ -45,10 +45,9 @@ hdlmake
 make project
 ```
 
-### Build simulation:
+### Build simulation (modelsim):
 ```bash
 cd top/sim
 hdlmake
 make
-vsim work.transceiver_tb
 ```
