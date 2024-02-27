@@ -1,14 +1,9 @@
 
 # Entity: transceiver_top 
 - **File**: transceiver_top.v
-- **Title:**  digital_transceiver module design
-- **Author:**  Dmitry Ryabikov
 
 ## Diagram
 ![Diagram](transceiver_top.svg "Diagram")
-## Description
-
-
 ## Generics
 
 | Generic name  | Type | Value             | Description                          |
@@ -47,10 +42,16 @@
 ## Instantiations
 
 - uart_rx_inst: UART_RX
-  - uart receive instance- encoder_inst: hamming_encoder
-  - hamming encoder instance- sin_generator_inst: sin_generator
-  - sine generator instance (generate sine and negative sine sample from .dat files using a counter)- bpsk_modulator_inst: bpsk_modulator
-  - binary phase shift key modulator instance- bpsk_demodulator_inst: bpsk_demodulator
-  - binary phase shift key demodulator instance- decoder_inst: hamming_decoder
-  - hamming decoder instance- uart_tx_inst: UART_TX
+  - uart receive instance
+- encoder_inst: hamming_encoder
+  - hamming encoder instance
+- sin_generator_inst: sin_generator
+  - sine generator instance (generate sine and negative sine sample from .dat files using a counter)
+- bpsk_modulator_inst: bpsk_modulator
+  - binary phase shift key modulator instance
+- bpsk_demodulator_inst: bpsk_demodulator
+  - binary phase shift key demodulator instance
+- decoder_inst: hamming_decoder
+  - hamming decoder instance
+- uart_tx_inst: UART_TX
   - uart transmit instance
