@@ -1,9 +1,14 @@
 
 # Entity: transceiver_top 
 - **File**: transceiver_top.v
+- **Title:**  digital_transceiver module design
+- **Author:**  Dmitry Ryabikov
 
 ## Diagram
 ![Diagram](transceiver_top.svg "Diagram")
+## Description
+
+
 ## Generics
 
 | Generic name  | Type | Value             | Description                          |
