@@ -3,5 +3,7 @@ files = [
 ]
 
 modules = {
-    "local" : [ "../../"]
+    "local" : [ 
+        "../../",
+    ],
 }
