@@ -15,8 +15,8 @@ module bpsk_modulator #(
     output reg  [SAMPLE_WIDTH-1:0]          signal_out 
 );
 
-    reg [$clog2(DATA_WIDTH)-1:0] sel_cnt; // bit counter in select signal
-    reg [DATA_WIDTH-1:0]         sel;     // register for input select signal
+    reg [$clog2(DATA_WIDTH)-1:0] sel_cnt; //! bit counter in select signal
+    reg [DATA_WIDTH-1:0]         sel;     //! register for input select signal
 
     always @(posedge clk or negedge rst) begin
         if (~rst) begin                 
@@ -24,9 +24,9 @@ module bpsk_modulator #(
         end 
         else if (en) begin
             signal_out <= sel[sel_cnt] ? sin_in : neg_sin_in;                    
-            if (cnt_in == SAMPLE_NUMBER-1) begin // one period of sin
+            if (cnt_in == SAMPLE_NUMBER-1) begin //! one period of sin
                 sel_cnt <= sel_cnt + 1;                            
-                if (sel_cnt == DATA_WIDTH-1) begin // in[11:0] bit
+                if (sel_cnt == DATA_WIDTH-1) begin //! in[11:0] bit
                     sel_cnt <= 0;
                     sel     <= data;
                 end                  
