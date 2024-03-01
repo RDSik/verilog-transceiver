@@ -6,6 +6,6 @@ sim_post_cmd = "vvp tranceiver_tb.vvp; gtkwave out.vcd"
 
 modules = {
     "local" : [ 
-        "../../tb/",
+        "../../top/tb/",
     ],
 }

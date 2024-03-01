@@ -6,6 +6,6 @@ sim_post_cmd = "vsim -do vsim.do -i transceiver_tb"
 
 modules = {
     "local" : [ 
-        "../../tb/",
+        "../../top/tb/",
     ],
 }
