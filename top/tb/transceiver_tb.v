@@ -9,9 +9,9 @@ reg         rst;
 reg         data;
 reg         en;
 
+wire        q;
 wire        active;
 wire        done;
-wire        q;
 wire        data_valid;
 wire [11:0] modulator_out;
 wire [11:0] demodulator_out;
