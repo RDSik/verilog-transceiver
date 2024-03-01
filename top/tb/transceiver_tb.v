@@ -1,6 +1,8 @@
-`timescale 1ps / 1ps
+`include "timescale.v" // comment this for vivado simulation with hdlmake
 
 module transceiver_tb();
+
+localparam clk_per = 2;
 
 reg         clk;
 reg         rst;
@@ -44,17 +46,17 @@ assign active = dut.active;
 
 initial  begin        
     clk = 0;
-    #1; rst = 0; en = 0;
-    #1; rst = 1; en = 1;
+    #clk_per; rst = 0; en = 0;
+    #clk_per; rst = 1; en = 1;
     for (i = 0; i <= 25000; i = i + 1) begin
-        #1; data = $urandom_range(0,1); 
+        #(clk_per/2); data = $urandom_range(0,1); 
     end 
 end
 
-always #1 clk = ~clk;
+always #(clk_per/2) clk = ~clk;
 
 initial begin
-    $dumpfile("out.vcd");
+    $dumpfile("transceiver_tb.vcd");
     $dumpvars(0, transceiver_tb);
     $monitor("time=%g, clk=%b, data=%b, active=%b, done=%b, q=%b", $time, clk, data, active, done, q);
 end

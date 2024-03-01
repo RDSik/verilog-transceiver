@@ -1,5 +1,3 @@
-`timescale 1ps / 1ps
-
 module bpsk_modulator #(
     parameter SAMPLE_NUMBER = 256,
     parameter SAMPLE_WIDTH  = 12,

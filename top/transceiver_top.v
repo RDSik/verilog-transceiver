@@ -2,7 +2,6 @@
 //! @author Dmitry Ryabikov
 
 `default_nettype none
-`timescale 1ps / 1ps
 
 module transceiver_top #(
     parameter CLKS_PER_BIT  = 1_000_000/115_200, //! 1 MHz and 115_200 Baud

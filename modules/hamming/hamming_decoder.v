@@ -1,5 +1,3 @@
-`timescale 1ps / 1ps
-
 module hamming_decoder (
     input  wire        clk, 
     input  wire        rst_n,

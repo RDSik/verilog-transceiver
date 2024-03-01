@@ -1,5 +1,4 @@
 `default_nettype none
-`timescale 1ps / 1ps
 
 module bpsk_top #(
     parameter SAMPLE_NUMBER = 256,

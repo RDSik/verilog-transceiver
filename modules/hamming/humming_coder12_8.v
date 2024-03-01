@@ -1,5 +1,4 @@
 `default_nettype none
-`timescale 1ps / 1ps
 
 module humming_coder12_8 (
     input  wire        clk, 

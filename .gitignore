@@ -2,10 +2,14 @@ syn/*
 !Manifest.py
 !add_files.tcl
 !transceiver.xdc
-top/sim/*
+top/sim/modelsim/*
 !Manifest.py
 !sin_value.dat
 !neg_sin_value.dat
-!sin_value.m
+!vsim.do
+top/sim/vivado/*
+!Manifest.py
+!sin_value.dat
+!neg_sin_value.dat
 platform/xilinx/clk_wiz/*
 !clk_wiz.xci
