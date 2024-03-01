@@ -11,5 +11,9 @@ top/sim/vivado/*
 !Manifest.py
 !sin_value.dat
 !neg_sin_value.dat
+top/sim/iverilog/*
+!Manifest.py
+!sin_value.dat
+!neg_sin_value.dat
 platform/xilinx/clk_wiz/*
 !clk_wiz.xci
