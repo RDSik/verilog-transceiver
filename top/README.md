@@ -11,22 +11,22 @@
 
 ## Generics
 
-| Generic name  | Type | Value             | Description                          |
-| ------------- | ---- | ----------------- | ------------------------------------ |
-| CLKS_PER_BIT  |      | 1_000_000/115_200 | 1 MHz and 115_200 Baud               |
-| SAMPLE_NUMBER |      | 256               | numbers of sample in one sine period |
-| SAMPLE_WIDTH  |      | 12                | sample width                         |
-| DATA_WIDTH    |      | 12                | data width                           |
+| Generic name  | Type | Value             | Description                                                                                |
+| ------------- | ---- | ----------------- | ------------------------------------------------------------------------------------------ |
+| CLKS_PER_BIT  |      | 1_000_000/115_200 | 1 MHz (1 Mhz for simulation for normal working on board swith to 100 MHz) and 115_200 Baud |
+| SAMPLE_NUMBER |      | 256               | numbers of sample in one sine period                                                       |
+| SAMPLE_WIDTH  |      | 12                | sample width                                                                               |
+| DATA_WIDTH    |      | 12                | data width                                                                                 |
 
 ## Ports
 
-| Port name | Direction | Type | Description                                                                      |
-| --------- | --------- | ---- | -------------------------------------------------------------------------------- |
-| clk       | input     | wire | clock  input (1 MHz for simulation for normal working on board swith to 100 MHz) |
-| rst_n     | input     | wire | reset  input (negative)                                                          |
-| data      | input     | wire | data   input                                                                     |
-| en        | input     | wire | enable input                                                                     |
-| q         | output    | wire | quit   output                                                                    |
+| Port name | Direction | Type | Description             |
+| --------- | --------- | ---- | ----------------------- |
+| clk       | input     | wire | clock  input (100 MHz)  |
+| rst_n     | input     | wire | reset  input (negative) |
+| data      | input     | wire | data   input            |
+| en        | input     | wire | enable input            |
+| q         | output    | wire | quit   output           |
 
 ## Signals
 
