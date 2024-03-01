@@ -25,24 +25,24 @@ wire [11:0] sin_out;
 integer i;
 
 transceiver_top dut (
-    .clk    (clk),
-    .rst    (rst),
-    .en     (en),
-    .data   (data),
-    .q      (q)
+    .clk  (clk),
+    .rst  (rst),
+    .en   (en),
+    .data (data),
+    .q    (q)
 );
 
-assign uart_rx_out = dut.uart_rx_out;
-assign encoder_out = dut.encoder_out;
-assign decoder_out = dut.decoder_out;
-assign data_valid = dut.data_valid;
-assign modulator_out = dut.modulator_out;
+assign uart_rx_out     = dut.uart_rx_out;
+assign encoder_out     = dut.encoder_out;
+assign decoder_out     = dut.decoder_out;
+assign data_valid      = dut.data_valid;
+assign done            = dut.done;
+assign active          = dut.active;
+assign modulator_out   = dut.modulator_out;
 assign demodulator_out = dut.demodulator_out;
-assign cnt_out = dut.cnt_out;
-assign neg_sin_out = dut.neg_sin_out;
-assign sin_out = dut.sin_out;
-assign done = dut.done;
-assign active = dut.active;
+assign cnt_out         = dut.cnt_out;
+assign neg_sin_out     = dut.neg_sin_out;
+assign sin_out         = dut.sin_out;
 
 initial  begin        
     clk = 0;
