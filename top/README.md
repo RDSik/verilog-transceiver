@@ -23,7 +23,7 @@
 | Port name | Direction | Type | Description                                                                      |
 | --------- | --------- | ---- | -------------------------------------------------------------------------------- |
 | clk       | input     | wire | clock  input (1 MHz for simulation for normal working on board swith to 100 MHz) |
-| rst       | input     | wire | reset  input (negative)                                                          |
+| rst_n     | input     | wire | reset  input (negative)                                                          |
 | data      | input     | wire | data   input                                                                     |
 | en        | input     | wire | enable input                                                                     |
 | q         | output    | wire | quit   output                                                                    |

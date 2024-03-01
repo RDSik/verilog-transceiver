@@ -4,7 +4,7 @@ module bpsk_demodulator #(
     parameter DATA_WIDTH    = 12
 ) (
     input  wire                             clk,
-    input  wire                             rst,
+    input  wire                             rst_n,
     input  wire                             en,
     input  wire [SAMPLE_WIDTH-1:0]          signal_in,
     input  wire [SAMPLE_WIDTH-1:0]          sin_in,
@@ -17,8 +17,8 @@ module bpsk_demodulator #(
     reg [DATA_WIDTH-1:0]         sel;     //! register for input select signal
     reg                          flag;
 
-    always @(posedge clk or negedge rst) begin
-        if (~rst) begin
+    always @(posedge clk or negedge rst_n) begin
+        if (~rst_n) begin
             sel_cnt <= 0;
             flag    <= 0;                 
         end 

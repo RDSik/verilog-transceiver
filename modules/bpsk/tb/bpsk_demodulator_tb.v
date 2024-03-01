@@ -3,7 +3,7 @@
 module bpsk_demodulator_tb();
 
 reg        clk;
-reg        rst;
+reg        rst_n;
 reg        en;
 reg [11:0] signal_in;
 reg [11:0] sine_in;
@@ -31,7 +31,7 @@ bpsk_demodulator #(
     .DATA_WIDTH    (12)
 ) dut (
     .clk       (clk),
-    .rst       (rst),
+    .rst_n     (rst_n),
     .en        (en),
     .signal_in (signal_in),
     .q         (q)
@@ -43,8 +43,8 @@ assign sel = dut.sel;
 
 initial begin
     clk = 1;
-    #1; rst = 0; en = 0;
-    #1; rst = 1; en = 1; signal_in = 12'b011111001110;
+    #1; rst_n = 0; en = 0;
+    #1; rst_n = 1; en = 1; signal_in = 12'b011111001110;
     for (i = 0; i <= 5000; i = i + 1) begin
         #2; cnt_in = i; 
         sine_in = sine_rom[cnt_in]; 

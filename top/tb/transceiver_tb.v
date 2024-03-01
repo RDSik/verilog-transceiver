@@ -5,7 +5,7 @@ module transceiver_tb();
 localparam clk_per = 2;
 
 reg         clk;
-reg         rst;
+reg         rst_n;
 reg         data;
 reg         en;
 
@@ -25,11 +25,11 @@ wire [11:0] sin_out;
 integer i;
 
 transceiver_top dut (
-    .clk  (clk),
-    .rst  (rst),
-    .en   (en),
-    .data (data),
-    .q    (q)
+    .clk   (clk),
+    .rst_n (rst_n),
+    .en    (en),
+    .data  (data),
+    .q     (q)
 );
 
 assign uart_rx_out     = dut.uart_rx_out;
@@ -46,8 +46,8 @@ assign sin_out         = dut.sin_out;
 
 initial  begin        
     clk = 0;
-    #clk_per; rst = 0; en = 0;
-    #clk_per; rst = 1; en = 1;
+    #clk_per; rst_n = 0; en = 0;
+    #clk_per; rst_n = 1; en = 1;
     for (i = 0; i <= 25000; i = i + 1) begin
         #(clk_per/2); data = $urandom_range(0,1); 
     end 

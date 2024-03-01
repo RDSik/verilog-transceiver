@@ -3,7 +3,7 @@
 module bpsk_top_tb();
 
 reg        clk;
-reg        rst;
+reg        rst_n;
 reg        en;
 reg [11:0] data;
 
@@ -18,11 +18,11 @@ bpsk_top #(
     .SAMPLE_WIDTH  (12),
     .DATA_WIDTH    (12)
 ) dut (
-    .clk  (clk),
-    .rst  (rst),
-    .en   (en),
-    .data (data),
-    .q    (q)
+    .clk   (clk),
+    .rst_n (rst_n),
+    .en    (en),
+    .data  (data),
+    .q     (q)
 );
 
 assign sin_out = dut.sin_out;
@@ -32,8 +32,8 @@ assign modulator_out = dut.modulator_out;
 
 initial begin
     clk = 1; data = $urandom_range(0,4095);
-    #1; rst = 0; en = 0;
-    #1; rst = 1; en = 1;    
+    #1; rst_n = 0; en = 0;
+    #1; rst_n = 1; en = 1;    
 end
 
 always #1 clk = ~clk;

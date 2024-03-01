@@ -6,7 +6,7 @@ module bpsk_top #(
     parameter DATA_WIDTH    = 12
 ) (
     input  wire                  clk,
-    input  wire                  rst,
+    input  wire                  rst_n,
     input  wire                  en,
     input  wire [DATA_WIDTH-1:0] data,
     output wire [DATA_WIDTH-1:0] q
@@ -22,7 +22,7 @@ module bpsk_top #(
         .SAMPLE_WIDTH  (SAMPLE_WIDTH)    
     ) sin_generator_inst (
         .clk         (clk),
-        .rst         (rst),
+        .rst_n       (rst_n),
         .en          (en),
         .sin_out     (sin_out),
         .neg_sin_out (neg_sin_out),
@@ -35,7 +35,7 @@ module bpsk_top #(
         .DATA_WIDTH    (DATA_WIDTH)
     ) bpsk_modulator_inst (
         .clk        (clk),
-        .rst        (rst),
+        .rst_n      (rst_n),
         .en         (en),
         .data       (data),
         .sin_in     (sin_out),
@@ -50,7 +50,7 @@ module bpsk_top #(
         .DATA_WIDTH    (DATA_WIDTH)
     ) bpsk_demodulator_inst (
         .clk        (clk),
-        .rst        (rst),
+        .rst_n      (rst_n),
         .en         (en),
         .signal_in  (modulator_out),
         .sin_in     (sin_out),

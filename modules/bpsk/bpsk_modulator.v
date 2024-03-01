@@ -4,7 +4,7 @@ module bpsk_modulator #(
     parameter DATA_WIDTH    = 12
 ) (
     input  wire                             clk,
-    input  wire                             rst,
+    input  wire                             rst_n,
     input  wire                             en,
     input  wire [DATA_WIDTH-1:0]            data,
     input  wire [SAMPLE_WIDTH-1:0]          sin_in,
@@ -16,8 +16,8 @@ module bpsk_modulator #(
     reg [$clog2(DATA_WIDTH)-1:0] sel_cnt; //! bit counter in select signal
     reg [DATA_WIDTH-1:0]         sel;     //! register for input select signal
 
-    always @(posedge clk or negedge rst) begin
-        if (~rst) begin                 
+    always @(posedge clk or negedge rst_n) begin
+        if (~rst_n) begin                 
             sel_cnt <= 0;
         end 
         else if (en) begin

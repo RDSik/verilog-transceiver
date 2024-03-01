@@ -4,16 +4,16 @@
 `default_nettype none
 
 module transceiver_top #(
-    parameter CLKS_PER_BIT  = 1_000_000/115_200, //! 1 MHz and 115_200 Baud
+    parameter CLKS_PER_BIT  = 1_000_000/115_200, //! 1 MHz (1 Mhz for simulation for normal working on board swith to 100 MHz) and 115_200 Baud
     parameter SAMPLE_NUMBER = 256,               //! numbers of sample in one sine period
     parameter SAMPLE_WIDTH  = 12,                //! sample width
     parameter DATA_WIDTH    = 12                 //! data width
 ) (
-    input  wire clk,  //! clock  input (1 MHz for simulation for normal working on board swith to 100 MHz)
-    input  wire rst,  //! reset  input (negative)
-    input  wire data, //! data   input 
-    input  wire en,   //! enable input
-    output wire q     //! quit   output
+    input  wire clk,   //! clock  input (100 MHz)
+    input  wire rst_n, //! reset  input (negative)
+    input  wire data,  //! data   input 
+    input  wire en,    //! enable input
+    output wire q      //! quit   output
 );                    
     
     // wire                             clk10_out; //! 10 MHz clock from PLL
@@ -34,7 +34,7 @@ module transceiver_top #(
     ) uart_rx_inst (
         // .i_Clock     (clk10_out),
         .i_Clock     (clk),
-        .i_Rst_L     (rst),
+        .i_Rst_L     (rst_n),
         .i_RX_Serial (data),
         .o_RX_DV     (data_valid),
         .o_RX_Byte   (uart_rx_out)
@@ -43,7 +43,7 @@ module transceiver_top #(
     hamming_encoder encoder_inst (   //! hamming encoder instance
         // .clk   (clk10_out), 
         .clk    (clk),
-        .rst_n  (rst),
+        .rst_n  (rst_n),
         .wren   (en),
         .data   (uart_rx_out),
         .hc_out (encoder_out)
@@ -54,7 +54,7 @@ module transceiver_top #(
         .SAMPLE_WIDTH  (SAMPLE_WIDTH)
     ) sin_generator_inst (
         .clk         (clk),
-        .rst         (rst),
+        .rst_n       (rst_n),
         .en          (en),
         .sin_out     (sin_out),
         .neg_sin_out (neg_sin_out),
@@ -67,7 +67,7 @@ module transceiver_top #(
         .DATA_WIDTH    (DATA_WIDTH)
     ) bpsk_modulator_inst (
         .clk        (clk),
-        .rst        (rst),
+        .rst_n      (rst_n),
         .en         (en),
         .data       (encoder_out),
         .sin_in     (sin_out),
@@ -82,7 +82,7 @@ module transceiver_top #(
         .DATA_WIDTH    (DATA_WIDTH)
     ) bpsk_demodulator_inst (
         .clk        (clk),
-        .rst        (rst),
+        .rst_n      (rst_n),
         .en         (en),
         .signal_in  (modulator_out),
         .sin_in     (sin_out),
@@ -94,7 +94,7 @@ module transceiver_top #(
     hamming_decoder decoder_inst (   //! hamming decoder instance
         // .clk   (clk10_out), 
         .clk   (clk),
-        .rst_n (rst),
+        .rst_n (rst_n),
         .rden  (en),
         .hc_in (demodulator_out),
         .q     (decoder_out)
@@ -105,7 +105,7 @@ module transceiver_top #(
     ) uart_tx_inst (
         // .i_Clock     (clk10_out),
         .i_Clock     (clk),
-        .i_Rst_L     (rst),
+        .i_Rst_L     (rst_n),
         .i_TX_DV     (data_valid),
         .i_TX_Byte   (decoder_out),
         .o_TX_Active (active),
