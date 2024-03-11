@@ -18,7 +18,7 @@ async def test_transceiver(dut):
     await RisingEdge(dut.clk)
 
     # Input data module
-    for i in range(12500):
+    for i in range(25000):
         dut.data.value = random.randint(0, 1)
         print(f"data={dut.data}, active={dut.active}, done={dut.done}, q={dut.q}")
         await Timer(1, units="ns")

@@ -44,10 +44,22 @@ cd syn
 hdlmake
 make project
 ```
-
-### Build simulation (modelsim):
+### Build vivado simulation:
 ```bash
-cd top/sim
+cd top/sim/vivado
 hdlmake
 make
+```
+
+### Build modelsim simulation:
+```bash
+cd top/sim/modelsim
+hdlmake
+make
+```
+
+### Build cocotb simulation:
+```bash
+cd top/sim/cocotb
+pytest test.py
 ```
