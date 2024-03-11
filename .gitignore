@@ -15,5 +15,8 @@ sim/iverilog/*
 !Manifest.py
 !sin_value.dat
 !neg_sin_value.dat
+sim/cocotb/*
+!test.py
+!transceiver_tb.py
 platform/xilinx/clk_wiz/*
 !clk_wiz.xci
