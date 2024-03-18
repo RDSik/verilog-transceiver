@@ -23,7 +23,7 @@ https://pip.pypa.io/en/latest/installation/
 pip install six
 pip install hdlmake
 pip install cocotb
-pip install -U pytest
+pip install pytest
 ```
 
 ### Download make (add to PATH system variable the Make bin folder: C:\Program Files (x86)\GnuWin32\bin):
