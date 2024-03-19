@@ -62,6 +62,8 @@ make
 
 ### Build cocotb simulation:
 ```bash
+python3 -m venv myenv
 cd top/sim/cocotb
 pytest test.py
+deactivate
 ```
