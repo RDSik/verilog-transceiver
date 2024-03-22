@@ -20,5 +20,5 @@ async def test_transceiver(dut):
     # Input data module
     for i in range(25000):
         dut.data.value = random.randint(0, 1)
-        print(f"data={dut.data}, active={dut.active}, done={dut.done}, q={dut.q}")
+        print(f"uart_rx_out={dut.uart_rx_out}, encoder_out={dut.encoder_out}, decoder_out={dut.decoder_out}, demodulator_out={dut.demodulator_out}, active={dut.active}, data_valid={dut.data_valid}, done={dut.done}")
         await Timer(1, units="ns")
