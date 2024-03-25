@@ -1,3 +1,4 @@
+import sys
 import numpy as np
 
 # def float_to_binary(float_num):
@@ -9,7 +10,7 @@ def float_to_binary(float_num):
     bit_array = BitArray(float=float_num, length=16)
     return bit_array.bin
 
-polarity = str(input())
+polarity = sys.argv[1]
 
 if polarity == 'pos':
     file_name = 'sin_value.dat'
