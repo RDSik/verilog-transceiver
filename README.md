@@ -4,9 +4,9 @@
 
 ## Dependencies 
 
-`hdlmake`, `make`, `vivado`, `modelsim`, `python`
+`hdlmake`, `make`, `cocotb`, `vivado`, `modelsim`, `python`
 
-## Installation:
+## Installation
 
 ### Clone repository:
 ```bash
@@ -31,7 +31,7 @@ pip install pytest
 winget install GnuWin32.make
 ```
 
-## Build project:
+## Build project
 
 ### Build trasceiver:
 ```bash
@@ -46,21 +46,24 @@ cd syn
 hdlmake
 make project
 ```
-### Build vivado simulation:
+
+## Simulation
+
+### Vivado simulation using hdlmake:
 ```bash
 cd top/sim/vivado
 hdlmake
 make
 ```
 
-### Build modelsim simulation:
+### Modelsim simulation using hdlmake:
 ```bash
 cd top/sim/modelsim
 hdlmake
 make
 ```
 
-### Build cocotb simulation:
+### Modelsim simulation using cocotb:
 ```bash
 python3 -m venv myenv
 .\myenv\Scripts\activate.ps1
