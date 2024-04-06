@@ -51,7 +51,7 @@ initial  begin
     clk = 0;
     #clk_per; rst_n = 0; en = 0;
     #clk_per; rst_n = 1; en = 1;
-    for (i = 0; i <= sim_time; i = i + 1) begin
+    repeat (sim_time) begin
         #(clk_per/2); data = $urandom_range(0,1); 
     end 
 end
@@ -59,7 +59,7 @@ end
 initial begin
     $dumpfile("transceiver_tb.vcd");
     $dumpvars(0, transceiver_tb);
-    $monitor("time=%t, uart_out=0x%h, encoder_out=0x%h, decoder_out=0x%h, democulkator_out=0x%h, done=%b, active=%b, data_valid=%b", $time, uart_rx_out, encoder_out, decoder_out, demodulator_out, done, active, data_valid);
+    $monitor("time=%g, uart_out=0x%h, encoder_out=0x%h, decoder_out=0x%h, democulator_out=0x%h, done=%b, active=%b, data_valid=%b", $time, uart_rx_out, encoder_out, decoder_out, demodulator_out, done, active, data_valid);
 end
 
 initial #sim_time $stop;
