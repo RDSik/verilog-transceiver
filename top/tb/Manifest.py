@@ -1,6 +1,6 @@
 files = [
     "transceiver_tb.v",
-    "timescale.v",
+    "timescale.vh",
 ]
 
 modules = {
