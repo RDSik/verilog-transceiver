@@ -1,4 +1,4 @@
-`include "timescale.v" // comment this for vivado simulation with hdlmake
+`include "timescale.vh" // comment this for vivado simulation with hdlmake
 
 module transceiver_tb();
 
@@ -23,8 +23,6 @@ wire [7:0]  cnt_out;
 wire [11:0] neg_sin_out;
 wire [11:0] sin_out;
 
-integer i;
-
 transceiver_top dut (
     .clk   (clk),
     .rst_n (rst_n),
@@ -47,13 +45,33 @@ assign sin_out         = dut.sin_out;
 
 always #(clk_per/2) clk = ~clk;
 
-initial  begin        
+task rst_en(input zero, one);
+    begin
+        #clk_per;
+        rst_n = zero;
+        en    = zero;
+        #clk_per;
+        rst_n = one;
+        en    = one;
+        $display("/////////////////////////////");
+        $display("Reset done and enable high");
+        $display("/////////////////////////////");
+    end
+endtask
+
+task data_gen();
+    begin
+        repeat (sim_time) begin
+            #(clk_per/2); 
+            data = $urandom_range(0,1);
+        end
+    end
+endtask
+
+initial begin
     clk = 0;
-    #clk_per; rst_n = 0; en = 0;
-    #clk_per; rst_n = 1; en = 1;
-    repeat (sim_time) begin
-        #(clk_per/2); data = $urandom_range(0,1); 
-    end 
+    rst_en(0, 1);
+    data_gen();
 end
 
 initial begin
