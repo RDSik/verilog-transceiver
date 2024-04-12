@@ -2,8 +2,8 @@
 
 module transceiver_tb();
 
-localparam clk_per  = 2;
-localparam sim_time = 25000;
+localparam CLK_PERIOD  = 2;
+localparam SIM_TIME = 25000;
 
 reg         clk;
 reg         rst_n;
@@ -45,10 +45,10 @@ assign sin_out         = dut.sin_out;
 
 task rst_en(input zero, one);
     begin
-        #clk_per;
+        #CLK_PERIOD;
         rst_n = zero;
         en    = zero;
-        #clk_per;
+        #CLK_PERIOD;
         rst_n = one;
         en    = one;
         $display("\n-----------------------------");
@@ -59,14 +59,14 @@ endtask
 
 task data_gen();
     begin
-        repeat (sim_time) begin
-            #(clk_per/2); 
+        repeat (SIM_TIME) begin
+            #(CLK_PERIOD/2); 
             data = $urandom_range(0,1);
         end
     end
 endtask
 
-always #(clk_per/2) clk = ~clk;
+always #(CLK_PERIOD/2) clk = ~clk;
     
 initial begin
     clk = 0;
@@ -80,6 +80,6 @@ initial begin
     $monitor("time=%g, uart_out=0x%h, encoder_out=0x%h, decoder_out=0x%h, democulator_out=0x%h, done=%b, active=%b, data_valid=%b", $time, uart_rx_out, encoder_out, decoder_out, demodulator_out, done, active, data_valid);
 end
 
-initial #sim_time $stop;
+initial #SIM_TIME $stop;
 
 endmodule
