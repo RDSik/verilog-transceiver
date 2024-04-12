@@ -43,8 +43,6 @@ assign cnt_out         = dut.cnt_out;
 assign neg_sin_out     = dut.neg_sin_out;
 assign sin_out         = dut.sin_out;
 
-always #(clk_per/2) clk = ~clk;
-
 task rst_en(input zero, one);
     begin
         #clk_per;
@@ -68,6 +66,8 @@ task data_gen();
     end
 endtask
 
+always #(clk_per/2) clk = ~clk;
+    
 initial begin
     clk = 0;
     rst_en(0, 1);
