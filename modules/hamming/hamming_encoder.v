@@ -1,6 +1,6 @@
 module hamming_encoder (
     input  wire        clk, 
-    input  wire        rst_n,
+    input  wire        arstn,
     input  wire        wren,
     input  wire [7:0]  data,
     output reg  [11:0] hc_out
@@ -16,8 +16,8 @@ module hamming_encoder (
     assign p2 = data[7] ^ data[3] ^ data[2] ^ data[1];
     assign p3 = data[7] ^ data[6] ^ data[5] ^ data[4];
    
-    always @ (posedge clk or negedge rst_n) begin
-        if (~rst_n) begin
+    always @ (posedge clk or negedge arstn) begin
+        if (~arstn) begin
             hc_out <= 0;
         end
         else if (wren) begin	                

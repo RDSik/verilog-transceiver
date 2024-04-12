@@ -3,7 +3,7 @@
 module sine_generator_tb();
 
 reg         clk;
-reg         rst_n;
+reg         arstn;
 reg         en;
 
 wire [11:0] sine_out;
@@ -15,7 +15,7 @@ sine_generator #(
     .SAMPLE_WIDTH  (12)
 ) dut (
     .clk          (clk),
-    .rst_n        (rst_n),
+    .rst_n        (arstn),
     .en           (en),
     .sine_out     (sine_out),
     .neg_sine_out (neg_sine_out),
@@ -24,8 +24,8 @@ sine_generator #(
 
 initial begin        
     clk = 0;
-    #1; rst_n = 0; en = 0;
-    #1; rst_n = 1; en = 1;
+    #1; arstn = 0; en = 0;
+    #1; arstn = 1; en = 1;
 end
 
 always #1 clk = ~clk;

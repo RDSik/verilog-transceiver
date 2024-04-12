@@ -20,13 +20,13 @@
 
 ## Ports
 
-| Port name | Direction | Type | Description             |
-| --------- | --------- | ---- | ----------------------- |
-| clk       | input     | wire | clock  input (100 MHz)  |
-| rst_n     | input     | wire | reset  input (negative) |
-| data      | input     | wire | data   input            |
-| en        | input     | wire | enable input            |
-| q         | output    | wire | quit   output           |
+| Port name | Direction | Type | Description                         |
+| --------- | --------- | ---- | ----------------------------------- |
+| clk       | input     | wire | clock  input (100 MHz)              |
+| arstn     | input     | wire | asynchronous reset input (negative) |
+| data      | input     | wire | data   input                        |
+| en        | input     | wire | enable input                        |
+| q         | output    | wire | quit   output                       |
 
 ## Signals
 

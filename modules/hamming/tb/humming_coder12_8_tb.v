@@ -3,7 +3,7 @@
 module humming_coder12_8_tb();
 
 reg        clk;
-reg        rst_n;
+reg        arstn;
 reg [7:0]  data;
 reg [11:0] hc_in;
 reg        rden;
@@ -17,7 +17,7 @@ reg [7:0] temp2;
 
 humming_coder12_8 DUT(
     .clk    (clk),
-    .rst_n  (rst_n),
+    .arstn  (arstn),
     .data   (data),
     .q      (q),
     .hc_out (hc_out),
@@ -60,14 +60,14 @@ end
     
 initial begin
     clk = 1;
-    rst_n = 0;
+    arstn = 0;
     data = 0;
     rden = 0;
     wren = 0;
     
     #200
     @ (posedge clk)
-    rst_n = 1;
+    arstn = 1;
     
     #200
     forever begin

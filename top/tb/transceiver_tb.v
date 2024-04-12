@@ -6,7 +6,7 @@ localparam CLK_PERIOD  = 2;
 localparam SIM_TIME    = 25000;
 
 reg         clk;
-reg         rst_n;
+reg         arstn;
 reg         data;
 reg         en;
 
@@ -25,7 +25,7 @@ wire [11:0] sin_out;
 
 transceiver_top dut (
     .clk   (clk),
-    .rst_n (rst_n),
+    .arstn (arstn),
     .en    (en),
     .data  (data),
     .q     (q)
@@ -46,10 +46,10 @@ assign sin_out         = dut.sin_out;
 task rst_en(input zero, one);
     begin
         #CLK_PERIOD;
-        rst_n = zero;
+        arstn = zero;
         en    = zero;
         #CLK_PERIOD;
-        rst_n = one;
+        arstn = one;
         en    = one;
         $display("\n-----------------------------");
         $display("Reset done and enable high");

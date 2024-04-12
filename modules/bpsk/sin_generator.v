@@ -3,7 +3,7 @@ module sin_generator #(
     parameter SAMPLE_WIDTH  = 12
 ) (
     input  wire                             clk,
-    input  wire                             rst_n,
+    input  wire                             arstn,
     input  wire                             en,
     output reg  [SAMPLE_WIDTH-1:0]          sin_out,
     output reg  [SAMPLE_WIDTH-1:0]          neg_sin_out,
@@ -18,8 +18,8 @@ module sin_generator #(
         $readmemb("neg_sin_value.dat", neg_sin_rom);
     end
 
-    always @(posedge clk or negedge rst_n) begin
-        if (~rst_n) begin                     
+    always @(posedge clk or negedge arstn) begin
+        if (~arstn) begin                     
             cnt_out <= 0;
         end
         else if (en) begin

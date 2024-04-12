@@ -1,6 +1,6 @@
 module hamming_decoder (
     input  wire        clk, 
-    input  wire        rst_n,
+    input  wire        arstn,
     input  wire        rden,
     input  wire [11:0] hc_in,
     output reg  [7:0]  q
@@ -16,8 +16,8 @@ module hamming_decoder (
     assign g2_error = hc_in[11] ^ hc_in[6] ^ hc_in[5] ^ hc_in[4] ^ hc_in[3];
     assign g3_error = hc_in[11] ^ hc_in[10] ^ hc_in[9] ^ hc_in[8] ^ hc_in[7];
 
-    always @ (posedge clk or negedge rst_n) begin
-        if (~rst_n) begin
+    always @ (posedge clk or negedge arstn) begin
+        if (~arstn) begin
             q <= 0;
         end
         else if (rden) begin
