@@ -53,7 +53,7 @@ task rst_en(input zero, one);
         #clk_per;
         rst_n = one;
         en    = one;
-        $display("-----------------------------");
+        $display("\n-----------------------------");
         $display("Reset done and enable high");
         $display("-----------------------------\n");
     end
