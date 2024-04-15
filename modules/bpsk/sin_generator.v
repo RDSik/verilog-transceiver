@@ -10,8 +10,8 @@ module sin_generator #(
     output reg  [$clog2(SAMPLE_NUMBER)-1:0] cnt_out
 );
 
-    reg [SAMPLE_WIDTH-1:0] sin_rom [SAMPLE_NUMBER-1:0];
-    reg [SAMPLE_WIDTH-1:0] neg_sin_rom [SAMPLE_NUMBER-1:0];
+    reg [SAMPLE_WIDTH-1:0] sin_rom [0:SAMPLE_NUMBER-1];
+    reg [SAMPLE_WIDTH-1:0] neg_sin_rom [0:SAMPLE_NUMBER-1];
 
     initial begin
         $readmemb("sin_value.dat", sin_rom);

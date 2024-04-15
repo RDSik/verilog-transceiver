@@ -10,10 +10,10 @@ async def test_transceiver(dut):
 
     # Reset and enable module
     await FallingEdge(dut.clk)
-    dut.rst_n.value = 0
+    dut.arstn.value = 0
     dut.en.value = 0
     await Timer(2, units="ns")
-    dut.rst_n.value = 1
+    dut.arstn.value = 1
     dut.en.value = 1
     await RisingEdge(dut.clk)
 
