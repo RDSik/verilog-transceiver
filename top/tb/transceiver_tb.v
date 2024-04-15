@@ -10,10 +10,11 @@ reg         arstn;
 reg         data;
 reg         en;
 
-wire        q;
-wire        active;
-wire        done;
-wire        data_valid;
+wire q;
+wire active;
+wire done;
+wire data_valid;
+    
 wire [11:0] modulator_out;
 wire [11:0] demodulator_out;
 wire [11:0] encoder_out;
