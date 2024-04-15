@@ -118,4 +118,12 @@ module transceiver_top #(
         // .clk10_out (clk10_out)
     // );
 
+    `ifdef COCOTB_SIM
+        initial begin
+            $dumpfile ("transceiver_top.vcd");
+            $dumpvars (0, transceiver_top);
+            #1;
+        end
+    `endif
+
 endmodule

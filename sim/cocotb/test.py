@@ -8,7 +8,7 @@ def test_runner():
     src = Path("../../")
     
     hdl_toplevel_lang = os.getenv("HDL_TOPLEVEL_LANG", "verilog")
-    sim = os.getenv("SIM", "questa")
+    sim = os.getenv("SIM", "icarus")
     
     build_dir = Path('sim_build_transceiver')
     build_dir.mkdir(exist_ok=True)
@@ -41,3 +41,4 @@ def test_runner():
         waves=True,
         gui=True,
     )
+    
