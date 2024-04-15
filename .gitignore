@@ -4,17 +4,9 @@ syn/*
 !transceiver.xdc
 sim/modelsim/*
 !Manifest.py
-!sin_value.dat
-!neg_sin_value.dat
 !vsim.do
 sim/vivado/*
 !Manifest.py
-!sin_value.dat
-!neg_sin_value.dat
-sim/iverilog/*
-!Manifest.py
-!sin_value.dat
-!neg_sin_value.dat
 sim/cocotb/*
 !test.py
 !transceiver_tb.py

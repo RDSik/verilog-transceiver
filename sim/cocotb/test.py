@@ -1,4 +1,5 @@
 import os
+import shutil
 from pathlib import Path
 
 import cocotb
@@ -12,6 +13,11 @@ def test_runner():
     
     build_dir = Path('sim_build_transceiver')
     build_dir.mkdir(exist_ok=True)
+
+    dat_files = Path("../")
+
+    shutil.copyfile(dat_files / 'neg_sin_value.dat', build_dir / 'neg_sin_value.dat')
+    shutil.copyfile(dat_files / 'sin_value.dat', build_dir / 'sin_value.dat')
 
     verilog_sources = [
         src / "top/transceiver_top.v",
