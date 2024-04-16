@@ -6,6 +6,7 @@ sim/modelsim/*
 !Manifest.py
 !vsim.do
 sim/vivado/*
+!xsim.tcl
 !Manifest.py
 sim/cocotb/*
 !test.py
