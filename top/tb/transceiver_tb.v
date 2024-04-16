@@ -5,15 +5,16 @@ module transceiver_tb();
 localparam CLK_PERIOD  = 2;
 localparam SIM_TIME    = 25000;
 
-reg         clk;
-reg         arstn;
-reg         data;
-reg         en;
+reg clk;
+reg arstn;
+reg data;
+reg en;
 
-wire        q;
-wire        active;
-wire        done;
-wire        data_valid;
+wire q;
+wire active;
+wire done;
+wire data_valid;
+    
 wire [11:0] modulator_out;
 wire [11:0] demodulator_out;
 wire [11:0] encoder_out;
