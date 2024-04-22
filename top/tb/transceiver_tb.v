@@ -60,6 +60,7 @@ endtask
 
 task data_gen();
     begin
+        rst_en(0, 1);
         repeat (SIM_TIME) begin
             #(CLK_PERIOD/2); 
             data = $urandom_range(0,1);
@@ -71,7 +72,6 @@ always #(CLK_PERIOD/2) clk = ~clk;
     
 initial begin
     clk = 0;
-    rst_en(0, 1);
     data_gen();
 end
 
