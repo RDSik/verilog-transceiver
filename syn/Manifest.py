@@ -1,5 +1,4 @@
 target = "xilinx"
-
 action = "synthesis"
 
 syn_device = "xc7z020clg484"
