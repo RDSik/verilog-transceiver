@@ -21,7 +21,7 @@ module hamming_encoder (
             hc_out <= 0;
         end
         else if (wren) begin	                
-            hc_out <= {data[7:4], p3, data[3:1],p2, data[0], p1, p0};
+            hc_out <= {data[7:4], p3, data[3:1], p2, data[0], p1, p0};
         end
         else begin
             hc_out <= 0;
