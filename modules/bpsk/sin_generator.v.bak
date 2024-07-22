@@ -1,8 +1,8 @@
 module sin_generator #(
     parameter SAMPLE_NUMBER = 256,
     parameter SAMPLE_WIDTH  = 12,
-    parameter SIN_VALUE     = "sin_val.dat",
-    parameter NEG_SIN_VALUE = "neg_sin_val.dat"
+    parameter SIN_VALUE     = "../../syn/sin_val.dat",
+    parameter NEG_SIN_VALUE = "../../syn/neg_sin_val.dat"
 ) (
     input  wire                             clk,
     input  wire                             arstn,

@@ -17,6 +17,8 @@
 | SAMPLE_NUMBER |      | 256               | numbers of sample in one sine period                                                       |
 | SAMPLE_WIDTH  |      | 12                | sample width                                                                               |
 | DATA_WIDTH    |      | 12                | data width                                                                                 |
+| SIN_VALUE     |      | "sin_val.dat"     | dat file with sine samples                                                                 |
+| NEG_SIN_VALUE |      | "neg_sin_val.dat" | dat file with negative sine samples                                                        |
 
 ## Ports
 

@@ -20,7 +20,7 @@ if polarity == 'pos':
         for i in range(255):
             s.write(float_to_binary(sin_array[i]) + '\n')
 elif polarity == 'neg':
-    file_name = polarity + '_sin_value.dat'
+    file_name = polarity + '_sin_val.dat'
     with open(file_name, 'w') as s:
         t = np.arange(0, 2*np.pi-2*np.pi/256, 2*np.pi/256)
         sin_array = -np.sin(t)

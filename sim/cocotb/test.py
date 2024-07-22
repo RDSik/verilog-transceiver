@@ -14,10 +14,10 @@ def test_runner():
     build_dir = Path('sim_build_transceiver')
     build_dir.mkdir(exist_ok=True)
 
-    dat_files_path = Path("../")
+    dat_files_path = Path("../../syn")
 
-    shutil.copyfile(dat_files_path / 'neg_sin_value.dat', build_dir / 'neg_sin_value.dat')
-    shutil.copyfile(dat_files_path / 'sin_value.dat', build_dir / 'sin_value.dat')
+    shutil.copyfile(dat_files_path / 'neg_sin_val.dat', build_dir / 'neg_sin_val.dat')
+    shutil.copyfile(dat_files_path / 'sin_val.dat', build_dir / 'sin_val.dat')
 
     verilog_sources = [
         src / "top/transceiver_top.v",

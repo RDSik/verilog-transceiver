@@ -7,7 +7,9 @@ module transceiver_top #(
     parameter CLKS_PER_BIT  = 1_000_000/115_200, //! 1 MHz (1 MHz for simulation for normal working on board swith to 100 MHz) and 115_200 Baud
     parameter SAMPLE_NUMBER = 256,               //! numbers of sample in one sine period
     parameter SAMPLE_WIDTH  = 12,                //! sample width
-    parameter DATA_WIDTH    = 12                 //! data width
+    parameter DATA_WIDTH    = 12,                //! data width
+    parameter SIN_VALUE     = "sin_val.dat",     //! dat file with sine samples
+    parameter NEG_SIN_VALUE = "neg_sin_val.dat"  //! dat file with negative sine samples
 ) (
     input  wire clk,   //! clock  input (100 MHz)
     input  wire arstn, //! asynchronous reset input (negative)
@@ -51,7 +53,9 @@ module transceiver_top #(
 
     sin_generator #(                 //! sine generator instance (generate sine and negative sine sample from .dat files using a counter)
         .SAMPLE_NUMBER (SAMPLE_NUMBER),
-        .SAMPLE_WIDTH  (SAMPLE_WIDTH)
+        .SAMPLE_WIDTH  (SAMPLE_WIDTH),
+        .SIN_VALUE     (SIN_VALUE),
+        .NEG_SIN_VALUE (NEG_SIN_VALUE)
     ) sin_generator_inst (
         .clk         (clk),
         .arstn       (arstn),

@@ -2,6 +2,10 @@ syn/*
 !Manifest.py
 !add_files.tcl
 !transceiver.xdc
+!sin_gen.m
+!sin_gen.py
+!sin_val.dat
+!neg_sin_val.dat
 sim/modelsim/*
 !Manifest.py
 !vsim.do
