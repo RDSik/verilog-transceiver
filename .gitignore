@@ -8,7 +8,7 @@ syn/*
 !neg_sin_val.dat
 sim/modelsim/*
 !Manifest.py
-!vsim.do
+!wave.do
 sim/vivado/*
 !xsim.tcl
 !Manifest.py
