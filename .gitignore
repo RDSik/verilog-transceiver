@@ -12,6 +12,8 @@ sim/modelsim/*
 sim/vivado/*
 !xsim.tcl
 !Manifest.py
+sim/iverilog/*
+!Manifest.py
 sim/cocotb/*
 !test.py
 !transceiver_tb.py
