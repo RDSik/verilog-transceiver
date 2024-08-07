@@ -3,7 +3,7 @@ module hamming_decoder (
     input  wire        arstn,
     input  wire        rden,
     input  wire [11:0] hc_in,
-    output reg  [7:0]  q
+    output reg  [7:0 ] q
 );
 
     wire g0_error; 
@@ -19,8 +19,7 @@ module hamming_decoder (
     always @ (posedge clk or negedge arstn) begin
         if (~arstn) begin
             q <= 0;
-        end
-        else if (rden) begin
+        end else if (rden) begin
             case ({g3_error, g2_error, g1_error, g0_error})
                 4'b0000 : q <= {hc_in[11:8], hc_in[6:4], hc_in[2]};
                 4'b0001 : q <= {hc_in[11:8], hc_in[6:4], hc_in[2]};
@@ -37,8 +36,7 @@ module hamming_decoder (
                 4'b1100 : q <= {~hc_in[11], hc_in[10], hc_in[9], hc_in[8], hc_in[6:4], hc_in[2]};
                 default : q <= 0;
             endcase
-        end
-        else begin
+        end else begin
             q <= 0;
         end
     end

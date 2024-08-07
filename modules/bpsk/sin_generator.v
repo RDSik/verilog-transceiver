@@ -7,8 +7,8 @@ module sin_generator #(
     input  wire                             clk,
     input  wire                             arstn,
     input  wire                             en,
-    output reg  [SAMPLE_WIDTH-1:0]          sin_out,
-    output reg  [SAMPLE_WIDTH-1:0]          neg_sin_out,
+    output reg  [SAMPLE_WIDTH-1:0         ] sin_out,
+    output reg  [SAMPLE_WIDTH-1:0         ] neg_sin_out,
     output reg  [$clog2(SAMPLE_NUMBER)-1:0] cnt_out
 );
 
@@ -23,18 +23,15 @@ module sin_generator #(
     always @(posedge clk or negedge arstn) begin
         if (~arstn) begin                     
             cnt_out <= 0;
-        end
-        else if (en) begin
+        end else if (en) begin
             neg_sin_out <= neg_sin_rom[cnt_out];
             sin_out     <= sin_rom[cnt_out];                               
             if (cnt_out == SAMPLE_NUMBER-1) begin
                 cnt_out <= 0;
-            end                            
-            else begin
+            end else begin
                 cnt_out <= cnt_out + 1;
             end
-        end            
-        else begin
+        end else begin
             neg_sin_out <= 'bz;
             sin_out     <= 'bz;    
         end
