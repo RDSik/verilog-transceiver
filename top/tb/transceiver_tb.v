@@ -1,6 +1,6 @@
 `include "timescale.vh" // comment this for vivado simulation with hdlmake
 
-module transceiver_tb();
+module transceiver_tb ();
 
 localparam CLK_PERIOD  = 2;
 localparam SIM_TIME    = 25000;
@@ -18,18 +18,18 @@ wire data_valid;
 wire [11:0] modulator_out;
 wire [11:0] demodulator_out;
 wire [11:0] encoder_out;
-wire [7:0]  decoder_out;
-wire [7:0]  uart_rx_out;
-wire [7:0]  cnt_out;
+wire [7:0 ] decoder_out;
+wire [7:0 ] uart_rx_out;
+wire [7:0 ] cnt_out;
 wire [11:0] neg_sin_out;
 wire [11:0] sin_out;
 
 transceiver_top dut (
-    .clk   (clk),
+    .clk   (clk  ),
     .arstn (arstn),
-    .en    (en),
-    .data  (data),
-    .q     (q)
+    .en    (en   ),
+    .data  (data ),
+    .q     (q    )
 );
 
 assign uart_rx_out     = dut.uart_rx_out;
