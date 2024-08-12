@@ -1,6 +1,7 @@
 import os
+from pathlib import Path
 
-src = "UART/Verilog/source"
+src = Path("UART/Verilog/source")
 
 files = []
 
