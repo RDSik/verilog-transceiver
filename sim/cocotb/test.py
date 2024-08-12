@@ -19,16 +19,18 @@ def test_runner():
     shutil.copyfile(dat_files_path / 'neg_sin_val.dat', build_dir / 'neg_sin_val.dat')
     shutil.copyfile(dat_files_path / 'sin_val.dat', build_dir / 'sin_val.dat')
 
-    verilog_sources = [
-        src / "top/transceiver_top.v",
-        src / "modules/bpsk/sin_generator.v",
-        src / "modules/bpsk/bpsk_modulator.v",
-        src / "modules/bpsk/bpsk_demodulator.v",
-        src / "modules/hamming/hamming_decoder.v",
-        src / "modules/hamming/hamming_encoder.v",
-        src / "modules/uart/UART/Verilog/source/UART_RX.v",
-        src / "modules/uart/UART/Verilog/source/UART_TX.v",
-    ]
+    verilog_sources = []
+    
+    def files(path):
+        sources = []
+        for (dirpath, _, files) in os.walk(path):
+            for file in files:
+                if file != 'Manifest.py':
+                    sources.append(dirpath.replace("\\", '/') +'/' + file)
+            return sources
+
+    verilog_sources.extend(files(src))
+    
     hdl_toplevel = 'transceiver_top' # HDL module name
     test_module = 'transceiver_tb' # Python module name
 
