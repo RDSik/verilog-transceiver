@@ -1,11 +1,14 @@
+import os
+
+src = "UART/Verilog/source"
+
 files = []
 
-def list_files(path):
-    import os
+def files(path):
     files = []
-    for (dirpath, _, filenames) in os.walk(path):
-        for file in filenames:
+    for (dirpath, _, files) in os.walk(path):
+        for file in files:
             files.append(dirpath.replace("\\", '/') +'/' + file)
     return files
 
-files.extend(list_files("UART/Verilog/source"))
+files.extend(files(src))
