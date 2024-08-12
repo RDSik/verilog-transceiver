@@ -1,15 +1,15 @@
-import os
 from pathlib import Path
 
 src = Path("UART/Verilog/source")
 
 files = []
 
-def files(path):
+def files_list(path):
+    import os
     files = []
-    for (dirpath, _, files) in os.walk(path):
-        for file in files:
-            files.append(dirpath.replace("\\", '/') +'/' + file)
+    for (dirpath, _, file) in os.walk(path):
+        for f in file:
+            files.append(dirpath.replace("\\", '/') +'/' + f)
     return files
 
-files.extend(files(src))
+files.extend(files_list(src))
