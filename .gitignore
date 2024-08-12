@@ -20,3 +20,4 @@ sim/cocotb/*
 platform/xilinx/clk_wiz/*
 !clk_wiz.xci
 myenv
+*.drawio
