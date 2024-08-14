@@ -69,7 +69,6 @@ python3 -m venv myenv
 .\myenv\Scripts\activate.ps1
 cd sim\cocotb
 pytest test.py
-cd .\sim_build_transceiver
-gtkwave .\transceiver_top.vcd
+gtkwave .\sim_build_transceiver\transceiver_top.vcd
 deactivate
 ```
