@@ -32,7 +32,7 @@ def test_runner():
     
     hdl_toplevel = 'transceiver_top' # HDL module name
     test_module = 'transceiver_tb' # Python module name
-    # pre_cmd = ['do ../wave.do'] # Macro file
+    # pre_cmd = ['do ../../modelsim/wave.do'] # Macro file
 
     runner = get_runner(sim)
     
