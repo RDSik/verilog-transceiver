@@ -14,14 +14,13 @@ module crc12 #(
     output reg  [CRC_WIDTH-1:0 ] crc12
 );
   
-    always @(posedge clk or negedge arstn)
-        begin
-            if (~arstn) begin
-                crc12 <= 12'hfff;
-            end else begin
-                crc12 <= en ? crc12_nbit(crc12, data) : crc12;
-            end
+    always @(posedge clk or negedge arstn) begin
+        if (~arstn) begin
+            crc12 <= 12'hfff;
+        end else begin
+            crc12 <= en ? crc12_nbit(crc12, data) : crc12;
         end
+    end
 
     function [CRC_WIDTH-1:0] crc12_nbit;
         input [CRC_WIDTH-1:0 ] crc;
