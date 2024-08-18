@@ -27,7 +27,7 @@ task rst();
         #CLK_PERIOD;
         arstn = 1;
         $display("\n-----------------------------");
-        $display("Reset done and enable high");
+        $display("Reset done");
         $display("-----------------------------\n");
     end
 endtask
