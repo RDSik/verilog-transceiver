@@ -18,24 +18,32 @@ module crc12 #(
         if (~arstn) begin
             crc12 <= 12'hfff;
         end else begin
-            crc12 <= en ? crc12_nbit(crc12, data) : crc12;
+            crc12 <= en ? crc12_byte(crc12, data) : crc12;
         end
     end
 
-    function [CRC_WIDTH-1:0] crc12_nbit;
+    function [CRC_WIDTH-1:0] crc12_bit;
+        input [CRC_WIDTH-1:0] crc;
+        input                 data;
+        begin
+            // feedback = crc[11] ^ data[i];
+            crc12_bit     = crc << 1;
+            crc12_bit[0]  = crc[11] ^ data;
+            crc12_bit[1]  = crc[11] ^ data ^ crc[0];
+            crc12_bit[2]  = crc[11] ^ data ^ crc[1];
+            crc12_bit[3]  = crc[11] ^ data ^ crc[2];
+            crc12_bit[11] = crc[11] ^ data ^ crc[10];
+        end
+    endfunction
+
+    function [CRC_WIDTH-1:0] crc12_byte;
         input [CRC_WIDTH-1:0 ] crc;
         input [DATA_WIDHT-1:0] data;
         integer                i;
         begin
-            crc12_nbit = crc;
+            crc12_byte = crc;
             for (i = DATA_WIDHT - 1; i >= 0; i = i - 1) begin
-                // feedback = crc[11] ^ data[i];
-                crc12_nbit     = crc << 1;
-                crc12_nbit[0]  = crc[11] ^ data[i];
-                crc12_nbit[1]  = crc[11] ^ data[i] ^ crc[0];
-                crc12_nbit[2]  = crc[11] ^ data[i] ^ crc[1];
-                crc12_nbit[3]  = crc[11] ^ data[i] ^ crc[2];
-                crc12_nbit[11] = crc[11] ^ data[i] ^ crc[10];
+                crc12_byte = crc12_bit(crc12_byte, data[i]);
             end
         end
     endfunction
