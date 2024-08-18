@@ -2,8 +2,8 @@
 
 module transceiver_tb ();
 
-localparam CLK_PERIOD  = 2;
-localparam SIM_TIME    = 25000;
+localparam CLK_PERIOD = 2;
+localparam SIM_TIME   = 25000;
 
 reg clk;
 reg arstn;
