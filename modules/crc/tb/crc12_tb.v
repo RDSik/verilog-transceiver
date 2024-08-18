@@ -3,7 +3,7 @@
 module crc12_tb();
 
 localparam CLK_PERIOD = 2;
-localparam SIM_TIME   = 70;
+localparam SIM_TIME   = 100;
 
 reg       clk;
 reg       arstn;
@@ -34,14 +34,14 @@ endtask
 
 task data_gen();
     begin
-        repeat (10) begin
-            en = 0;
-            data = $urandom_range(0, 128);
-            #(CLK_PERIOD*2);
+        rst();
+        repeat (5) begin
             en = 1;
+            data = $urandom_range(0, 256);
+            #(CLK_PERIOD*8);
+            en = 0;
             #CLK_PERIOD;
         end
-        en = 0;
     end
 endtask
 
@@ -49,7 +49,6 @@ always #(CLK_PERIOD/2) clk = ~clk;
 
 initial begin
     clk = 0;
-    rst();
     data_gen();
 end
 
