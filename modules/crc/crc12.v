@@ -39,7 +39,6 @@ module crc12 #(
                 crc12_nbit[11] = crc[11] ^ data[i] ^ crc[10];
             end
         end
-        
     endfunction
 
 endmodule
