@@ -1,4 +1,4 @@
-// Description: x^12 + x^11 + x^3 + x^2 + x + 1
+// Description : x^12 + x^11 + x^3 + x^2 + x + 1
 // Algorithm   : CRC-12
 // Polynomial  : 0x80F
 // Init value  : 0xFFF
