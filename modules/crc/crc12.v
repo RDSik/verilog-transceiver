@@ -29,7 +29,7 @@ module crc12 #(
         integer                i;
         begin
             crc12_nbit = crc;
-            for (i = DATA_WIDHT; i >= 0; i = i - 1) begin
+            for (i = DATA_WIDHT - 1; i >= 0; i = i - 1) begin
                 // feedback = crc[11] ^ data[i];
                 crc12_nbit     = crc << 1;
                 crc12_nbit[0]  = crc[11] ^ data[i];
