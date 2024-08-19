@@ -68,12 +68,14 @@ task data_gen();
     end
 endtask
 
-always #(CLK_PERIOD/2) clk = ~clk;
-    
 initial begin
     clk = 0;
-    data_gen();
+    forever begin
+        #(CLK_PERIOD/2) clk = ~clk;
+    end
 end
+    
+initial data_gen();
 
 initial begin
     $dumpfile("transceiver_tb.vcd");
