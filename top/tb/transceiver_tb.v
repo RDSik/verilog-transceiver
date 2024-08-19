@@ -75,14 +75,18 @@ initial begin
     end
 end
     
-initial data_gen();
-
+initial begin
+    data_gen();
+end
+    
 initial begin
     $dumpfile("transceiver_tb.vcd");
     $dumpvars(0, transceiver_tb);
     $monitor("time=%g, uart_out=0x%h, encoder_out=0x%h, decoder_out=0x%h, democulator_out=0x%h, done=%b, active=%b, data_valid=%b", $time, uart_rx_out, encoder_out, decoder_out, demodulator_out, done, active, data_valid);
 end
 
-initial #SIM_TIME $stop;
-
+initial begin
+    #SIM_TIME $stop;
+end
+    
 endmodule
