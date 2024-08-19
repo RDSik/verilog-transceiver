@@ -45,10 +45,14 @@ task data_gen();
     end
 endtask
 
-always #(CLK_PERIOD/2) clk = ~clk;
-
 initial begin
     clk = 0;
+    forever begin
+        #(CLK_PERIOD/2) clk = ~clk;
+    end
+end
+
+initial begin
     data_gen();
 end
 
@@ -58,6 +62,8 @@ initial begin
     $monitor("time=%g, crc=0x%h", $time, crc12);
 end
 
-initial #SIM_TIME $stop;
-
+initial begin
+    #SIM_TIME $stop;
+end
+    
 endmodule
