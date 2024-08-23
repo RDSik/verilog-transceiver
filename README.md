@@ -9,9 +9,7 @@
 ## Installation
 
 ### Download python and git:
-```bash
-[Install Chocolatey on Windows 10](https://gist.github.com/lopezjurip/2a188c90284bf239197b)
-```
+- [Install Chocolatey on Windows 10](https://gist.github.com/lopezjurip/2a188c90284bf239197b)
 
 ### Clone repository:
 ```bash
