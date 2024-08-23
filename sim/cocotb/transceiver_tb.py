@@ -12,14 +12,14 @@ async def test_transceiver(dut):
     
     cocotb.start_soon(Clock(dut.clk, clk_per, units = 'sec').start())
 
-    # Reset and enable
+    # Reset
     async def reset(cycles):
         await FallingEdge(dut.clk)
         dut.arstn.value = 0
         await ClockCycles(dut.clk, cycles)
         dut.arstn.value = 1
 
-    # Input data
+    # Input data generation
     async def data_gen(time):
         dut.en.value = 1
         for i in range(time):
