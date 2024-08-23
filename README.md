@@ -56,19 +56,11 @@ hdlmake
 make
 ```
 
-### Modelsim simulation using hdlmake:
+### Modelsim simulation using cocotb:
 ```bash
-cd top/sim/modelsim
-hdlmake
-make
-```
-
-### Icarus simulation using cocotb:
-```bash
-python3 -m venv myenv
+py -m venv myenv
 .\myenv\Scripts\activate.ps1
 cd sim\cocotb
-pytest test.py
-gtkwave .\sim_build_transceiver\transceiver_top.vcd
+py -m pytest test.py
 deactivate
 ```

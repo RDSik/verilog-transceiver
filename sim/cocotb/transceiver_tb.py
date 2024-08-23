@@ -8,6 +8,7 @@ from cocotb.utils import get_sim_time
 async def test_transceiver(dut):
 
     clk_per = 2
+    sim_time = 25000
     
     cocotb.start_soon(Clock(dut.clk, clk_per, units = 'sec').start())
 
@@ -21,8 +22,8 @@ async def test_transceiver(dut):
         dut.en.value = 1
 
     # Input data
-    async def data_gen():
-        for i in range(25000):
+    async def data_gen(time):
+        for i in range(time):
             dut.data.value = random.randint(0, 1)
             print(f"uart_rx_out={dut.uart_rx_out}, encoder_out={dut.encoder_out}, decoder_out={dut.decoder_out}, demodulator_out={dut.demodulator_out}, active={dut.active}, data_valid={dut.data_valid}, done={dut.done}")
             await Timer(clk_per/2, units="sec")
@@ -31,4 +32,4 @@ async def test_transceiver(dut):
     #------------------Order of test execution -------------------
     await rst_en(dut, 1)
     await RisingEdge(dut.clk)
-    await data_gen()
+    await data_gen(sim_time)

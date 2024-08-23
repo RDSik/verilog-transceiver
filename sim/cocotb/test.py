@@ -9,7 +9,7 @@ def test_runner():
     src = Path("../../")
     
     hdl_toplevel_lang = os.getenv("HDL_TOPLEVEL_LANG", "verilog")
-    sim = os.getenv("SIM", "icarus")
+    sim = os.getenv("SIM", "questa")
     
     build_dir = Path('sim_build_transceiver')
     build_dir.mkdir(exist_ok=True)
@@ -32,7 +32,7 @@ def test_runner():
     
     hdl_toplevel = 'transceiver_top' # HDL module name
     test_module = 'transceiver_tb' # Python module name
-    # pre_cmd = ['do ../../modelsim/wave.do'] # Macro file
+    pre_cmd = ['do ../wave.do'] # Macro file
 
     runner = get_runner(sim)
     
@@ -48,6 +48,6 @@ def test_runner():
         test_module=test_module,
         waves=True,
         gui=True,
-        # pre_cmd=pre_cmd,
+        pre_cmd=pre_cmd,
     )
     

@@ -6,9 +6,9 @@ syn/*
 !sin_gen.py
 !sin_val.dat
 !neg_sin_val.dat
-sim/**/*
+sim/cocotb/*
 !.py
-!.do
+!wave.do
 !.tcl
 platform/xilinx/clk_wiz/*
 !clk_wiz.xci
