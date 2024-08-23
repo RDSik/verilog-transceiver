@@ -64,7 +64,7 @@ gtkwave .\sim_build_transceiver\transceiver_top.vcd
 deactivate
 ```
 
-### Modelsim simulation:
+### Modelsim simulation
 
 #### Using cocotb (with 64 bit Python use 64 bit Modelsim):
 ```bash
