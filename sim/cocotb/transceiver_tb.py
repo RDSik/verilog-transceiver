@@ -7,7 +7,7 @@ from cocotb.utils import get_sim_time
 @cocotb.test()
 async def test_transceiver(dut):
 
-    clk_per = 2
+    clk_per  = 2
     sim_time = 25000
     
     cocotb.start_soon(Clock(dut.clk, clk_per, units = 'sec').start())
