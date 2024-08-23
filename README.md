@@ -4,18 +4,18 @@
 
 ## Dependencies 
 
-`hdlmake`, `make`, `cocotb`, `vivado`, `modelsim`, `python`
+`hdlmake`, `make`, `cocotb`, `vivado`, `modelsim`, `python`, `choco`
 
 ## Installation
+
+### Download python and git:
+```bash
+[Install Chocolatey on Windows 10](https://gist.github.com/lopezjurip/2a188c90284bf239197b)
+```
 
 ### Clone repository:
 ```bash
 git clone --recurse-submodules https://github.com/RDSik/FPGA_transceiver.git
-```
-
-### Download pip:
-```bash
-https://pip.pypa.io/en/latest/installation/
 ```
 
 ### Download packages:
