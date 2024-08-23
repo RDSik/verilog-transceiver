@@ -54,15 +54,6 @@ hdlmake
 make
 ```
 
-### Modelsim simulation using cocotb (with 64 bit Python use 64 bit Modelsim):
-```bash
-py -m venv myenv
-.\myenv\Scripts\activate.ps1
-cd sim\cocotb\modelsim
-py -m pytest test.py
-deactivate
-```
-
 ### Icarus simulation using cocotb:
 ```bash
 py -m venv myenv
@@ -71,4 +62,22 @@ cd .\sim\cocotb\icarus
 py -m pytest test.py
 gtkwave .\sim_build_transceiver\transceiver_top.vcd
 deactivate
+```
+
+### Modelsim simulation:
+
+#### Using cocotb (with 64 bit Python use 64 bit Modelsim):
+```bash
+py -m venv myenv
+.\myenv\Scripts\activate.ps1
+cd sim\cocotb\modelsim
+py -m pytest test.py
+deactivate
+```
+
+#### Using hdlmake:
+```bash
+cd top/sim/modelsim
+hdlmake
+make
 ```
