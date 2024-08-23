@@ -13,7 +13,7 @@ async def test_transceiver(dut):
     cocotb.start_soon(Clock(dut.clk, clk_per, units = 'sec').start())
 
     # Reset and enable
-    async def rst_en(cycles):
+    async def reset(cycles):
         await FallingEdge(dut.clk)
         dut.arstn.value = 0
         await ClockCycles(dut.clk, cycles)
@@ -31,6 +31,6 @@ async def test_transceiver(dut):
 
     #------------------Order of test execution -------------------
     dut.en.value = 0
-    await rst_en(1)
+    await reset(1)
     await RisingEdge(dut.clk)
     await data_gen(sim_time)
