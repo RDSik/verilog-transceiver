@@ -49,7 +49,7 @@ make project
 
 ### Vivado simulation using hdlmake:
 ```bash
-cd top/sim/vivado
+cd sim/vivado
 hdlmake
 make
 ```
@@ -77,7 +77,7 @@ deactivate
 
 #### Using hdlmake:
 ```bash
-cd top/sim/modelsim
+cd sim/modelsim
 hdlmake
 make
 ```
