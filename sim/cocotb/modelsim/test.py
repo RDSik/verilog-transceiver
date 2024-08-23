@@ -15,7 +15,6 @@ def test_runner():
     build_dir.mkdir(exist_ok=True)
 
     dat_files_path = Path(src / "syn")
-    tb_file_path = Path("../")
 
     shutil.copyfile(dat_files_path / 'neg_sin_val.dat', build_dir / 'neg_sin_val.dat')
     shutil.copyfile(dat_files_path / 'sin_val.dat', build_dir / 'sin_val.dat')
