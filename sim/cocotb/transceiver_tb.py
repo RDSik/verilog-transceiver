@@ -22,6 +22,7 @@ async def test_transceiver(dut):
     # Input data generation
     async def data_gen(time):
         dut.en.value = 1
+        await Timer(clk_per, units="sec")
         for i in range(time):
             dut.data.value = random.randint(0, 1)
             print(f"uart_rx_out={dut.uart_rx_out}, encoder_out={dut.encoder_out}, decoder_out={dut.decoder_out}, demodulator_out={dut.demodulator_out}, active={dut.active}, data_valid={dut.data_valid}, done={dut.done}")
