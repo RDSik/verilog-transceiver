@@ -60,7 +60,17 @@ make
 ```bash
 py -m venv myenv
 .\myenv\Scripts\activate.ps1
-cd sim\cocotb
+cd sim\cocotb\modelsim
 py -m pytest test.py
+deactivate
+```
+
+### Icarus simulation using cocotb:
+```bash
+py -m venv myenv
+.\myenv\Scripts\activate.ps1
+cd .\sim\cocotb\icarus
+py -m pytest test.py
+gtkwave .\sim_build_transceiver\transceiver_top.vcd
 deactivate
 ```
