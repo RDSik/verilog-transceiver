@@ -2,6 +2,7 @@ import cocotb
 import random
 from cocotb.clock import Clock
 from cocotb.triggers import Timer, RisingEdge, FallingEdge, ClockCycles
+from cocotb.utils import get_sim_time
 
 @cocotb.test()
 async def test_transceiver(dut):
@@ -25,6 +26,7 @@ async def test_transceiver(dut):
             dut.data.value = random.randint(0, 1)
             print(f"uart_rx_out={dut.uart_rx_out}, encoder_out={dut.encoder_out}, decoder_out={dut.decoder_out}, demodulator_out={dut.demodulator_out}, active={dut.active}, data_valid={dut.data_valid}, done={dut.done}")
             await Timer(clk_per/2, units="sec")
+        print(f'Generation ended at {get_sim_time('sec')} sec.')
 
     #------------------Order of test execution -------------------
     await rst_en(dut, 1)
