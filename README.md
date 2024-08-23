@@ -56,7 +56,7 @@ hdlmake
 make
 ```
 
-### Modelsim simulation using cocotb:
+### Modelsim simulation using cocotb (With 64 bit Python use 64 bit Modelsim):
 ```bash
 py -m venv myenv
 .\myenv\Scripts\activate.ps1
