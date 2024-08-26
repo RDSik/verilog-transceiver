@@ -1,4 +1,5 @@
 import os
+import random
 import shutil
 from pathlib import Path
 
@@ -14,10 +15,8 @@ def test_runner():
     build_dir = Path('sim_build_transceiver')
     build_dir.mkdir(exist_ok=True)
 
-    dat_files_path = Path(src / "syn")
-
-    shutil.copyfile(dat_files_path / 'neg_sin_val.dat', build_dir / 'neg_sin_val.dat')
-    shutil.copyfile(dat_files_path / 'sin_val.dat', build_dir / 'sin_val.dat')
+    shutil.copyfile(src / 'syn/neg_sin_val.dat', build_dir / 'neg_sin_val.dat')
+    shutil.copyfile(src / 'syn/sin_val.dat', build_dir / 'sin_val.dat')
     shutil.copyfile('../transceiver_tb.py', 'transceiver_tb.py')
 
     verilog_sources = [
@@ -34,6 +33,7 @@ def test_runner():
     hdl_toplevel = 'transceiver_top' # HDL module name
     test_module = 'transceiver_tb' # Python module name
     # pre_cmd = ['do ../wave.do'] # Macro file
+    seed = random.randint(0, 1000)
 
     runner = get_runner(sim)
     
@@ -50,5 +50,6 @@ def test_runner():
         waves=True,
         gui=True,
         # pre_cmd=pre_cmd,
+        seed=seed,
     )
     
