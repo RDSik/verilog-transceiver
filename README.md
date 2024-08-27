@@ -13,7 +13,7 @@
 
 ### Clone repository:
 ```bash
-git clone --recurse-submodules https://github.com/RDSik/FPGA_transceiver.git
+git clone --recurse-submodules https://github.com/RDSik/verilog-transceiver.git
 ```
 
 ### Download packages:
