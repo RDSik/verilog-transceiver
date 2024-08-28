@@ -26,12 +26,19 @@ module crc12 #(
         input [CRC_WIDTH-1:0] crc;
         input                 data;
         begin
-            // feedback = crc[11] ^ data[i];
-            crc12_bit     = crc << 1;
+            // crc[11] ^ data - feedback;
+            // crc12_bit     = crc << 1;
             crc12_bit[0]  = crc[11] ^ data;
             crc12_bit[1]  = crc[11] ^ data ^ crc[0];
             crc12_bit[2]  = crc[11] ^ data ^ crc[1];
             crc12_bit[3]  = crc[11] ^ data ^ crc[2];
+            crc12_bit[4]  = crc[3];
+            crc12_bit[5]  = crc[4];
+            crc12_bit[6]  = crc[5];
+            crc12_bit[7]  = crc[6];
+            crc12_bit[8]  = crc[7];
+            crc12_bit[9]  = crc[8];
+            crc12_bit[10] = crc[9];
             crc12_bit[11] = crc[11] ^ data ^ crc[10];
         end
     endfunction
