@@ -14,6 +14,7 @@
 ### Clone repository:
 ```bash
 git clone --recurse-submodules https://github.com/RDSik/verilog-transceiver.git
+cd verilog-transceiver
 ```
 
 ### Download packages:
