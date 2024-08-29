@@ -34,6 +34,7 @@ def test_runner():
     test_module = 'transceiver_tb' # Python module name
     pre_cmd = ['do ../wave.do'] # Macro file
     seed = random.randint(0, 1000)
+    parameters = {"CLKS_PER_BIT": "8"} # HDL module parameters
 
     runner = get_runner(sim)
     
@@ -51,5 +52,6 @@ def test_runner():
         gui=True,
         pre_cmd=pre_cmd,
         seed=seed,
+        parameters=parameters,
     )
     

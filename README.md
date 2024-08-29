@@ -48,24 +48,14 @@ make project
 
 ## Simulation
 
-### Vivado simulation using hdlmake:
+### Modelsim simulation
+
+#### Using hdlmake:
 ```bash
-cd sim/vivado
+cd sim/modelsim
 hdlmake
 make
 ```
-
-### Icarus simulation using cocotb:
-```bash
-py -m venv myenv
-.\myenv\Scripts\activate.ps1
-cd .\sim\cocotb\icarus
-py -m pytest test.py
-gtkwave .\sim_build_transceiver\transceiver_top.vcd
-deactivate
-```
-
-### Modelsim simulation
 
 #### Using cocotb (with 64 bit Python use 64 bit Modelsim):
 ```bash
@@ -76,9 +66,11 @@ py -m pytest test.py
 deactivate
 ```
 
-#### Using hdlmake:
+### Icarus simulation using cocotb:
 ```bash
-cd sim/modelsim
-hdlmake
-make
-```
+py -m venv myenv
+.\myenv\Scripts\activate.ps1
+cd .\sim\cocotb\icarus
+py -m pytest test.py
+gtkwave .\sim_build_transceiver\transceiver_top.vcd
+deactivate
