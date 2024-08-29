@@ -13,7 +13,7 @@
 
 | Generic name  | Type | Value             | Description                                                                                |
 | ------------- | ---- | ----------------- | ------------------------------------------------------------------------------------------ |
-| CLKS_PER_BIT  |      | 1_000_000/115_200 | 1 MHz (1 MHz for simulation for normal working on board swith to 100 MHz) and 115_200 Baud |
+| CLKS_PER_BIT  |      | 1_000_000/115_200 | 100 MHz and 115_200 Baud |
 | SAMPLE_NUMBER |      | 256               | numbers of sample in one sine period                                                       |
 | SAMPLE_WIDTH  |      | 12                | sample width                                                                               |
 | DATA_WIDTH    |      | 12                | data width                                                                                 |
