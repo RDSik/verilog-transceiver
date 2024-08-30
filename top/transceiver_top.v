@@ -5,11 +5,11 @@
 
 module transceiver_top #(
     parameter CLKS_PER_BIT  = 100_000_000/115_200, //! 100 MHz and 115_200 Baud
-    parameter SAMPLE_NUMBER = 256,               //! numbers of sample in one sine period
-    parameter SAMPLE_WIDTH  = 12,                //! sample width
-    parameter DATA_WIDTH    = 12,                //! data width
-    parameter SIN_VALUE     = "sin_val.dat",     //! dat file with sine samples
-    parameter NEG_SIN_VALUE = "neg_sin_val.dat"  //! dat file with negative sine samples
+    parameter SAMPLE_NUMBER = 256,                 //! numbers of sample in one sine period
+    parameter SAMPLE_WIDTH  = 12,                  //! sample width
+    parameter DATA_WIDTH    = 12,                  //! data width
+    parameter SIN_VALUE     = "sin_val.dat",       //! dat file with sine samples
+    parameter NEG_SIN_VALUE = "neg_sin_val.dat"    //! dat file with negative sine samples
 ) (
     input  wire clk,   //! clock  input (100 MHz)
     input  wire arstn, //! asynchronous reset input (negative)
