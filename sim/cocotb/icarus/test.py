@@ -17,10 +17,9 @@ def test_runner():
 
     shutil.copyfile(src / 'syn/neg_sin_val.dat', build_dir / 'neg_sin_val.dat')
     shutil.copyfile(src / 'syn/sin_val.dat', build_dir / 'sin_val.dat')
-    shutil.copyfile('../transceiver_tb.py', 'transceiver_tb.py')
 
     verilog_sources = [
-        src / "top/transceiver_top.v",
+        "transceiver_top.v",
         src / "modules/bpsk/sin_generator.v",
         src / "modules/bpsk/bpsk_modulator.v",
         src / "modules/bpsk/bpsk_demodulator.v",

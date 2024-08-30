@@ -15,9 +15,12 @@ sim/vivado/*
 sim/iverilog/*
 !Manifest.py
 sim/cocotb/modelsim/*
+!transceiver_tb.py
 !test.py
 !wave.do
 sim/cocotb/icarus/*
+!transceiver_tb.py
+!transceiver_top.v
 !test.py
 platform/xilinx/clk_wiz/*
 !clk_wiz.xci
