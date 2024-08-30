@@ -9,7 +9,7 @@ clk_per_bit = 8
 
 async def reset(dut, cycles):
     dut.arstn.value = 0
-    await ClockCycles(dut.clk, cycles*clk_per)
+    await ClockCycles(dut.clk, cycles)
     dut.arstn.value = 1
 
 async def data_gen(dut):
@@ -34,7 +34,7 @@ async def init(dut, n):
     cocotb.start_soon(Clock(dut.clk, clk_per, units = 'sec').start())
 
     dut.en.value = 0
-    await reset(dut, 1)
+    await reset(dut, clk_per)
     for i in range(n):
         await data_gen(dut)
         await Timer(clk_per*1000, units='sec')
