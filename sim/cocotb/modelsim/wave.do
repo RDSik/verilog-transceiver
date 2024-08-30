@@ -2,15 +2,15 @@ onerror {resume}
 quietly WaveActivateNextPane {} 0
 add wave -noupdate /transceiver_top/clk
 add wave -noupdate /transceiver_top/arstn
-add wave -noupdate /transceiver_top/data
 add wave -noupdate /transceiver_top/en
-add wave -noupdate /transceiver_top/q
+add wave -noupdate /transceiver_top/data
 add wave -noupdate /transceiver_top/done
 add wave -noupdate /transceiver_top/active
 add wave -noupdate /transceiver_top/data_valid
+add wave -noupdate /transceiver_top/q
 add wave -noupdate /transceiver_top/uart_rx_out
-add wave -noupdate /transceiver_top/decoder_out
 add wave -noupdate /transceiver_top/encoder_out
+add wave -noupdate /transceiver_top/decoder_out
 add wave -noupdate /transceiver_top/demodulator_out
 add wave -noupdate -radix unsigned /transceiver_top/cnt_out
 add wave -noupdate -format Analog-Step -height 74 -max 1997.9999999999998 -min -2048.0 /transceiver_top/neg_sin_out
