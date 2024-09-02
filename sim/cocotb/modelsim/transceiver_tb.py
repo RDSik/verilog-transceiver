@@ -26,10 +26,10 @@ async def data_gen(dut):
         await Timer(clk_per_bit*clk_per, units='ns') # data transmit
         dut.data.value = random.randint(0, 1)
         print(f'{bit} bit detected in {get_sim_time('ns')} ns.')
-    await Timer(clk_per, units='ns')
+    await Timer(clk_per, units='ns')  # stop bit wait
     dut.data.value = 1
     print(f'Stop bit detected in {get_sim_time('ns')} ns.')
-    await Timer(clk_per_bit*clk_per, units='ns') # stop bit wait
+    await Timer(clk_per_bit*clk_per, units='ns')
 
 async def init(dut, n):
 
