@@ -22,6 +22,7 @@ sim/cocotb/icarus/*
 !transceiver_tb.py
 !transceiver_top.v
 !test.py
+!gtkw.gtkw
 platform/xilinx/clk_wiz/*
 !clk_wiz.xci
 myenv

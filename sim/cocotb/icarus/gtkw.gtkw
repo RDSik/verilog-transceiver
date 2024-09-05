@@ -1,0 +1,45 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Thu Sep 05 13:48:23 2024
+[*]
+[dumpfile] "C:\Users\dimas\FPGA\FPGA_transceiver\sim\cocotb\icarus\sim_build_transceiver\transceiver_top.vcd"
+[dumpfile_mtime] "Thu Sep 05 13:47:48 2024"
+[dumpfile_size] 6439
+[savefile] "C:\Users\dimas\FPGA\FPGA_transceiver\sim\cocotb\icarus\gtkw.gtkw"
+[timestart] 0
+[size] 1536 801
+[pos] -9 -9
+*-12.012287 4230 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] transceiver_top.
+[sst_width] 211
+[signals_width] 229
+[sst_expanded] 1
+[sst_vpaned_height] 225
+@28
+transceiver_top.clk
+transceiver_top.arstn
+transceiver_top.en
+transceiver_top.active
+transceiver_top.data_valid
+transceiver_top.done
+transceiver_top.data
+transceiver_top.q
+@22
+transceiver_top.uart_rx_out[7:0]
+transceiver_top.encoder_out[11:0]
+transceiver_top.demodulator_out[11:0]
+transceiver_top.decoder_out[7:0]
+@8022
+transceiver_top.modulator_out[11:0]
+@20000
+-
+@8022
+transceiver_top.neg_sin_out[11:0]
+@20000
+-
+@8022
+transceiver_top.sin_out[11:0]
+@20000
+-
+[pattern_trace] 1
+[pattern_trace] 0
