@@ -72,5 +72,5 @@ py -m venv myenv
 .\myenv\Scripts\activate.ps1
 cd .\sim\cocotb\icarus
 py -m pytest test.py
-gtkwave .\sim_build_transceiver\transceiver_top.vcd
+gtkwave .\gtkw.gtkw
 deactivate
