@@ -44,6 +44,7 @@ make
 cd syn
 hdlmake
 make project
+vivado .\transceiver.xpr
 ```
 
 ## Simulation
@@ -55,6 +56,7 @@ make project
 cd sim/modelsim
 hdlmake
 make
+vivado .\transceiver.xpr
 ```
 
 #### Using cocotb (with 64 bit Python use 64 bit Modelsim):
