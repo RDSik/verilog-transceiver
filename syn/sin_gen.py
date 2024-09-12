@@ -13,7 +13,7 @@ def float_to_binary(float_num):
 polarity = sys.argv[1]
 
 if polarity == 'pos':
-    file_name = 'sin_value.dat'
+    file_name = 'sin_val.dat'
     with open(file_name, 'w') as s:
         t = np.arange(0, 2*np.pi-2*np.pi/256, 2*np.pi/256)
         sin_array = np.sin(t)
