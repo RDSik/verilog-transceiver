@@ -8,12 +8,12 @@ jobs:
   build-container:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: Check out the repository to the runner
+        uses: actions/checkout@v1
       - name: Build the Docker Image
         run: docker build . --file Dockerfile --tag icarus-simulation:$(date +%s)
-        
+      - name: Make the script file executable
+        run: chmod +x entrypoint.sh
       - name: Run Icarus
-        run: |
-          chmod +x ./entrypoint.sh
-          ./entrypoint.sh
+        run: ./entrypoint.sh
         shell: bash
