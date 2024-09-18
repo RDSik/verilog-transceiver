@@ -17,3 +17,5 @@ RUN git clone https://github.com/steveicarus/iverilog && \
     ./configure && \
     make check && \
     make install
+
+ADD ./.github/workflows/iverilog_run.sh /
