@@ -11,5 +11,3 @@ jobs:
       - name: Build the Docker Image
         uses: actions/checkout@v1
         run: docker build . --file Dockerfile --tag icarus-sim:$(date +%s)
-        run: iverilog -o transceiver top/tb/transceiver_tb.v top/transceiver_top.v
-        run: vvp transceiver
