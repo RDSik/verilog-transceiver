@@ -21,3 +21,6 @@ RUN git clone https://github.com/steveicarus/iverilog && \
 RUN pwd
 
 ADD ./.github/workflows/iverilog_run.sh /
+
+RUN chmod +x ./.github/workflows/iverilog_run.sh && \
+    ./.github/workflows/iverilog_run.sh
