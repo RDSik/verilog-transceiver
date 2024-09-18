@@ -5,7 +5,7 @@ on:
     branches: [master]
 
 jobs:
-  build-environment:
+  build-container:
     runs-on: ubuntu-latest
     defaults:
       run:
