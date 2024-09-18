@@ -2,8 +2,9 @@
 
 module transceiver_tb ();
 
-localparam CLK_PERIOD = 2;
-localparam SIM_TIME   = 25000;
+localparam CLK_PERIOD   = 2;
+localparam CLKS_PER_BIT = 8;
+localparam SIM_TIME     = 22000;
 
 reg clk;
 reg arstn;
@@ -24,7 +25,11 @@ wire [7:0 ] cnt_out;
 wire [11:0] neg_sin_out;
 wire [11:0] sin_out;
 
-transceiver_top dut (
+integer i;
+
+transceiver_top #(
+    .CLKS_PER_BIT (CLKS_PER_BIT)
+) dut (
     .clk   (clk  ),
     .arstn (arstn),
     .en    (en   ),
@@ -44,27 +49,39 @@ assign cnt_out         = dut.cnt_out;
 assign neg_sin_out     = dut.neg_sin_out;
 assign sin_out         = dut.sin_out;
 
-task rst_en(input zero, one);
+task rst();
     begin
+        arstn = 0;
         #CLK_PERIOD;
-        arstn = zero;
-        en    = zero;
-        #CLK_PERIOD;
-        arstn = one;
-        en    = one;
+        arstn = 1;
         $display("\n-----------------------------");
-        $display("Reset done and enable high");
+        $display("Reset done");
         $display("-----------------------------\n");
     end
 endtask
 
 task data_gen();
     begin
-        rst_en(0, 1);
-        repeat (SIM_TIME) begin
-            #(CLK_PERIOD/2); 
+        $display("\n--------------------------------------");
+        $display("Data generation cycle start in %g ns", $time);
+        $display("--------------------------------------\n");
+        en = 1;
+        #CLK_PERIOD;
+        data = 0;
+        $display("Start bit detected in %g ns", $time);
+        #((CLKS_PER_BIT/2)*CLK_PERIOD);
+        $display("Data transmission start in %g ns", $time);
+        i = 0;
+        repeat (8) begin
+            #(CLKS_PER_BIT*CLK_PERIOD);
             data = $urandom_range(0,1);
+            $display("%d bit detected in %g ns", i, $time);
+            i = i + 1;
         end
+        #CLK_PERIOD;
+        data = 1;
+        $display("Stop bit detected in %g ns", $time);
+        #(CLKS_PER_BIT*CLK_PERIOD);
     end
 endtask
 
@@ -76,17 +93,22 @@ initial begin
 end
     
 initial begin
-    data_gen();
+    en = 0;
+    rst();
+    repeat (10) begin
+        data_gen();
+        #(CLK_PERIOD*1000);
+    end
 end
     
 initial begin
     $dumpfile("transceiver_tb.vcd");
     $dumpvars(0, transceiver_tb);
-    $monitor("time=%g, uart_out=0x%h, encoder_out=0x%h, decoder_out=0x%h, democulator_out=0x%h, done=%b, active=%b, data_valid=%b", $time, uart_rx_out, encoder_out, decoder_out, demodulator_out, done, active, data_valid);
+    // $monitor("time=%g, uart_out=0x%h, encoder_out=0x%h, decoder_out=0x%h, democulator_out=0x%h, done=%b, active=%b, data_valid=%b", $time, uart_rx_out, encoder_out, decoder_out, demodulator_out, done, active, data_valid);
 end
 
 initial begin
-    #SIM_TIME $stop;
+    #SIM_TIME $finish;
 end
     
 endmodule

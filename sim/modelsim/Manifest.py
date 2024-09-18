@@ -5,7 +5,7 @@ action = "simulation"
 sim_tool = "modelsim"
 sim_top = "transceiver_tb"
 
-sim_post_cmd = "vsim -do wave.do -i transceiver_tb -g CLKS_PER_BIT=8"
+sim_post_cmd = "vsim -do wave.do -i transceiver_tb"
 
 modules = {
     "local" : [ 
