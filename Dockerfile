@@ -18,6 +18,6 @@ RUN git clone https://github.com/steveicarus/iverilog && \
     make check && \
     make install
 
-RUN pwd && ls -l
+RUN pwd
 
 ADD ./.github/workflows/iverilog_run.sh /
