@@ -1,6 +1,6 @@
 # Script: Build docker image
 simulate:
-    image: registry.https://github.com/RDSik/Icarus-Verilog-Docker:latest
+    image: registry.github.com/RDSik/Icarus-Verilog-Docker:latest
     script:
         - iverilog -o transceiver top/tb/transceiver_tb.v top/transceiver_top.v
         - vvp transceiver
