@@ -9,5 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build the Docker Image
-        uses: actions/checkout@v1
+        # uses: actions/checkout@v1
         run: docker build . --file Dockerfile --tag icarus-sim:$(date +%s)
