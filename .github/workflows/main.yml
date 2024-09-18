@@ -10,4 +10,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Build the Docker Image
-        run: docker build . --file Dockerfile --tag icarus-sim:$(date +%s)
+        run: docker build . --file Dockerfile --tag icarus-simulation:$(date +%s)
+        
+      - name: Run Icarus
+        run: |
+          chmod +x ./entrypoint.sh
+          ./entrypoint.sh
+        shell: bash
