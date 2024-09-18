@@ -5,15 +5,15 @@ on:
     branches: [master]
 
 jobs:
-  build-container:
+  build-environment:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository to the runner
         uses: actions/checkout@v1
-      - name: Build the Docker Image
+      - name: Build the docker image
         run: docker build . --file Dockerfile --tag icarus-simulation:$(date +%s)
       - name: Make the script file executable
         run: chmod +x iverilog_run.sh
-      - name: Run Icarus
+      - name: Run icarus
         run: ./iverilog_run.sh
         shell: bash
