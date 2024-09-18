@@ -23,5 +23,5 @@ RUN pwd && \
 
 ADD ./.github/workflows/iverilog_run.sh /
 
-RUN chmod +x ./.github/workflows/iverilog_run.sh && \
-    ./.github/workflows/iverilog_run.sh
+RUN chmod +x ./iverilog_run.sh
+RUN ./iverilog_run.sh
