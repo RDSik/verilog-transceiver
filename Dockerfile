@@ -31,7 +31,7 @@ ADD ./modules/bpsk/bpsk_demodulator.v /
 ADD ./modules/hamming/hamming_decoder.v /
 ADD ./modules/hamming/hamming_encoder.v /
 ADD ./modules/uart/UART/Verilog/source/UART_RX.v /
-ADD .modules/uart/UART/Verilog/source/UART_TX.v /
+ADD ./modules/uart/UART/Verilog/source/UART_TX.v /
 
 RUN iverilog -o transceiver transceiver_tb.v transceiver_top.v
 RUN vvp transceiver
