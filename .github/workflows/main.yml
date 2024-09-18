@@ -8,7 +8,7 @@ jobs:
 
     runs-on: ubuntu-latest
     
-    sim:
+    steps:
       - name: Build the Docker Image
       run: |
         docker build . --file Dockerfile --tag icarus-sim:$(date +%s)
