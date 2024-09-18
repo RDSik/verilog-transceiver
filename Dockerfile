@@ -23,6 +23,7 @@ RUN pwd && \
 
 ADD ./top/tb/transceiver_tb.v /
 ADD ./top/transceiver_top.v /
+ADD ./top/tb/timescale.vh /
 
 RUN iverilog -o transceiver transceiver_tb.v transceiver_top.v
 RUN vvp transceiver
