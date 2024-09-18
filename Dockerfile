@@ -21,5 +21,6 @@ RUN git clone https://github.com/steveicarus/iverilog && \
 
 RUN git clone --recurse-submodules https://github.com/RDSik/verilog-transceiver.git && \
     cd verilog-transceiver/top/tb && \
-    iverilog -o transceiver transceiver_tb.v ../transceiver_top.v && \
+    iverilog -o transceiver transceiver_tb.v ../transceiver_top.v ../../modules/bpsk/bpsk_modulator.v  ../../modules/bpsk/bpsk_demodulator.v ../../modules/bpsk/sin_generator.v ../../modules/hamming/hamming_decoder.v ../../modules/hamming/hamming_encoder.v  ../../modules/uart/UART/Verilog/source/UART_RX.v ../../modules/uart/UART/Verilog/source/UART_TX.v && \
     vvp transceiver
+    
