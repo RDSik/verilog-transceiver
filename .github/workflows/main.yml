@@ -9,14 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./.github/workflows
+        working-directory: ./
     steps:
       - name: Check out the repository to the runner
         uses: actions/checkout@v1
       - name: Build the docker image
         run: docker build . --file Dockerfile --tag icarus-simulation:$(date +%s)
       - name: Make the script file executable
-        run: chmod +x iverilog_run.sh
+        run: chmod +x ./.github/workflows/iverilog_run.sh
       - name: Run icarus
-        run: ./iverilog_run.sh
+        run: ./.github/workflows/iverilog_run.sh
         shell: bash
