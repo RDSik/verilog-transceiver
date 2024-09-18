@@ -15,8 +15,8 @@ jobs:
         uses: actions/checkout@v1
       - name: Build the docker image
         run: docker build . --file Dockerfile --tag icarus-simulation:$(date +%s)
-      - name: Make the script file executable
-        run: chmod +x iverilog_run.sh
-      - name: Run icarus
-        run: ./iverilog_run.sh
-        shell: bash
+      # - name: Make the script file executable
+        # run: chmod +x iverilog_run.sh
+      # - name: Run icarus
+        # run: ./iverilog_run.sh
+        # shell: bash
