@@ -11,7 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - uses: actions/checkout@v1
       - name: Build the Docker Image
-      run: docker build . --file Dockerfile --tag icarus-sim:$(date +%s)
-      run: iverilog -o transceiver top/tb/transceiver_tb.v top/transceiver_top.v
-      run: vvp transceiver
+      run: |
+        docker build . --file Dockerfile --tag icarus-sim:$(date +%s)
+        iverilog -o transceiver top/tb/transceiver_tb.v top/transceiver_top.v
+        vvp transceiver
