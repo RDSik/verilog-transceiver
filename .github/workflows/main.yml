@@ -6,7 +6,8 @@ on:
 
 jobs:
   build-container:
+    runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
       - name: Build the Docker Image
-        # uses: actions/checkout@v1
         run: docker build . --file Dockerfile --tag icarus-sim:$(date +%s)
