@@ -21,7 +21,6 @@ RUN git clone https://github.com/steveicarus/iverilog && \
 RUN pwd && \
     ls
 
-ADD ./.github/workflows/iverilog_run.sh /
 ADD ./top/tb/transceiver_tb.v /
 ADD ./top/transceiver_top.v /
 
