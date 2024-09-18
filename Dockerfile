@@ -25,5 +25,5 @@ ADD ./.github/workflows/iverilog_run.sh /
 ADD ./top/tb/transceiver_tb.v /
 ADD ./top/transceiver_top.v /
 
-RUN chmod +x ./iverilog_run.sh
-RUN ./iverilog_run.sh
+RUN chmod +x ./iverilog_run.sh && \
+    ./iverilog_run.sh
