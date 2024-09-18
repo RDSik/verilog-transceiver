@@ -21,5 +21,5 @@ RUN git clone https://github.com/steveicarus/iverilog && \
 
 RUN git clone --recurse-submodules https://github.com/RDSik/verilog-transceiver.git && \
     cd verilog-transceiver/top && \
-    iverilog -o transceiver transceiver_tb.v tb/transceiver_top.v && \
+    iverilog -o transceiver tb/transceiver_tb.v transceiver_top.v && \
     vvp transceiver
