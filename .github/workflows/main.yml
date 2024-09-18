@@ -13,7 +13,7 @@ jobs:
       - name: Build the Docker Image
         run: docker build . --file Dockerfile --tag icarus-simulation:$(date +%s)
       - name: Make the script file executable
-        run: chmod +x entrypoint.sh
+        run: chmod +x iverilog_run.sh
       - name: Run Icarus
-        run: ./entrypoint.sh
+        run: ./iverilog_run.sh
         shell: bash
