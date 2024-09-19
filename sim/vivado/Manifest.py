@@ -13,7 +13,7 @@ modules = {
     ],
 }
 
-dat_files_path = Path("../../syn")
+dat_files_path = Path("../../top")
 
 shutil.copyfile(dat_files_path / 'neg_sin_val.dat', 'neg_sin_val.dat')
 shutil.copyfile(dat_files_path / 'sin_val.dat', 'sin_val.dat')
