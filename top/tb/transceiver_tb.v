@@ -54,17 +54,17 @@ task rst();
         arstn = 0;
         #CLK_PERIOD;
         arstn = 1;
-        $display("\n-----------------------------");
+        $display("\n-----------------------------------------");
         $display("Reset done");
-        $display("-----------------------------\n");
+        $display("-----------------------------------------\n");
     end
 endtask
 
 task data_gen();
     begin
-        $display("\n--------------------------------------");
+        $display("\n-----------------------------------------");
         $display("Data generation cycle start in %g ns", $time);
-        $display("--------------------------------------\n");
+        $display("-----------------------------------------\n");
         en = 1;
         #CLK_PERIOD;
         data = 0;
