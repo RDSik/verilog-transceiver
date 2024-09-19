@@ -1,4 +1,4 @@
-`include "timescale.vh" // comment this for vivado simulation with hdlmake
+`timescale 1ps/1ps // comment this for vivado simulation with hdlmake
 
 module transceiver_tb ();
 
