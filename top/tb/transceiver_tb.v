@@ -63,24 +63,24 @@ endtask
 task data_gen();
     begin
         $display("\n-----------------------------------------");
-        $display("Data generation cycle start in %g ns", $time);
+        $display("Data generation cycle start in %g ps", $time);
         $display("-----------------------------------------\n");
         en = 1;
         #CLK_PERIOD;
         data = 0;
-        $display("Start bit detected in %g ns", $time);
+        $display("Start bit detected in %g ps", $time);
         #((CLKS_PER_BIT/2)*CLK_PERIOD);
-        $display("Data transmission start in %g ns", $time);
+        $display("Data transmission start in %g ps", $time);
         i = 0;
         repeat (8) begin
             #(CLKS_PER_BIT*CLK_PERIOD);
             data = $urandom_range(0,1);
-            $display("%d bit detected in %g ns", i, $time);
+            $display("%d bit detected in %g ps", i, $time);
             i = i + 1;
         end
         #CLK_PERIOD;
         data = 1;
-        $display("Stop bit detected in %g ns", $time);
+        $display("Stop bit detected in %g ps", $time);
         #(CLKS_PER_BIT*CLK_PERIOD);
     end
 endtask
