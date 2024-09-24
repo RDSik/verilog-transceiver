@@ -4,8 +4,11 @@
 - **Title:**  digital_transceiver module design
 - **Author:**  Dmitry Ryabikov
 
+## Schematic
+![Schematic](../pics/schematic.svg "Schematic")
+
 ## Diagram
-![Diagram](transceiver_top.svg "Diagram")
+![Diagram](../pics/transceiver_top.svg "Diagram")
 ## Description
 
 
