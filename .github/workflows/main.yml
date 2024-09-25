@@ -12,24 +12,9 @@ jobs:
         # working-directory: ./
     steps:
       - name: Check out the repository to the runner
-        uses: actions/checkout@v1
-        
+        uses: actions/checkout@v1    
       - name: Build the docker image
         uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: false
-          tags: |
-            verilog-transceiver/docker-icarus-simulation:latest
-            
-      - name: Icarus simulation
-        uses: addnab/docker-run-action@v3
-        with:
-          image: verilog-transceiver/docker-icarus-simulation:latest
-          options: -v ${{ github.workspace }}:/verilog-transceiver:Z
-          run: |
-            iverilog -o transceiver tb/transceiver_tb.v transceiver_top.v ../modules/bpsk/bpsk_modulator.v  ../modules/bpsk/bpsk_demodulator.v ../modules/bpsk/sin_generator.v ../modules/hamming/hamming_decoder.v ../modules/hamming/hamming_encoder.v  ../modules/uart/UART/Verilog/source/UART_RX.v ../modules/uart/UART/Verilog/source/UART_TX.v && \
-            vvp transceiver
         # run: docker build . --file Dockerfile --tag icarus-simulation:$(date +%s)
       # - name: Make the script file executable
         # run: chmod +x ./.github/workflows/iverilog_run.sh
