@@ -19,10 +19,7 @@ RUN git clone https://github.com/steveicarus/iverilog && \
     autoconf && \
     ./configure && \
     make check && \
-    make install
-
-RUN pwd && \ 
-    ls    
+    make install 
 
 RUN git clone --recurse-submodules https://github.com/RDSik/verilog-transceiver.git && \
     cd verilog-transceiver/top && \
