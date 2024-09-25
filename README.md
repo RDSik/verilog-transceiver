@@ -1,4 +1,8 @@
+<div align="center">
+  
 [![Icarus Simulation](https://github.com/RDSik/verilog-transceiver/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/RDSik/verilog-transceiver/actions/workflows/main.yml)
+
+</div><br/><br/>
 
 ![My Image](pic/transeiver.drawio.png)
 
