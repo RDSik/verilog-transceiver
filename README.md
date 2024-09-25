@@ -4,7 +4,7 @@
 
 </div><br/><br/>
 
-![My Image](pic/transeiver.drawio.png)
+![My Image](pics/transeiver.drawio.png)
 
 # Usage
 
