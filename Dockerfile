@@ -1,5 +1,7 @@
 FROM ubuntu:latest  
 
+# ENV DIR /verilog-transceiver/top
+
 RUN apt-get -y update && \
     apt-get -y upgrade && \
     apt-get install -y \
@@ -17,7 +19,7 @@ RUN git clone https://github.com/steveicarus/iverilog && \
     autoconf && \
     ./configure && \
     make check && \
-    make install
+    make install 
 
 RUN git clone --recurse-submodules https://github.com/RDSik/verilog-transceiver.git && \
     cd verilog-transceiver/top && \
