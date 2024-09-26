@@ -41,14 +41,14 @@ winget install GnuWin32.make
 ### Build trasceiver:
 ```bash
 cd syn
-hdlmake
+py -m hdlmake
 make
 ```
 
 ### Build only vivado project:
 ```bash
 cd syn
-hdlmake
+py -m hdlmake
 make project
 vivado .\transceiver.xpr
 ```
@@ -60,9 +60,8 @@ vivado .\transceiver.xpr
 #### Using hdlmake:
 ```bash
 cd sim/modelsim
-hdlmake
+py -m hdlmake
 make
-vivado .\transceiver.xpr
 ```
 
 #### Using cocotb (with 64 bit Python use 64 bit Modelsim):
