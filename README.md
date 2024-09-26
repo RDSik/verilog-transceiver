@@ -43,6 +43,7 @@ winget install GnuWin32.make
 cd syn
 py -m hdlmake
 make
+vivado .\transceiver.xpr
 ```
 
 ### Build only vivado project:
