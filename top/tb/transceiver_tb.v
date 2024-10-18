@@ -4,7 +4,7 @@ module transceiver_tb ();
 
 localparam CLK_PERIOD   = 2;
 localparam CLKS_PER_BIT = 8;
-localparam DATA_WIDTH   = 8, 
+localparam DATA_WIDTH   = 8; 
 localparam SIM_TIME     = 22000;
 
 reg clk;
