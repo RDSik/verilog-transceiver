@@ -4,6 +4,7 @@ module transceiver_tb ();
 
 localparam CLK_PERIOD   = 2;
 localparam CLKS_PER_BIT = 8;
+localparam DATA_WIDTH   = 8, 
 localparam SIM_TIME     = 22000;
 
 reg clk;
@@ -72,7 +73,7 @@ task data_gen();
         #((CLKS_PER_BIT/2)*CLK_PERIOD);
         $display("Data transmission start in %g ps", $time);
         i = 0;
-        repeat (8) begin
+        repeat (DATA_WIDTH) begin
             #(CLKS_PER_BIT*CLK_PERIOD);
             data = $urandom_range(0,1);
             $display("%d bit detected in %g ps", i, $time);
