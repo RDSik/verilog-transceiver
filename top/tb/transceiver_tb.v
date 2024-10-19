@@ -1,6 +1,6 @@
 `timescale 1ps/1ps // comment this for vivado simulation with hdlmake
 
-module transceiver_tb ();
+module transceiver_tb();
 
 localparam CLK_PERIOD   = 2;
 localparam CLKS_PER_BIT = 8;
