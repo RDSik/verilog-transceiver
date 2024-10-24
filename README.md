@@ -1,7 +1,7 @@
 <div align="center">
 
 [![Icarus Simulation](https://github.com/RDSik/verilog-transceiver/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/RDSik/verilog-transceiver/actions/workflows/main.yml)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/RDSik/verilog-transceiver/master/LICENSE.txt)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/RDSik/verilog-transceiver/LICENSE.txt)
 
 </div><br/><br/>
 
