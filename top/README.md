@@ -5,10 +5,10 @@
 - **Author:**  Dmitry Ryabikov
 
 ## Schematic
-![Schematic](../pics/schematic.svg "Schematic")
+![Schematic](../img/schematic.svg "Schematic")
 
 ## Diagram
-![Diagram](../pics/transceiver_top.svg "Diagram")
+![Diagram](../img/transceiver_top.svg "Diagram")
 ## Description
 
 
