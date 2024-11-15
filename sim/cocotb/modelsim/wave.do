@@ -1,12 +1,12 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
 
-add wave -color #ff9911 -radix hex -group TOP \
+add wave -expand -color #ff9911 -radix hex -group TOP \
 /transceiver_top/clk   \
 /transceiver_top/arstn \
 /transceiver_top/en    \
 
-add wave -color #cccc00 -radix hex -group UART \
+add wave -expand -color #cccc00 -radix hex -group UART \
 /transceiver_top/data        \
 /transceiver_top/data_valid  \
 /transceiver_top/uart_rx_out \
@@ -14,11 +14,11 @@ add wave -color #cccc00 -radix hex -group UART \
 /transceiver_top/active      \
 /transceiver_top/q           \
 
-add wave -color #ee66ff -radix hex -group HAMMING \
+add wave -expand -color #ee66ff -radix hex -group HAMMING \
 /transceiver_top/encoder_out   \
 /transceiver_top/decoder_out   \
 
-add wave -color #1199ff -radix hex -group BPSK \
+add wave -expand -color #1199ff -radix hex -group BPSK \
 /transceiver_top/demodulator_out \
 -radix unsigned /transceiver_top/cnt_out \
 -format Analog-Step -height 74 -max 1997.9999999999998 -min -2048.0 /transceiver_top/neg_sin_out   \
