@@ -32,8 +32,8 @@ module sin_generator #(
                 cnt_out <= cnt_out + 1;
             end
         end else begin
-            neg_sin_out <= 'bz;
-            sin_out     <= 'bz;    
+            neg_sin_out <= 0;
+            sin_out     <= 0;
         end
     end
 

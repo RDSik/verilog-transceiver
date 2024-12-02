@@ -35,7 +35,7 @@ module bpsk_demodulator #(
                 flag <= 0;
             end
         end else begin
-            q <= 'bz;
+            q <= 0;
         end
     end
 
