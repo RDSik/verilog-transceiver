@@ -1,7 +1,5 @@
 FROM ubuntu:latest  
 
-# ENV DIR /verilog-transceiver/top
-
 RUN apt-get -y update && \
     apt-get install -y \
     make \
