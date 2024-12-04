@@ -1,5 +1,6 @@
 clc
 clear
+
 x = [0:2*pi/256:2*pi-2*pi/256];
 y1 = sin(x) + 1;
 y2 = y1./max(y1);
@@ -26,7 +27,7 @@ if fid2 == -1
 end
 
 for i = 1:256
-    fprintf(fid1, '%s\n', dec2bin(y6(i), 12));
+    fprintf(fid2, '%s\n', dec2bin(y6(i), 12));
 end
 
 fclose(fid2);
