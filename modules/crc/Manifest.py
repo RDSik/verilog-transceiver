@@ -1,3 +1,3 @@
 files = [
-    "crc12.v",
+    "crc16.v",
 ]

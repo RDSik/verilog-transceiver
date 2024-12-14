@@ -1,6 +1,6 @@
 `timescale 1ps / 1ps
 
-module crc12_tb();
+module crc16_tb();
 
 localparam CLK_PERIOD = 2;
 localparam SIM_TIME   = 100;
@@ -10,14 +10,14 @@ reg       arstn;
 reg       en;
 reg [7:0] data;
 
-wire [11:0] crc12;
+wire [15:0] crc16;
 
-crc12 dut(
+crc16 dut(
     .clk    (clk  ),
     .arstn  (arstn),
     .en     (en   ),
     .data   (data ),
-    .crc12  (crc12)
+    .crc16  (crc16)
 );
 
 task rst();
@@ -34,7 +34,6 @@ endtask
 
 task data_gen();
     begin
-        rst();
         repeat (5) begin
             en = 1;
             data = $urandom_range(0, 256);
@@ -53,13 +52,14 @@ initial begin
 end
 
 initial begin
+    rst();
     data_gen();
 end
 
 initial begin
-    $dumpfile("crc12_tb.vcd");
-    $dumpvars(0, crc12_tb);
-    $monitor("time=%g, crc=0x%h", $time, crc12);
+    $dumpfile("crc16_tb.vcd");
+    $dumpvars(0, crc16_tb);
+    $monitor("time=%g, crc=0x%h", $time, crc16);
 end
 
 initial begin
