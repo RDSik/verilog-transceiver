@@ -9,7 +9,8 @@ RUN apt-get -y update && \
     flex \
     gperf \
     libreadline-dev \
-    autoconf
+    autoconf \
+    gtkwave
 
 RUN git clone https://github.com/steveicarus/iverilog && \
     cd iverilog && \
