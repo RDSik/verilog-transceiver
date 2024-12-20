@@ -75,7 +75,7 @@ py -m pytest test.py
 deactivate
 ```
 
-### Icarus simulation using cocotb:
+### Icarus simulation:
 ```bash
 cd top
 make
