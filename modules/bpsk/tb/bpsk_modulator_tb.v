@@ -6,23 +6,23 @@ reg        clk;
 reg        arstn;
 reg        en;
 reg [11:0] data;
-reg [11:0] sine_in;
-reg [11:0] neg_sine_in;
+reg [11:0] sin_in;
+reg [11:0] neg_sin_in;
 reg [7:0]  cnt_in;
 
 wire [11:0] signal_out;
 wire [3:0]  sel_cnt;
 wire [11:0] sel;
 
-reg [11:0] sine_rom [255:0];
-reg [11:0] neg_sine_rom [255:0];
+reg [0:11] sin_rom [0:255];
+reg [0:11] neg_sin_rom [0:255];
 
 integer i;
 
 initial 
     begin
-        $readmemb("sine_value.dat", sine_rom);
-        $readmemb("neg_sine_value.dat", neg_sine_rom);
+        $readmemb("sin_value.dat", sin_rom);
+        $readmemb("neg_sine_valu.dat", neg_sin_rom);
     end
 
 bpsk_modulator #(
@@ -30,14 +30,14 @@ bpsk_modulator #(
     .SAMPLE_WIDTH  (12),
     .DATA_WIDTH    (12)
 ) dut (
-    .clk         (clk),
-    .arstn       (arstn),
-    .en          (en),
-    .data        (data),
-    .sine_in     (sine_in),
-    .neg_sine_in (neg_sine_in),
-    .cnt_in      (cnt_in), 
-    .signal_out  (signal_out)
+    .clk        (clk),
+    .arstn      (arstn),
+    .en         (en),
+    .data       (data),
+    .sin_in     (sin_in),
+    .neg_sin_in (neg_sin_in),
+    .cnt_in     (cnt_in), 
+    .signal_out (signal_out)
 );
 
 assign sel_cnt = dut.sel_cnt;
@@ -49,8 +49,8 @@ initial begin
     #1; arstn = 1; en = 1;
     for (i = 0; i <= 2500; i = i + 1) begin
         #2; cnt_in = i; 
-        sine_in = sine_rom[cnt_in]; 
-        neg_sine_in = neg_sine_rom[cnt_in]; 
+        sin_in = sin_rom[cnt_in]; 
+        neg_sin_in = neg_sin_rom[cnt_in]; 
     end 
 end
 

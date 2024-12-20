@@ -7,7 +7,7 @@ import cocotb
 from cocotb.runner import get_runner
 
 def test_runner():
-    src = Path("../../../")
+    src = Path("../../")
     
     hdl_toplevel_lang = os.getenv("HDL_TOPLEVEL_LANG", "verilog")
     sim = os.getenv("SIM", "questa")

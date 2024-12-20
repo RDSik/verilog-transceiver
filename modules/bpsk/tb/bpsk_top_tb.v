@@ -19,7 +19,7 @@ bpsk_top #(
     .DATA_WIDTH    (12)
 ) dut (
     .clk   (clk),
-    .rst_n (arstn),
+    .arstn (arstn),
     .en    (en),
     .data  (data),
     .q     (q)
