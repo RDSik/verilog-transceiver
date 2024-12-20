@@ -77,9 +77,6 @@ deactivate
 
 ### Icarus simulation using cocotb:
 ```bash
-py -m venv myenv
-.\myenv\Scripts\activate.ps1
-cd .\sim\cocotb\icarus
-py -m pytest test.py
-gtkwave .\gtkw.gtkw
-deactivate
+cd top
+make
+```
