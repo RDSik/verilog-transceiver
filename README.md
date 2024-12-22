@@ -70,7 +70,7 @@ make
 ```bash
 py -m venv myenv
 .\myenv\Scripts\activate.ps1
-cd .\sim\cocotb\modelsim
+cd .\sim\cocotb
 py -m pytest test.py
 deactivate
 ```
