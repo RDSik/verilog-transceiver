@@ -18,3 +18,5 @@ platform/xilinx/clk_wiz/*
 myenv
 *.drawio
 *.v.bak
+*.vcd
+transceiver
