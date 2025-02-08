@@ -77,6 +77,5 @@ deactivate
 
 ### Icarus simulation:
 ```bash
-cd top
 make
 ```

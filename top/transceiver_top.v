@@ -8,26 +8,26 @@ module transceiver_top #(
     parameter SAMPLE_NUMBER = 256,                 //! numbers of sample in one sine period
     parameter SAMPLE_WIDTH  = 12,                  //! sample width
     parameter DATA_WIDTH    = 12,                  //! data width
-    parameter SIN_VALUE     = "sin_val.dat",       //! dat file with sine samples
-    parameter NEG_SIN_VALUE = "neg_sin_val.dat"    //! dat file with negative sine samples
+    parameter SIN_VALUE     = "top/sin_val.dat",       //! dat file with sine samples
+    parameter NEG_SIN_VALUE = "top/neg_sin_val.dat"    //! dat file with negative sine samples
 ) (
     input  wire clk,   //! clock  input (100 MHz)
     input  wire arstn, //! asynchronous reset input (negative)
     input  wire data,  //! data   input 
     input  wire en,    //! enable input
     output wire q      //! quit   output
-);                    
-    
+);
+
     // wire                             clk10_out; //! 10 MHz clock from PLL
     wire                             done;            //! uart transmit done output
-    wire                             active;          //! uart transmit active output 
+    wire                             active;          //! uart transmit active output
     wire                             data_valid;      //! uart transmit data valid output
     wire [7:0                      ] uart_rx_out;     //! uart receive instance output
-    wire [7:0                      ] decoder_out;     //! hamming decoder instance output 
-    wire [DATA_WIDTH-1:0           ] encoder_out;     //! hamming encoder instance output 
+    wire [7:0                      ] decoder_out;     //! hamming decoder instance output
+    wire [DATA_WIDTH-1:0           ] encoder_out;     //! hamming encoder instance output
     wire [$clog2(SAMPLE_NUMBER)-1:0] cnt_out;         //! sine generator counter output
     wire [DATA_WIDTH-1:0           ] demodulator_out; //! binary phase shift key demodulator instance output
-    wire [SAMPLE_WIDTH-1:0         ] modulator_out;   //! binary phase shift key modulator instance output 
+    wire [SAMPLE_WIDTH-1:0         ] modulator_out;   //! binary phase shift key modulator instance output
     wire [SAMPLE_WIDTH-1:0         ] neg_sin_out;     //! negative sine generator output
     wire [SAMPLE_WIDTH-1:0         ] sin_out;         //! sine generator output
 
@@ -96,14 +96,14 @@ module transceiver_top #(
     );
 
     hamming_decoder decoder_inst (   //! hamming decoder instance
-        // .clk   (clk10_out), 
+        // .clk   (clk10_out),
         .clk   (clk            ),
         .arstn (arstn          ),
         .rden  (en             ),
         .hc_in (demodulator_out),
         .q     (decoder_out    )
     );
-    
+
     UART_TX #(                       //! uart transmit instance
         .CLKS_PER_BIT (CLKS_PER_BIT)
     ) uart_tx_inst (
