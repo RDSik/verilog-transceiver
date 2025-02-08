@@ -1,7 +1,6 @@
 TOP_NAME    := transceiver
 IVERILOG    := iverilog
 GTKWAVE     := gtkwave
-GTKW_FILE   := top/tb/gtkw.gtkw
 
 SRC_FILES   += top/transceiver_top.v
 SRC_FILES   += top/tb/transceiver_tb.v

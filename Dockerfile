@@ -21,6 +21,5 @@ RUN git clone https://github.com/steveicarus/iverilog && \
 
 COPY . .
 
-RUN cd top && \
-    make
+RUN make
     
