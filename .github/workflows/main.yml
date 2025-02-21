@@ -1,23 +1,26 @@
-name: Icarus Simulation
+name: Verilator Simulation
 
 on: 
-  push:
-    branches: [master]
+    push:
+      branches: [master]
+    pull_request:
+      branches: [master]
 
 jobs:
-  build-container:
+  run-container:
     runs-on: ubuntu-latest
     defaults:
       run:
+        shell: bash
         working-directory: ./
     steps:
       - name: Check out the repository to the runner
-        uses: actions/checkout@v1    
-      - name: Build the docker image
-        uses: docker/build-push-action@v2
-        # run: docker build . --file Dockerfile --tag icarus-simulation:$(date +%s)
-      # - name: Make the script file executable
-        # run: chmod +x ./.github/workflows/iverilog_run.sh
-      # - name: Run icarus
-        # run: ./.github/workflows/iverilog_run.sh
-        # shell: bash
+        uses: actions/checkout@v2
+      - name: Run Docker container
+        uses: addnab/docker-run-action@v3
+        with:
+            image: r0d0s/fpga_tools:v1.1
+            run: |
+              git clone --recurse-submodules https://github.com/RDSik/verilog-transceiver.git
+              cd verilog-transceiver
+              make
