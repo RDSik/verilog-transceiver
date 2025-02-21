@@ -1,6 +1,4 @@
-TOP_NAME    := transceiver
-IVERILOG    := iverilog
-GTKWAVE     := gtkwave
+TOP_NAME := transceiver
 
 SRC_FILES   += top/transceiver_top.v
 SRC_FILES   += top/tb/transceiver_tb.v
@@ -12,18 +10,18 @@ SRC_FILES   += modules/bpsk/sin_generator.v
 SRC_FILES   += modules/uart/UART/Verilog/source/UART_RX.v
 SRC_FILES   += modules/uart/UART/Verilog/source/UART_TX.v
 
-.PHONY: all clean
+.PHONY: all wave clean
 
-all: build execute simulate
+all: build run
 
 build:
-	$(IVERILOG) -o $(TOP_NAME) $(SRC_FILES)
+	iverilog -o $(TOP_NAME) $(SRC_FILES)
 
-execute:
+run:
 	vvp $(TOP_NAME)
 
-simulate: 
-	$(GTKWAVE) $(TOP_NAME)_tb.vcd
+wave: 
+	gtkwave $(TOP_NAME)_tb.vcd
 
 clean:
 	rm $(TOP_NAME)
