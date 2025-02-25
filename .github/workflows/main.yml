@@ -1,4 +1,4 @@
-name: Verilator Simulation
+name: Icarus Simulation
 
 on: 
     push:
