@@ -19,7 +19,7 @@ jobs:
       - name: Run Docker container
         uses: addnab/docker-run-action@v3
         with:
-            image: r0d0s/fpga_tools:v1.3
+            image: r0d0s/fpga_tools:latest
             run: |
               git clone --recurse-submodules https://github.com/RDSik/verilog-transceiver.git
               cd verilog-transceiver
